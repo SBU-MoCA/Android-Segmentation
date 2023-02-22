@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/label"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:paddingLeft="100dp">
+
+
+    <EditText
+        android:id="@+id/FilenameView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="input format: person_label"
+        android:maxLines="1" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:text="start" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="160dp"
+        android:layout_height="112dp"
+        android:text="start time" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:text="stop" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="163dp"
+        android:layout_height="121dp"
+        android:text="stop time" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="156dp"
+        android:layout_height="80dp"
+        android:text="finish" />
+
+    <TextView
+        android:id="@+id/exitView"
+        android:layout_width="218dp"
+        android:layout_height="73dp"
+        android:text=" " />
+
+
+</LinearLayout>
