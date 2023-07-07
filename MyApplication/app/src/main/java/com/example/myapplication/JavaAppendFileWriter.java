@@ -8,6 +8,7 @@ import android.os.Environment;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -60,24 +61,25 @@ public class JavaAppendFileWriter extends Activity {
 
 
 
-    public String readFileData(String fileName){
+    public BufferedReader readFileData(String fileName){
         String result="";
 
         StringBuilder text = new StringBuilder();
+
         try{
-            FileInputStream fis = null;
-
-
-
-            fis = openFileInput(fileName);
-            InputStreamReader isr = new InputStreamReader(fis, "UTF-8");
-            BufferedReader br = new BufferedReader(isr);
-
-            String line;
-
-            while ((line = br.readLine()) != null) {
-                text.append(line + '\n');
+            InputStream fis = getAssets().open("script.txt");
+            if (fis != null){
+                InputStreamReader isr = new InputStreamReader(fis, "UTF-8");
+                BufferedReader br = new BufferedReader(isr);
+                return br;
             }
+
+//            String line;
+
+            // read line by line
+//            while ((line = br.readLine()) != null) {
+//                text.append(line + '\n');
+//            }
 
 //            //获取文件长度
 //            int length = fis.available();
@@ -90,6 +92,7 @@ public class JavaAppendFileWriter extends Activity {
             e.printStackTrace();
         }
 
-        return  text.toString();
+//        return  text.toString();
+        return null;
     }
 }

@@ -15,16 +15,22 @@ import android.widget.TextView;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.sql.Timestamp;
+import java.util.Locale;
+import java.util.TimeZone;
 
 import android.os.Bundle;
 
@@ -38,18 +44,53 @@ public class MainActivity extends AppCompatActivity {
     private JavaAppendFileWriter mAppendFileWriter = new JavaAppendFileWriter();
     private String fileName = mAppendFileWriter.getFileName();
     private FileWriter fw;
+    private BufferedReader br;
 //    private FileWriter fw = new FileWriter(fileName, true);
 
     public MainActivity() throws IOException {
     }
 
+//    private BufferedReader br = mAppendFileWriter.readFileData("script.txt");
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // open script file for guidance
+        InputStream fis = null;
+        try {
+            fis = getAssets().open("script.txt");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if (fis != null){
+            InputStreamReader isr = null;
+            try {
+                isr = new InputStreamReader(fis, "UTF-8");
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+            br = new BufferedReader(isr);
+        }
+
         setContentView(R.layout.activity_main);
 
         EditText inputText = (EditText) findViewById(R.id.FilenameView);
+
+        TextView textViewADL=findViewById(R.id.next_activity);
+        textViewADL.setText("Next Activity");
+
+        // start button
+        btnShowDate1=(Button)findViewById(R.id.button1);
+        // stop button
+        btnShowDate2=(Button)findViewById(R.id.button2);
+        // finish button
+        finish = (Button) findViewById(R.id.button3);
+
+        btnShowDate1.setEnabled(false);
+        btnShowDate2.setEnabled(false);
+        finish.setEnabled(false);
 
         inputText.setOnEditorActionListener(
                 new EditText.OnEditorActionListener() {
@@ -71,6 +112,23 @@ public class MainActivity extends AppCompatActivity {
                                     e.printStackTrace();
                                 }
 
+                                // read a line from "script.txt" and show
+                                try {
+                                    String line;
+                                    if ((line = br.readLine()) != null){
+                                        System.out.println("script:" + line);
+                                        textViewADL.setText(line);
+
+                                        btnShowDate1.setEnabled(true);
+                                    }
+                                    else {
+                                        textViewADL.setText("No activities in script file!");
+                                    }
+                                } catch (IOException e) {
+                                    System.out.println("script:exception");
+                                    e.printStackTrace();
+
+                                }
 
                                 return true; // consume.
                             }
@@ -82,12 +140,15 @@ public class MainActivity extends AppCompatActivity {
         );
 
 
-        btnShowDate1=(Button)findViewById(R.id.button1);
 
+
+        // on click, start button
         btnShowDate1.setOnClickListener(v -> {
 
-            Calendar calendar = Calendar.getInstance();
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+            TimeZone timeZone = TimeZone.getTimeZone("UTC");
+            Calendar calendar = Calendar.getInstance(timeZone);
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS", Locale.US);
+            format.setTimeZone(timeZone);
             String time =  format.format(calendar.getTime());
 
             TextView textView = findViewById(R.id.textView1);
@@ -99,25 +160,60 @@ public class MainActivity extends AppCompatActivity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
+            // disable start button, enable stop button
+            btnShowDate1.setEnabled(false);
+            btnShowDate2.setEnabled(true);
+
         });
 
-        btnShowDate2=(Button)findViewById(R.id.button2);
+        // on click, stop button
         btnShowDate2.setOnClickListener(v -> {
-
-            Calendar calendar = Calendar.getInstance();
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+            TimeZone timeZone = TimeZone.getTimeZone("UTC");
+            Calendar calendar = Calendar.getInstance(timeZone);
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS", Locale.US);
+            format.setTimeZone(timeZone);
             String time =  format.format(calendar.getTime());
+
 
             TextView textView = findViewById(R.id.textView2);
             textView.setText(time);
             try {
                 mAppendFileWriter.main(fw, time, "stop");
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
+            // read a line from "script.txt" and show
+            try {
+                String line;
+                if ((line = br.readLine()) != null){
+                    System.out.println("script:" + line);
+                    textViewADL.setText(line);
+
+                    // disable stop button, enable start button
+                    btnShowDate1.setEnabled(true);
+                    btnShowDate2.setEnabled(false);
+                }
+                else {
+                    textViewADL.setText("All activities finished! Thanks for your cooperation! Click 'FINISH' to exit. ");
+
+                    // disable stop button and start button, enable finish button
+                    btnShowDate1.setEnabled(false);
+                    btnShowDate2.setEnabled(false);
+                    finish.setEnabled(true);
+                }
+            } catch (IOException e) {
+                System.out.println("script:exception");
+                e.printStackTrace();
+
+            }
+
+
         });
 
-        finish = (Button) findViewById(R.id.button3);
+        // on click, finish button
         finish.setOnClickListener(v -> {
             TextView exitView = findViewById(R.id.exitView);
 
