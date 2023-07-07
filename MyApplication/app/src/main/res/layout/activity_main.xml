@@ -4,50 +4,62 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
-    android:paddingLeft="100dp">
+    android:paddingLeft="25dp">
 
 
     <EditText
         android:id="@+id/FilenameView"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:hint="input format: person_label"
+        android:hint="RandomID_Label_SecNum"
+        android:textSize="20sp"
         android:maxLines="1" />
+
+    <TextView
+        android:id="@+id/next_activity"
+        android:layout_width="300dp"
+        android:layout_height="129dp"
+        android:textSize="20sp"
+        android:text="TextView" />
 
     <Button
         android:id="@+id/button1"
-        android:layout_width="150dp"
-        android:layout_height="60dp"
-        android:text="start" />
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:text="start"
+        android:textSize="30sp" />
 
     <TextView
         android:id="@+id/textView1"
-        android:layout_width="160dp"
-        android:layout_height="112dp"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
         android:text="start time" />
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="150dp"
-        android:layout_height="60dp"
-        android:text="stop" />
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:baselineAligned="false"
+        android:text="stop"
+        android:textSize="30sp" />
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="163dp"
-        android:layout_height="121dp"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
         android:text="stop time" />
 
     <Button
         android:id="@+id/button3"
-        android:layout_width="156dp"
-        android:layout_height="80dp"
-        android:text="finish" />
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:text="finish"
+        android:textSize="30sp" />
 
     <TextView
         android:id="@+id/exitView"
-        android:layout_width="218dp"
-        android:layout_height="73dp"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
         android:text=" " />
 
 
