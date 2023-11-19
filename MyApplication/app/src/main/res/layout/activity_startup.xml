@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_white"
+    tools:context=".startupActivity">
+
+    <ImageView
+        android:id="@+id/startupImage"
+        android:layout_width="407dp"
+        android:layout_height="391dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="67dp"
+        android:layout_marginEnd="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:srcCompat="@drawable/startup_svg" />
+
+    <Button
+        android:id="@+id/letsStartButton"
+        android:layout_width="337dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="62dp"
+        android:background="@drawable/custom_button"
+        android:gravity="center"
+        android:text="Get Started"
+        android:textColor="@color/white"
+        android:textSize="18dp" />
+
+    <EditText
+        android:id="@+id/inputPatientId"
+        android:layout_width="336dp"
+        android:layout_height="53dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="121dp"
+        android:background="@drawable/custom_text_input"
+        android:ems="10"
+        android:hint="ENTER SUBJECT ID"
+        android:inputType="text"
+        android:textAlignment="center"
+        android:textColor="@color/primary_button"
+        android:textColorHint="@color/primary_button"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/appTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="27dp"
+        android:text="HOME OF THE FUTURE TOUR"
+        android:textColor="@color/primary_button"
+        android:textSize="25dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/startupInstruction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="37dp"
+        android:layout_marginEnd="68dp"
+        android:layout_marginBottom="221dp"
+        android:fontFamily="sans-serif-light"
+        android:text="LET'S GET STARTED!"
+        android:textColor="@color/primary_button"
+        android:textSize="25dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/startupInstruction2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="38dp"
+        android:layout_marginEnd="67dp"
+        android:layout_marginBottom="194dp"
+        android:fontFamily="sans-serif-light"
+        android:text="Enter the subject's id to begin:"
+        android:textColor="@color/primary_button"
+        android:textSize="16dp"
+        android:textStyle="bold" />
+
+
+</RelativeLayout>
