@@ -24,12 +24,11 @@ import pl.droidsonroids.gif.GifDrawable;
 import pl.droidsonroids.gif.GifImageView;
 
 public class Instructions extends AppCompatActivity implements CustomDialog.CustomDialogListener {
-    final String ACTIVITY = "WALK_KITCHEN";
     public Instructions() throws IOException {}
     private JavaAppendFileWriter mAppendFileWriter = new JavaAppendFileWriter();
     private String fileName = mAppendFileWriter.getFileName();
     Context context = this;
-
+    MediaPlayer mp = new MediaPlayer();
 
 
     @Override
@@ -75,24 +74,20 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         }
 
         // getting the audioFileName
-//        int soundId = res.getIdentifier(audioFilename, "raw", context.getPackageName());
-//        System.out.println(soundId);
-        // TODO: Need fixing.
-//        MediaPlayer mp = new MediaPlayer();
-//        mp.create(Instructions.this, soundId);
-//        mp.start(); // start the audio once when page opens
-//
-//        // attaching play/pause feature to the button
-//        playButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if(mp.isPlaying()){
-//                    mp.pause();
-//                } else {
-//                    mp.start();
-//                }
-//            }
-//        });
+        int soundId = res.getIdentifier(audioFilename, "raw", context.getPackageName());
+        mp = MediaPlayer.create(this, soundId);
+
+        // attaching play/pause feature to the button
+        playButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(mp.isPlaying()){
+                    mp.pause();
+                } else {
+                    mp.start();
+                }
+            }
+        });
 
         // attaching the gifImage with each instruction
         int drawableGifId = res.getIdentifier(gifImageName, "drawable", getPackageName());
@@ -144,6 +139,8 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
 
             }
         });
+
+        mp.start(); // start the audio once when page opens
     }
 
     public void openDialog(String activity, String subjectId, String jsonObject, String activityId) {
