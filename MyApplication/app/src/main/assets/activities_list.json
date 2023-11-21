@@ -6,7 +6,8 @@
     ],
     "audioFileName": "walk_kitchen_audio",
     "gifFileName": "walking",
-    "recordTime": false
+    "alertUser": false,
+    "alertAfter": 0
   },
   "2": {
     "instructions": [
@@ -15,7 +16,8 @@
     ],
     "audioFileName": "walk_kitchen_audio",
     "gifFileName": "kitchen_plate",
-    "recordTime": false
+    "alertUser": false,
+    "alertAfter": 0
   }
 
 }

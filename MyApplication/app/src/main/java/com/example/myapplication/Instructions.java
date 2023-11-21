@@ -57,7 +57,6 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         JSONObject activityDetails = null;
         JSONArray activityInstructions = null;
         String audioFilename = null;
-        Boolean recordTime = null;
         String gifImageName = null;
         try {
            jsonObject = new JSONObject(intent.getStringExtra("jsonData"));
@@ -69,7 +68,6 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
             activityDetails = jsonObject.getJSONObject(activityId);
             activityInstructions = activityDetails.getJSONArray("instructions");
             audioFilename = activityDetails.getString("audioFileName");
-            recordTime = activityDetails.getBoolean("recordTime");
             gifImageName = activityDetails.getString("gifFileName");
         } catch (JSONException e) {
             System.out.println("CODE ERROR: while getting activity JSON data: " + e);
