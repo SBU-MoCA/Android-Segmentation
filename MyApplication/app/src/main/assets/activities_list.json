@@ -1,0 +1,10 @@
+{
+  "WALK_KITCHEN": {
+    "instructions": [
+      "Please walk to the kitchen.",
+      "Press 'Activity Completed' button when you reach the kitchen."
+    ],
+    "audioFileName": "walk_kitchen_audio",
+    "recordTime": false
+  }
+}

@@ -11,5 +11,6 @@
     <color name="primary_input">#F9F9F9</color>
     <color name="button_disabled">#A9A9A9</color>
     <color name="background_white">#E2DFD2</color>
+    <color name="mild_red">#AB2328</color>
 
 </resources>
