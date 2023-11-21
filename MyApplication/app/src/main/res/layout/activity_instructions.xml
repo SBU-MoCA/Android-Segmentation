@@ -18,8 +18,7 @@
         android:layout_marginStart="0dp"
         android:layout_marginTop="11dp"
         android:layout_marginEnd="0dp"
-        android:layout_marginBottom="454dp"
-        android:src="@drawable/walking" />
+        android:layout_marginBottom="454dp" />
 
     <Button
         android:id="@+id/play_audio"

@@ -1,10 +1,21 @@
 {
-  "WALK_KITCHEN": {
+  "1": {
     "instructions": [
       "Please walk to the kitchen.",
       "Press 'Activity Completed' button when you reach the kitchen."
     ],
     "audioFileName": "walk_kitchen_audio",
+    "gifFileName": "walking",
+    "recordTime": false
+  },
+  "2": {
+    "instructions": [
+      "Please take a plate out from the kitchen cabinet.",
+      "Press 'Activity Completed' button when you reach the kitchen."
+    ],
+    "audioFileName": "walk_kitchen_audio",
+    "gifFileName": "kitchen_plate",
     "recordTime": false
   }
+
 }
