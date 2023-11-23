@@ -18,7 +18,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+import java.util.TimeZone;
 
 import pl.droidsonroids.gif.GifDrawable;
 import pl.droidsonroids.gif.GifImageView;
@@ -26,7 +32,7 @@ import pl.droidsonroids.gif.GifImageView;
 public class Instructions extends AppCompatActivity implements CustomDialog.CustomDialogListener {
     public Instructions() throws IOException {}
     private JavaAppendFileWriter mAppendFileWriter = new JavaAppendFileWriter();
-    private String fileName = mAppendFileWriter.getFileName();
+    private FileWriter fw;
     Context context = this;
     MediaPlayer mp = new MediaPlayer();
 
@@ -47,9 +53,18 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         // getting information passed from previous activity
         String subjectId = intent.getStringExtra("subjectId");
         String activityId = intent.getStringExtra("activityId");
-
+        String fileLocation = intent.getStringExtra("fileLocation");
         // adding subjectId as title of the page.
         getSupportActionBar().setTitle("Patient: " + subjectId);
+
+        // set the filename for writing
+        String fileName = fileLocation + '_' + subjectId + ".txt";
+        try {
+            fw = new FileWriter(fileName, true);
+        } catch (IOException e) {
+            System.out.println("Failed to load file: " + fileName);
+            e.printStackTrace();
+        }
 
         // getting jsonString passed from previous activity
         JSONObject jsonObject = null;
@@ -118,7 +133,7 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         activityCompleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openNextInstructionActivity(subjectId, newJSONTransferData.toString(), activityId);
+                openNextInstructionActivity(subjectId, newJSONTransferData.toString(), activityId, fw, mAppendFileWriter, fileLocation);
             }
         });
 
@@ -141,19 +156,46 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         });
 
         mp.start(); // start the audio once when page opens
+
+        // log the starting activity time
+        // TODO: Add a buffer time for subject to comprehend the instruction.
+        logActivityTimings(fw, mAppendFileWriter, "start");
     }
 
-    public void openDialog(String activity, String subjectId, String jsonObject, String activityId) {
-        CustomDialog dialog = new CustomDialog(activity, subjectId, jsonObject, activityId);
+    public void logActivityTimings(FileWriter fileWriter, JavaAppendFileWriter fileAppendWriter, String flag) {
+        TimeZone timeZone = TimeZone.getTimeZone("UTC");
+        Calendar calendar = Calendar.getInstance(timeZone);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS", Locale.US);
+        format.setTimeZone(timeZone);
+        String time =  format.format(calendar.getTime());
+        try {
+            fileAppendWriter.writeToFile(fileWriter, time, flag);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void openDialog(
+            String activity, String subjectId, String jsonObject, String activityId
+    ) {
+        CustomDialog dialog = new CustomDialog(
+                activity,
+                subjectId,
+                jsonObject,
+                activityId
+                );
         dialog.show(getSupportFragmentManager(), "customDialog");
     }
 
     // onClick for activityCompleteButton
-    public void openNextInstructionActivity(String subjectId, String jsonObject, String activityId) {
+    public void openNextInstructionActivity(String subjectId, String jsonObject, String activityId, FileWriter fw, JavaAppendFileWriter mAppendFileWriter, String fileLocation) {
+        logActivityTimings(fw, mAppendFileWriter, "stop");
         Intent intent = new Intent(this, Instructions.class);
         intent.putExtra("subjectId", subjectId);
         intent.putExtra("jsonData", jsonObject);
         intent.putExtra("activityId", Integer.toString((Integer.parseInt(activityId) + 1)));
+        intent.putExtra("fileLocation", fileLocation);
         startActivity(intent);
     }
 
@@ -178,6 +220,7 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
+    // if yes clicked on dialog, perform the respective action
     @Override
     public void onYesClicked(String activity, String subjectId, String jsonObject, String activityId) {
         if (activity == "restartActivity") {

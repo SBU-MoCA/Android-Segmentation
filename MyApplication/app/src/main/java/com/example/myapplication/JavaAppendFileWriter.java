@@ -28,14 +28,18 @@ public class JavaAppendFileWriter extends Activity {
 
     public FileWriter fw;
 
-    public void main(FileWriter fw, String timestamp, String flag) throws IOException {
+    public void writeToFile(FileWriter fw, String timestamp, String flag) throws IOException {
         if(Objects.equals(flag, "start")) {
+            System.out.println("Writing to file");
             fw.append("start:" + timestamp + ",");
         }
         else{
+            System.out.println("Writing to file stop");
             fw.append("stop:" + timestamp + "\n");
         }
+        fw.flush();
         System.out.println(timestamp);
+
 
     }
 

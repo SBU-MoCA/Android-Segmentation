@@ -17,9 +17,14 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class StartupActivity extends AppCompatActivity {
-
+    public StartupActivity() throws IOException {}
+    private JavaAppendFileWriter mAppendFileWriter = new JavaAppendFileWriter();
+    private String fileLocation = mAppendFileWriter.getFileName();
     private Button letsStartButton;
     private EditText inputPatientId; // TODO: Need to add validation for this.
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,6 +96,7 @@ public class StartupActivity extends AppCompatActivity {
         intent.putExtra("subjectId", inputPatientId.getText().toString());
         intent.putExtra("jsonData", jsonObject.toString());
         intent.putExtra("activityId", "1");
+        intent.putExtra("fileLocation", fileLocation);
         startActivity(intent);
     }
 }
