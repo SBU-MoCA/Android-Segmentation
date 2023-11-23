@@ -141,7 +141,7 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         restartActivityButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openDialog("restartActivity", subjectId, newJSONTransferData.toString(), activityId);
+                openDialog("restartActivity", subjectId, newJSONTransferData.toString(), activityId, fileLocation);
             }
         });
 
@@ -150,8 +150,7 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
             @Override
             public void onClick(View v) {
                 System.out.println("Start over from beginning. Current activity: " + activityId);
-                openDialog("startOver", subjectId, newJSONTransferData.toString(), activityId);
-
+                openDialog("startOver", subjectId, newJSONTransferData.toString(), activityId, fileLocation);
             }
         });
 
@@ -177,13 +176,14 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
     }
 
     public void openDialog(
-            String activity, String subjectId, String jsonObject, String activityId
+            String activity, String subjectId, String jsonObject, String activityId, String fileLocation
     ) {
         CustomDialog dialog = new CustomDialog(
                 activity,
                 subjectId,
                 jsonObject,
-                activityId
+                activityId,
+                fileLocation
                 );
         dialog.show(getSupportFragmentManager(), "customDialog");
     }
@@ -200,12 +200,14 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
     }
 
     // onClick for restartActivityButton
-    public void restartCurrentActivity(String subjectId, String jsonObject, String activityId) {
-       System.out.println("Restarting activity: " + activityId);
+    public void restartCurrentActivity(String subjectId, String jsonObject, String activityId, String fileLocation) {
+        System.out.println("Restarting activity: " + activityId);
+        JavaAppendFileWriter.removeLastEntryFromFile(fileLocation + "_" + subjectId+ ".txt");
         Intent intent = new Intent(this, Instructions.class);
         intent.putExtra("subjectId", subjectId);
         intent.putExtra("jsonData", jsonObject);
         intent.putExtra("activityId", activityId);
+        intent.putExtra("fileLocation", fileLocation);
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
@@ -222,9 +224,9 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
 
     // if yes clicked on dialog, perform the respective action
     @Override
-    public void onYesClicked(String activity, String subjectId, String jsonObject, String activityId) {
+    public void onYesClicked(String activity, String subjectId, String jsonObject, String activityId, String fileName) {
         if (activity == "restartActivity") {
-            restartCurrentActivity(subjectId, jsonObject, activityId);
+            restartCurrentActivity(subjectId, jsonObject, activityId, fileName);
         } else {
             startOverFromStart(subjectId, jsonObject);
         }

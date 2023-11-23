@@ -14,12 +14,14 @@ public class CustomDialog extends AppCompatDialogFragment {
     private String subjectId;
     private String jsonObject;
     private String activityId;
+    private String fileLocation;
 
-    CustomDialog(String activity, String subjectId, String jsonObject, String activityId) {
+    CustomDialog(String activity, String subjectId, String jsonObject, String activityId, String fileLocation) {
         this.activity = activity;
         this.jsonObject = jsonObject;
         this.subjectId = subjectId;
         this.activityId = activityId;
+        this.fileLocation = fileLocation;
     }
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -36,14 +38,14 @@ public class CustomDialog extends AppCompatDialogFragment {
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        listener.onYesClicked(activity, subjectId, jsonObject, activityId);
+                        listener.onYesClicked(activity, subjectId, jsonObject, activityId, fileLocation);
                     }
                 });
         return builder.create();
     }
 
     public interface CustomDialogListener {
-        void onYesClicked(String activity, String subjectId, String jsonObject, String activityId);
+        void onYesClicked(String activity, String subjectId, String jsonObject, String activityId, String fileLocation);
     }
 
     @Override
