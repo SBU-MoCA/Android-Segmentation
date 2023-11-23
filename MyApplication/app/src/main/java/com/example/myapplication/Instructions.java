@@ -58,7 +58,7 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         getSupportActionBar().setTitle("Patient: " + subjectId);
 
         // set the filename for writing
-        String fileName = fileLocation + '_' + subjectId + ".txt";
+        String fileName = getFileNameFormat(fileLocation, subjectId);
         try {
             fw = new FileWriter(fileName, true);
         } catch (IOException e) {
@@ -161,6 +161,10 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         logActivityTimings(fw, mAppendFileWriter, "start");
     }
 
+    public String getFileNameFormat(String fileLocation, String subjectId) {
+        return  fileLocation + '_' + subjectId + ".txt";
+    }
+
     public void logActivityTimings(FileWriter fileWriter, JavaAppendFileWriter fileAppendWriter, String flag) {
         TimeZone timeZone = TimeZone.getTimeZone("UTC");
         Calendar calendar = Calendar.getInstance(timeZone);
@@ -202,7 +206,7 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
     // onClick for restartActivityButton
     public void restartCurrentActivity(String subjectId, String jsonObject, String activityId, String fileLocation) {
         System.out.println("Restarting activity: " + activityId);
-        JavaAppendFileWriter.removeLastEntryFromFile(fileLocation + "_" + subjectId+ ".txt");
+        JavaAppendFileWriter.removeLastEntryFromFile(getFileNameFormat(fileLocation, subjectId));
         Intent intent = new Intent(this, Instructions.class);
         intent.putExtra("subjectId", subjectId);
         intent.putExtra("jsonData", jsonObject);
@@ -213,22 +217,24 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
     }
 
     // onClick for startOverActivity
-    public void startOverFromStart(String subjectId, String jsonObject) {
+    public void startOverFromStart(String subjectId, String jsonObject, String activityId, String fileLocation) throws IOException {
+        JavaAppendFileWriter.truncateFile(getFileNameFormat(fileLocation, subjectId));
         Intent intent = new Intent(this, Instructions.class);
         intent.putExtra("subjectId", subjectId);
         intent.putExtra("jsonData", jsonObject);
         intent.putExtra("activityId", "1");
+        intent.putExtra("fileLocation", fileLocation);
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
     // if yes clicked on dialog, perform the respective action
     @Override
-    public void onYesClicked(String activity, String subjectId, String jsonObject, String activityId, String fileName) {
+    public void onYesClicked(String activity, String subjectId, String jsonObject, String activityId, String fileLocation) throws IOException {
         if (activity == "restartActivity") {
-            restartCurrentActivity(subjectId, jsonObject, activityId, fileName);
+            restartCurrentActivity(subjectId, jsonObject, activityId, fileLocation);
         } else {
-            startOverFromStart(subjectId, jsonObject);
+            startOverFromStart(subjectId, jsonObject, "1", fileLocation);
         }
     }
 

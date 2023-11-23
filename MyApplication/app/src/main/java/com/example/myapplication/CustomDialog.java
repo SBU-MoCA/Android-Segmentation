@@ -8,6 +8,8 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatDialogFragment;
 
+import java.io.IOException;
+
 public class CustomDialog extends AppCompatDialogFragment {
     private CustomDialogListener listener;
     private String activity;
@@ -38,14 +40,18 @@ public class CustomDialog extends AppCompatDialogFragment {
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        listener.onYesClicked(activity, subjectId, jsonObject, activityId, fileLocation);
+                        try {
+                            listener.onYesClicked(activity, subjectId, jsonObject, activityId, fileLocation);
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
                     }
                 });
         return builder.create();
     }
 
     public interface CustomDialogListener {
-        void onYesClicked(String activity, String subjectId, String jsonObject, String activityId, String fileLocation);
+        void onYesClicked(String activity, String subjectId, String jsonObject, String activityId, String fileLocation) throws IOException;
     }
 
     @Override

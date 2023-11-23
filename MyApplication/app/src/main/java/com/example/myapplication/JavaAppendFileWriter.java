@@ -19,14 +19,6 @@ import java.util.Objects;
 import android.os.Bundle;
 
 public class JavaAppendFileWriter extends Activity {
-
-
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_main);
-//    }
-
     public FileWriter fw;
 
     public void writeToFile(FileWriter fw, String timestamp, String flag) throws IOException {
@@ -131,5 +123,11 @@ public class JavaAppendFileWriter extends Activity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void truncateFile(String filePath) throws IOException {
+        FileWriter fw = new FileWriter(filePath);
+        fw.flush();
+        System.out.println("File Truncated: " + filePath);
     }
 }
