@@ -18,6 +18,17 @@
     "gifFileName": "kitchen_plate",
     "alertUser": false,
     "alertAfter": 0
+  },
+  "3": {
+    "instructions": [
+      "Please remove any food item from the refrigerator.",
+      "Unpack the food item.",
+      "Place the food item on the plate in the kitchen."
+    ],
+    "audioFileName": "open_fridge",
+    "gifFileName": "open_fridge",
+    "alertUser": true,
+    "alertAfter": 10
   }
 
 }
