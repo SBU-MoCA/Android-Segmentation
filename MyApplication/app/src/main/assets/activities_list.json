@@ -4,6 +4,7 @@
       "Please walk to the kitchen.",
       "Press the 'Activity Completed' button when you reach the kitchen."
     ],
+    "roomName": "Kitchen",
     "audioFileName": "walk",
     "gifFileName": "walking",
     "alertUser": false,
@@ -14,6 +15,7 @@
       "Please take a plate out from the kitchen cabinet as shown.",
       "Press the 'Activity Completed' button when you are done."
     ],
+    "roomName": "Kitchen",
     "audioFileName": "kitchen_cabinet",
     "gifFileName": "kitchen_plate",
     "alertUser": false,
@@ -24,11 +26,12 @@
       "Please remove any food item from the refrigerator.",
       "Unpack the food item.",
       "Place the food item on the plate in the kitchen."
+
     ],
+    "roomName": "kitchen",
     "audioFileName": "open_fridge",
     "gifFileName": "open_fridge",
     "alertUser": true,
     "alertAfter": 10
   }
-
 }

@@ -41,8 +41,6 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
     private Runnable showDialogRunnable;
     private Vibrator vibrator;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -123,7 +121,6 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
             throw new RuntimeException(e);
         }
         gifImageView.setImageDrawable(gifFromResource);
-
 
         // attaching instructions text
         String instructionSet = "";

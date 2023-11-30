@@ -78,7 +78,6 @@ public class StartupActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-
         // onClick for lets get started button
         final JSONObject passingJSONObject = jsonObject; // declaring as final for passing to inner class.
         letsStartButton.setOnClickListener(new View.OnClickListener() {
@@ -87,12 +86,10 @@ public class StartupActivity extends AppCompatActivity {
                 openInstructionActivities(passingJSONObject);
             }
         });
-
-
     }
 
     public void openInstructionActivities(JSONObject jsonObject) {
-        Intent intent = new Intent(this, Instructions.class);
+        Intent intent = new Intent(this, Overview.class);
         intent.putExtra("subjectId", inputPatientId.getText().toString());
         intent.putExtra("jsonData", jsonObject.toString());
         intent.putExtra("activityId", "1");
