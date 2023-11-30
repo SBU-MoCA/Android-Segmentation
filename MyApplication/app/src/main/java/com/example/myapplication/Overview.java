@@ -36,10 +36,12 @@ import pl.droidsonroids.gif.GifImageView;
 class ActivityResource {
     public JSONArray instructions;
     public String gifImageName;
+    public String activityName;
 
-    public ActivityResource(JSONArray instructions, String gifImageName) {
+    public ActivityResource(JSONArray instructions, String gifImageName, String activityName) {
         this.instructions = instructions;
         this.gifImageName = gifImageName;
+        this.activityName = activityName;
     }
 }
 
@@ -64,6 +66,7 @@ public class Overview extends AppCompatActivity {
 
         TextView roomTitle = (TextView) findViewById(R.id.room_title);
         TextView gifText = (TextView) findViewById(R.id.gif_overview_text);
+        TextView activityText = (TextView) findViewById(R.id.activity_name);
         Button startRoomButton = (Button) findViewById(R.id.start_room);
         GifImageView gifImageView = (GifImageView) findViewById(R.id.overview_gif);
 
@@ -101,17 +104,19 @@ public class Overview extends AppCompatActivity {
         for(int i = 1; i > 0; i++) {
             JSONArray instructions;
             String gifImageName;
+            String activityName;
 
             try {
                 activityDetails = jsonObject.getJSONObject(Integer.toString(i));
                 instructions = activityDetails.getJSONArray("instructions");
                 gifImageName = activityDetails.getString("gifFileName");
+                activityName = activityDetails.getString("activityName");
             }
             catch(JSONException e) {
                 break;
             }
 
-            roomActivities.add(new ActivityResource(instructions, gifImageName));
+            roomActivities.add(new ActivityResource(instructions, gifImageName, activityName));
         }
 
         startRoomButton.setOnClickListener(new View.OnClickListener() {
@@ -132,7 +137,7 @@ public class Overview extends AppCompatActivity {
 
 
         //Display gif right away then start timer to cycle
-        displayNextGif(res, gifImageView, gifText);
+        displayNextGif(res, gifImageView, gifText, activityText);
 
         timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
@@ -141,16 +146,17 @@ public class Overview extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        displayNextGif(res, gifImageView, gifText);
+                        displayNextGif(res, gifImageView, gifText, activityText);
                     }
                 });
             }
         }, 0, 3000); // Update every 5 seconds (adjust as needed)
     }
 
-    private void displayNextGif(Resources res, GifImageView gifImageView, TextView gifText) {
+    private void displayNextGif(Resources res, GifImageView gifImageView, TextView gifText, TextView activityText) {
         String gifImageName = roomActivities.get(currentActivity).gifImageName;
         JSONArray activityInstructions = roomActivities.get(currentActivity).instructions;
+        String activityName = roomActivities.get(currentActivity).activityName;
 
         int drawableGifId = res.getIdentifier(gifImageName, "drawable", getPackageName());
         GifDrawable gifFromResource = null;
@@ -173,6 +179,8 @@ public class Overview extends AppCompatActivity {
             }
         }
         gifText.setText(instructionSet);
+
+        activityText.setText(activityName);
 
         currentActivity++;
 
