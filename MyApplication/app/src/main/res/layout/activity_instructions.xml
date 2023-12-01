@@ -22,13 +22,18 @@
 
     <Button
         android:id="@+id/play_audio"
-        android:layout_width="100dp"
-        android:layout_height="90dp"
-        android:layout_alignParentEnd="true"
+        android:layout_width="223dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="9dp"
-        android:layout_marginBottom="400dp"
-        android:background="@drawable/play_audio" />
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="392dp"
+        android:background="@drawable/custom_button"
+        android:drawableRight="@drawable/play_audio"
+        android:gravity="center"
+        android:paddingRight="10dp"
+        android:text="Replay Voice"
+        android:textColor="@color/white"
+        android:textSize="18dp" />
 
     <Button
         android:id="@+id/activity_complete"
@@ -41,7 +46,7 @@
         android:backgroundTint="@color/primary_button"
         android:gravity="center"
         android:text="Activity Complete"
-        android:textSize="16dp" />
+        android:textSize="18dp" />
 
     <Button
         android:id="@+id/restart_activity"
@@ -56,7 +61,7 @@
         android:gravity="center"
         android:text="Restart This Activity"
         android:textColor="@color/white"
-        android:textSize="16dp" />
+        android:textSize="18dp" />
 
     <Button
         android:id="@+id/start_over"
@@ -71,20 +76,34 @@
         android:gravity="center"
         android:text="Start Over"
         android:textColor="@color/primary_button"
-        android:textSize="16dp" />
+        android:textSize="18dp" />
 
     <TextView
         android:id="@+id/instructions_text"
-        android:layout_width="331dp"
-        android:layout_height="176dp"
+        android:layout_width="372dp"
+        android:layout_height="181dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginStart="22dp"
-        android:layout_marginBottom="219dp"
-        android:textColor="@color/primary_button"
-        android:textSize="16dp"
+        android:layout_marginBottom="188dp"
         android:textAllCaps="true"
-        android:textStyle="bold"/>
+        android:textColor="@color/primary_button"
+        android:textSize="18dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/start_activity"
+        android:layout_width="300dp"
+        android:layout_height="55dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="59dp"
+        android:background="@drawable/custom_button"
+        android:backgroundTint="@color/teal_700"
+        android:gravity="center"
+        android:text="Start Activity"
+        android:textSize="18dp" />
 
 
 </RelativeLayout>

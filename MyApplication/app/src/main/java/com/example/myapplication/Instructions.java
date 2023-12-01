@@ -51,6 +51,10 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         Button activityCompleteButton = (Button) findViewById(R.id.activity_complete);
         Button restartActivityButton = (Button) findViewById(R.id.restart_activity);
         Button startOverButton = (Button) findViewById(R.id.start_over);
+        activityCompleteButton.setVisibility(View.INVISIBLE);
+        restartActivityButton.setVisibility(View.INVISIBLE);
+        startOverButton.setVisibility(View.INVISIBLE);
+        Button startActivitybutton = (Button) findViewById(R.id.start_activity);
         TextView instructionsTextView = (TextView) findViewById(R.id.instructions_text);
         GifImageView gifImageView = (GifImageView) findViewById(R.id.instruction_gif);
 
@@ -96,6 +100,7 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
             e.printStackTrace();
         }
 
+
         // getting the audioFileName
         int soundId = res.getIdentifier(audioFilename, "raw", context.getPackageName());
         mp = MediaPlayer.create(this, soundId);
@@ -121,6 +126,22 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
             throw new RuntimeException(e);
         }
         gifImageView.setImageDrawable(gifFromResource);
+
+        // start activity button press
+        startActivitybutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mp.isPlaying()) {
+                    mp.stop();
+                }
+                activityCompleteButton.setVisibility(View.VISIBLE);
+                restartActivityButton.setVisibility(View.VISIBLE);
+                startOverButton.setVisibility(View.VISIBLE);
+                startActivitybutton.setVisibility(View.INVISIBLE);
+                // log the starting activity time
+                logActivityTimings(fw, mAppendFileWriter, "start");
+            }
+        });
 
         // attaching instructions text
         String instructionSet = "";
@@ -162,10 +183,6 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         });
 
         mp.start(); // start the audio once when page opens
-
-        // log the starting activity time
-        // TODO: Add a buffer time for subject to comprehend the instruction.
-        logActivityTimings(fw, mAppendFileWriter, "start");
 
         // initialize required values if we need to alert user after x seconds
         if (alertUser) {
