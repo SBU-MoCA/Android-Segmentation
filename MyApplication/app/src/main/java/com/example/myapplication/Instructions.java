@@ -50,10 +50,8 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         Button playButton = (Button) findViewById(R.id.play_audio);
         Button activityCompleteButton = (Button) findViewById(R.id.activity_complete);
         Button restartActivityButton = (Button) findViewById(R.id.restart_activity);
-        Button startOverButton = (Button) findViewById(R.id.start_over);
         activityCompleteButton.setVisibility(View.INVISIBLE);
         restartActivityButton.setVisibility(View.INVISIBLE);
-        startOverButton.setVisibility(View.INVISIBLE);
         Button startActivitybutton = (Button) findViewById(R.id.start_activity);
         TextView instructionsTextView = (TextView) findViewById(R.id.instructions_text);
         GifImageView gifImageView = (GifImageView) findViewById(R.id.instruction_gif);
@@ -136,7 +134,6 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
                 }
                 activityCompleteButton.setVisibility(View.VISIBLE);
                 restartActivityButton.setVisibility(View.VISIBLE);
-                startOverButton.setVisibility(View.VISIBLE);
                 startActivitybutton.setVisibility(View.INVISIBLE);
                 // log the starting activity time
                 logActivityTimings(fw, mAppendFileWriter, "start");
@@ -173,14 +170,13 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
             }
         });
 
-        // attaching action for startOverButton
-        startOverButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                System.out.println("Start over from beginning. Current activity: " + activityId);
-                openDialog("startOver", subjectId, newJSONTransferData.toString(), activityId, fileLocation);
-            }
-        });
+// startOverButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                System.out.println("Start over from beginning. Current activity: " + activityId);
+//                openDialog("startOver", subjectId, newJSONTransferData.toString(), activityId, fileLocation);
+//            }
+//        });
 
         mp.start(); // start the audio once when page opens
 
