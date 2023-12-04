@@ -34,6 +34,7 @@
     "audioFileName": "open_fridge",
     "gifFileName": "open_fridge",
     "alertUser": true,
-    "alertAfter": 10
+    "alertAfter": 10,
+    "alertUserSuccessText": "10 seconds of activity complete. Please continue to next activity"
   }
 }

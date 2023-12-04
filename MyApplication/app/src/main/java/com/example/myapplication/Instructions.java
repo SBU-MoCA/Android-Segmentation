@@ -21,6 +21,7 @@ import org.json.JSONObject;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
@@ -80,6 +81,7 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         String gifImageName = null;
         Boolean alertUser = false;
         Integer alertAfterSeconds = 0;
+        String alertSuccessText = "Activity Complete. Please continue to next activity.";
         try {
            jsonObject = new JSONObject(intent.getStringExtra("jsonData"));
         } catch (JSONException e) {
@@ -93,6 +95,7 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
             gifImageName = activityDetails.getString("gifFileName");
             alertUser = activityDetails.getBoolean("alertUser");
             alertAfterSeconds = activityDetails.getInt("alertAfter");
+            alertSuccessText = activityDetails.getString("alertUserSuccessText");
         } catch (JSONException e) {
             System.out.println("CODE ERROR: while getting activity JSON data: " + e);
             e.printStackTrace();
@@ -183,7 +186,7 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         // initialize required values if we need to alert user after x seconds
         if (alertUser) {
             // Initialize handler and runnable
-            initializeHandlerAndRunnable(alertAfterSeconds);
+            initializeHandlerAndRunnable(alertAfterSeconds, alertSuccessText);
         }
 
     }
@@ -280,14 +283,14 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         vibrator.vibrate(500);
     }
 
-    public void initializeHandlerAndRunnable(Integer timeoutSeconds) {
+    public void initializeHandlerAndRunnable(Integer timeoutSeconds, String alertText) {
         handler = new Handler();
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         showDialogRunnable = new Runnable() {
             @Override
             public void run() {
                 // Show the dialog when the user has been inactive for x seconds
-                alertTimeoutDialog();
+                alertTimeoutDialog(alertText);
                 vibrate();
             }
         };
@@ -305,8 +308,12 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         startTimer(timeoutSeconds);
     }
 
-    public void alertTimeoutDialog() {
-        InactiveAlertDialog timeoutDialogReminder =  new InactiveAlertDialog();
+    public void alertTimeoutDialog(String alertText) {
+        TimedActivityAlert timeoutDialogReminder =  new TimedActivityAlert(
+                alertText,
+                "Continue to next activity",
+                "Restart activity"
+        );
         timeoutDialogReminder.show(getSupportFragmentManager(), "inactiveDialogReminder");
     }
 
