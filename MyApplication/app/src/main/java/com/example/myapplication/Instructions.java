@@ -30,7 +30,7 @@ import java.util.TimeZone;
 import pl.droidsonroids.gif.GifDrawable;
 import pl.droidsonroids.gif.GifImageView;
 
-public class Instructions extends AppCompatActivity implements CustomDialog.CustomDialogListener {
+public class Instructions extends AppCompatActivity implements CustomDialog.CustomDialogListener, TimedActivityAlert.TimedAlertListener {
     public Instructions() throws IOException {}
     private JavaAppendFileWriter mAppendFileWriter = new JavaAppendFileWriter();
     private FileWriter fw;
@@ -186,7 +186,9 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         // initialize required values if we need to alert user after x seconds
         if (alertUser) {
             // Initialize handler and runnable
-            initializeHandlerAndRunnable(alertAfterSeconds, alertSuccessText);
+            initializeHandlerAndRunnable(
+                    subjectId, newJSONTransferData.toString(), activityId, fileLocation,
+                    alertAfterSeconds, alertSuccessText);
         }
 
     }
@@ -283,14 +285,19 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         vibrator.vibrate(500);
     }
 
-    public void initializeHandlerAndRunnable(Integer timeoutSeconds, String alertText) {
+    public void initializeHandlerAndRunnable(
+            String subjectId, String jsonObject, String activityId, String fileLocation,
+            Integer timeoutSeconds, String alertText)
+    {
         handler = new Handler();
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         showDialogRunnable = new Runnable() {
             @Override
             public void run() {
                 // Show the dialog when the user has been inactive for x seconds
-                alertTimeoutDialog(alertText);
+                alertTimeoutDialog(
+                    subjectId, jsonObject, activityId, fileLocation, alertText
+                );
                 vibrate();
             }
         };
@@ -308,13 +315,33 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         startTimer(timeoutSeconds);
     }
 
-    public void alertTimeoutDialog(String alertText) {
+    public void alertTimeoutDialog(
+            String subjectId, String jsonObject, String activityId, String fileLocation,
+            String alertText
+    ) {
         TimedActivityAlert timeoutDialogReminder =  new TimedActivityAlert(
+                subjectId,
+                jsonObject,
+                activityId,
+                fileLocation,
                 alertText,
                 "Continue to next activity",
                 "Restart activity"
         );
         timeoutDialogReminder.show(getSupportFragmentManager(), "inactiveDialogReminder");
+    }
+
+    public void timedAlertButtonPress(
+            Boolean positiveActivity,
+            String subjectId,
+            String jsonObject,
+            String activityId,
+            String fileLocation) {
+        if (positiveActivity == true) {
+            openNextInstructionActivity(subjectId, jsonObject, activityId, fw, mAppendFileWriter, fileLocation);
+        } else {
+            restartCurrentActivity(subjectId, jsonObject, activityId, fileLocation);
+        }
     }
 
 }

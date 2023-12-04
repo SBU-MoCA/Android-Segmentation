@@ -21,7 +21,10 @@
     "audioFileName": "kitchen_cabinet",
     "gifFileName": "kitchen_plate",
     "alertUser": false,
-    "alertAfter": 0
+    "alertAfter": 0,
+    "alertUser": true,
+    "alertAfter": 10,
+    "alertUserSuccessText": "10 seconds of activity complete. Please continue to next activity"
   },
   "3": {
     "activityName": "Food Removal",
@@ -32,9 +35,6 @@
     ],
     "roomName": "kitchen",
     "audioFileName": "open_fridge",
-    "gifFileName": "open_fridge",
-    "alertUser": true,
-    "alertAfter": 10,
-    "alertUserSuccessText": "10 seconds of activity complete. Please continue to next activity"
+    "gifFileName": "open_fridge"s
   }
 }
