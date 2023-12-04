@@ -224,7 +224,7 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
     // onClick for restartActivityButton
     private void restartCurrentActivity(String subjectId, String jsonObject, String activityId, String fileLocation) {
         System.out.println("Restarting activity: " + activityId);
-        JavaAppendFileWriter.removeLastEntryFromFile(getFileNameFormat(fileLocation, subjectId));
+//        JavaAppendFileWriter.removeLastEntryFromFile(getFileNameFormat(fileLocation, subjectId));
         Intent intent = new Intent(this, Instructions.class);
         intent.putExtra("subjectId", subjectId);
         intent.putExtra("jsonData", jsonObject);
