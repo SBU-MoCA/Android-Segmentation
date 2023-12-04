@@ -89,7 +89,7 @@ public class StartupActivity extends AppCompatActivity {
     }
 
     public void openInstructionActivities(JSONObject jsonObject) {
-        Intent intent = new Intent(this, Instructions.class);
+        Intent intent = new Intent(this, Overview.class);
         intent.putExtra("subjectId", inputPatientId.getText().toString());
         intent.putExtra("jsonData", jsonObject.toString());
         intent.putExtra("activityId", "1");
