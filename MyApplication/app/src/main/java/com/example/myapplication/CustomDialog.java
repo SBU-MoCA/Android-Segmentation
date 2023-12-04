@@ -5,7 +5,10 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatDialogFragment;
 
@@ -18,6 +21,9 @@ public class CustomDialog extends AppCompatDialogFragment {
     private String jsonObject;
     private String activityId;
     private String fileLocation;
+    private Button positiveBtn;
+    private Button negativeBtn;
+    private TextView alertTextView;
 
     CustomDialog(String activity, String subjectId, String jsonObject, String activityId, String fileLocation) {
         this.activity = activity;
@@ -28,27 +34,44 @@ public class CustomDialog extends AppCompatDialogFragment {
     }
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.AlertDialog);
+        LayoutInflater layoutInflater = LayoutInflater.from(getContext());
+        View promptView = layoutInflater.inflate(R.layout.custom_dialog, null);
+        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(getActivity(), R.style.AlertDialog);
+        AlertDialog builder = alertBuilder.create();
+        builder.setView(promptView);
+
+        positiveBtn = (Button) promptView.findViewById(R.id.alertPositiveButton);
+        negativeBtn = (Button) promptView.findViewById(R.id.alertNegativeButton);
+        alertTextView = (TextView) promptView.findViewById(R.id.alertTextMessage);
         Boolean restartActivity = (this.activity == "restartActivity") ? true : false;
-        String title = restartActivity ? "Do you want to restart this activity?" : "Do you want to restart from beginning?";
-        String message = "Press 'Yes' to restart.\nPress 'No' to continue.";
-        builder.setTitle(title)
-                .setMessage(message)
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) { }
-                })
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        try {
-                            listener.onYesClicked(activity, subjectId, jsonObject, activityId, fileLocation);
-                        } catch (IOException e) {
-                            throw new RuntimeException(e);
-                        }
-                    }
-                });
-        return builder.create();
+        String title = restartActivity ? "Are you sure you want to restart this activity?" : "Do you want to restart from beginning?";
+        String message = "Press 'No' to continue.\n\nPress 'Yes' to restart.";
+        builder.setTitle(title);
+        alertTextView.setText(message);
+        /* Positive and negative buttons are negated for this action */
+        positiveBtn.setText("NO - Continue Activity");
+
+        negativeBtn.setText("YES - Restart Activity");
+
+
+        positiveBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               builder.dismiss();
+            }
+        });
+
+        negativeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    listener.onYesClicked(activity, subjectId, jsonObject, activityId, fileLocation);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+        return builder;
     }
 
     public interface CustomDialogListener {

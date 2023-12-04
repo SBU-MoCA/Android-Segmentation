@@ -42,6 +42,16 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
     private Runnable showDialogRunnable;
     private Vibrator vibrator;
 
+    // getting jsonString passed from previous activity
+    JSONObject jsonObject = null;
+    JSONObject activityDetails = null;
+    JSONArray activityInstructions = null;
+    String audioFilename = null;
+    String gifImageName = null;
+    Boolean alertUser = false;
+    Integer alertAfterSeconds = 0;
+    String alertSuccessText = "Activity Complete. Please continue to next activity.";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,16 +82,6 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
             System.out.println("Failed to load file: " + fileName);
             e.printStackTrace();
         }
-
-        // getting jsonString passed from previous activity
-        JSONObject jsonObject = null;
-        JSONObject activityDetails = null;
-        JSONArray activityInstructions = null;
-        String audioFilename = null;
-        String gifImageName = null;
-        Boolean alertUser = false;
-        Integer alertAfterSeconds = 0;
-        String alertSuccessText = "Activity Complete. Please continue to next activity.";
         try {
            jsonObject = new JSONObject(intent.getStringExtra("jsonData"));
         } catch (JSONException e) {
@@ -127,6 +127,8 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
             throw new RuntimeException(e);
         }
         gifImageView.setImageDrawable(gifFromResource);
+        // attaching action for activity complete button
+        final JSONObject newJSONTransferData = jsonObject;
 
         // start activity button press
         startActivitybutton.setOnClickListener(new View.OnClickListener() {
@@ -140,6 +142,13 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
                 startActivitybutton.setVisibility(View.INVISIBLE);
                 // log the starting activity time
                 logActivityTimings(fw, mAppendFileWriter, "start");
+                // initialize required values if we need to alert user after x seconds
+                if (alertUser) {
+                    // Initialize handler and runnable
+                    initializeHandlerAndRunnable(
+                            subjectId, newJSONTransferData.toString(), activityId, fileLocation,
+                            alertAfterSeconds, alertSuccessText);
+                }
             }
         });
 
@@ -156,8 +165,6 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         }
         instructionsTextView.setText(instructionSet);
 
-        // attaching action for activity complete button
-        final JSONObject newJSONTransferData = jsonObject;
         activityCompleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -182,14 +189,6 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
 //        });
 
         mp.start(); // start the audio once when page opens
-
-        // initialize required values if we need to alert user after x seconds
-        if (alertUser) {
-            // Initialize handler and runnable
-            initializeHandlerAndRunnable(
-                    subjectId, newJSONTransferData.toString(), activityId, fileLocation,
-                    alertAfterSeconds, alertSuccessText);
-        }
 
     }
 
@@ -325,8 +324,8 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
                 activityId,
                 fileLocation,
                 alertText,
-                "Continue to next activity",
-                "Restart activity"
+                "Next",
+                ""
         );
         timeoutDialogReminder.show(getSupportFragmentManager(), "inactiveDialogReminder");
     }
