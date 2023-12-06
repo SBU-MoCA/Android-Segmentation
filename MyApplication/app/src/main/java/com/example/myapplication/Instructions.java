@@ -51,7 +51,7 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
     String gifImageName = null;
     Boolean alertUser = false;
     Integer alertAfterSeconds = 0;
-    String alertSuccessText = "Activity Complete. Please continue to next activity.";
+    String alertSuccessText = "Activity Complete. Press 'Next'.";
     String activityName = "";
     String timeLogString = "";
     @Override
@@ -226,6 +226,7 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
 
     // onClick for activityCompleteButton
     private void openNextInstructionActivity(String subjectId, String jsonObject, String activityId, FileWriter fw, JavaAppendFileWriter mAppendFileWriter, String fileLocation) {
+        removeTimer();
         logActivityTimings(fw, mAppendFileWriter, "stop", "");
         Intent intent = new Intent(this, Instructions.class);
         intent.putExtra("subjectId", subjectId);
@@ -237,6 +238,7 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
 
     // onClick for restartActivityButton
     private void restartCurrentActivity(String subjectId, String jsonObject, String activityId, String fileLocation) {
+        removeTimer();
         System.out.println("Restarting activity: " + activityId);
 //        JavaAppendFileWriter.removeLastEntryFromFile(getFileNameFormat(fileLocation, subjectId));
         Intent intent = new Intent(this, Instructions.class);
@@ -294,6 +296,12 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         // Remove any existing callbacks and post the runnable again
         handler.removeCallbacks(showDialogRunnable);
         startTimer(timeoutSeconds);
+    }
+
+    private void removeTimer() {
+        if (handler != null) {
+            handler.removeCallbacks(showDialogRunnable);
+        }
     }
     private void vibrate() {
         vibrator.vibrate(500);

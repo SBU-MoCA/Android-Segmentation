@@ -12,6 +12,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <item name="android:textColor"> @color/background_white</item>
+        <item name="android:lineSpacingExtra"> 8sp </item>
         <item name="android:windowAnimationStyle">@style/CustomActivityAnimation</item>
         <item name="android:fontFamily">@font/quicksand_bold</item>
     </style>
