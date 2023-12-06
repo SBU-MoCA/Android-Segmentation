@@ -106,16 +106,22 @@ public class Overview extends AppCompatActivity {
             JSONArray instructions;
             String gifImageName;
             String activityName;
+            String roomNameAct;
 
             try {
                 activityDetails = jsonObject.getJSONObject(Integer.toString(i));
                 instructions = activityDetails.getJSONArray("instructions");
                 gifImageName = activityDetails.getString("gifFileName");
                 activityName = activityDetails.getString("activityName");
+                roomNameAct = activityDetails.getString("roomName");
             }
             catch(JSONException e) {
                 break;
             }
+
+            roomNameAct = roomNameAct.toLowerCase();
+
+            if(!roomNameAct.equals(roomName.toLowerCase())) break;
 
             roomActivities.add(new ActivityResource(instructions, gifImageName, activityName));
         }
