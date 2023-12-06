@@ -36,5 +36,33 @@
     "roomName": "kitchen",
     "audioFileName": "open_fridge",
     "gifFileName": "open_fridge"
+  },
+
+  "4": {
+    "activityName": "Plate removal from kitchen the second",
+    "instructions": [
+      "Please take a plate out from the kitchen cabinet as shown.",
+      "Press the 'Activity Completed' button when you are done."
+    ],
+    "roomName": "couch",
+    "audioFileName": "kitchen_cabinet",
+    "gifFileName": "kitchen_plate",
+    "alertUser": false,
+    "alertAfter": 0,
+    "alertUser": true,
+    "alertAfter": 10,
+    "alertUserSuccessText": "10 seconds of activity complete. Please continue to next activity"
+  },
+  "5": {
+    "activityName": "Walk to kitchen the second",
+    "instructions": [
+      "Please walk to the kitchen.",
+      "Press the 'Activity Completed' button when you reach the kitchen."
+    ],
+    "roomName": "couch",
+    "audioFileName": "walk",
+    "gifFileName": "walking",
+    "alertUser": false,
+    "alertAfter": 0
   }
 }

@@ -26,7 +26,11 @@ import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.TimeZone;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import pl.droidsonroids.gif.GifDrawable;
 import pl.droidsonroids.gif.GifImageView;
@@ -228,12 +232,50 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
     private void openNextInstructionActivity(String subjectId, String jsonObject, String activityId, FileWriter fw, JavaAppendFileWriter mAppendFileWriter, String fileLocation) {
         removeTimer();
         logActivityTimings(fw, mAppendFileWriter, "stop", "");
-        Intent intent = new Intent(this, Instructions.class);
+
+        //Determine whether to call the overview activity
+        Intent intent;
+
+        if(this.isLastActivity(jsonObject, activityId)) {
+            intent = new Intent(this, Overview.class);
+        }
+        else {
+            intent = new Intent(this, Instructions.class);
+        }
+
         intent.putExtra("subjectId", subjectId);
         intent.putExtra("jsonData", jsonObject);
         intent.putExtra("activityId", Integer.toString((Integer.parseInt(activityId) + 1)));
         intent.putExtra("fileLocation", fileLocation);
+
         startActivity(intent);
+    }
+
+    private boolean isLastActivity(String jsonString, String activityId) {
+        //Check whether this is the last activity in the room
+        String nextActivity = Integer.toString((Integer.parseInt(activityId) + 1));
+
+        JSONObject jsonObject = null;
+        String roomNameCurrent = "";
+        String roomNameNext = "";
+
+        try {
+            jsonObject = new JSONObject(jsonString);
+
+            JSONObject activityDetails = jsonObject.getJSONObject(activityId);
+            roomNameCurrent = activityDetails.getString("roomName");
+
+            activityDetails = jsonObject.getJSONObject(nextActivity);
+            roomNameNext = activityDetails.getString("roomName");
+        } catch (JSONException e) {
+            System.out.println("CODE ERROR: while parsing JSON: " + e);
+            e.printStackTrace();
+        }
+
+        roomNameCurrent = roomNameCurrent.toLowerCase();
+        roomNameNext = roomNameNext.toLowerCase();
+
+        return !roomNameCurrent.equals(roomNameNext);
     }
 
     // onClick for restartActivityButton
@@ -359,7 +401,7 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
             String jsonObject,
             String activityId,
             String fileLocation) {
-        if (positiveActivity == true) {
+        if (positiveActivity) {
             openNextInstructionActivity(subjectId, jsonObject, activityId, fw, mAppendFileWriter, fileLocation);
         } else {
             restartCurrentActivity(subjectId, jsonObject, activityId, fileLocation);
