@@ -18,6 +18,7 @@ import android.widget.TextView;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -66,6 +67,7 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         restartActivityButton.setVisibility(View.INVISIBLE);
         Button startActivitybutton = (Button) findViewById(R.id.start_activity);
         TextView instructionsTextView = (TextView) findViewById(R.id.instructions_text);
+        TextView timedActivityTextView = (TextView) findViewById(R.id.timed_activity_text);
         GifImageView gifImageView = (GifImageView) findViewById(R.id.instruction_gif);
 
         // getting information passed from previous activity
@@ -145,18 +147,22 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
                 if (mp.isPlaying()) {
                     mp.stop();
                 }
-                activityCompleteButton.setVisibility(View.VISIBLE);
                 restartActivityButton.setVisibility(View.VISIBLE);
                 startActivitybutton.setVisibility(View.INVISIBLE);
                 // log the starting activity time
                 logActivityTimings(fw, mAppendFileWriter, timeLogString, activityName);
                 // initialize required values if we need to alert user after x seconds
                 if (alertUser) {
+                    activityCompleteButton.setVisibility(View.INVISIBLE);
+                    timedActivityTextView.setText("Please Continue. A prompt will be displayed when it's time.");
                     // Initialize handler and runnable
                     initializeHandlerAndRunnable(
                             subjectId, newJSONTransferData.toString(), activityId, fileLocation,
                             alertAfterSeconds, alertSuccessText);
+                } else {
+                    activityCompleteButton.setVisibility(View.VISIBLE);
                 }
+
             }
         });
 

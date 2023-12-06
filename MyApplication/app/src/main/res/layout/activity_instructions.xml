@@ -94,5 +94,19 @@
         android:text="Start Activity"
         android:textSize="18dp" />
 
+    <TextView
+        android:id="@+id/timed_activity_text"
+        android:layout_width="340dp"
+        android:layout_height="51dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="104dp"
+        android:gravity="center"
+        android:textAllCaps="true"
+        android:textColor="@color/primary_button"
+        android:textSize="18dp"
+        android:textStyle="bold" />
+
 
 </RelativeLayout>
