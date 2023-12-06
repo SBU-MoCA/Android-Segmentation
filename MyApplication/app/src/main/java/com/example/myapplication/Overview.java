@@ -102,7 +102,7 @@ public class Overview extends AppCompatActivity {
         //Parse json to find all the rooms that match the current room
         //and store their gif paths and instructions
 
-        for(int i = 1; i > 0; i++) {
+        for(int i = Integer.parseInt(activityId); i > 0; i++) {
             JSONArray instructions;
             String gifImageName;
             String activityName;
@@ -138,7 +138,7 @@ public class Overview extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-                openInstructionActivities(jsonObject);
+                openInstructionActivities(jsonObject, activityId);
             }
         });
 
@@ -194,11 +194,11 @@ public class Overview extends AppCompatActivity {
         }
     }
 
-    public void openInstructionActivities(JSONObject jsonObject) {
+    public void openInstructionActivities(JSONObject jsonObject, String currentActivity) {
         Intent intent = new Intent(this, Instructions.class);
         intent.putExtra("subjectId", subjectId);
         intent.putExtra("jsonData", jsonObject.toString());
-        intent.putExtra("activityId", "1");
+        intent.putExtra("activityId", currentActivity);
         intent.putExtra("fileLocation", fileLocation);
         startActivity(intent);
     }
