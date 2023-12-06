@@ -21,19 +21,16 @@ import android.os.Bundle;
 public class JavaAppendFileWriter extends Activity {
     public FileWriter fw;
 
-    public void writeToFile(FileWriter fw, String timestamp, String flag) throws IOException {
-        if(Objects.equals(flag, "start")) {
-            System.out.println("Writing to file");
-            fw.append("start:" + timestamp + ",");
+    public void writeToFile(FileWriter fw, String timestamp, String flag, String activityName) throws IOException {
+        Character terminatingCharacter = flag.equals("stop") ? '\n' : ',';
+        String textToWrite = flag + ": " + timestamp + terminatingCharacter;
+        System.out.println("activityName: " + activityName);
+        if (!activityName.equals("") && !(activityName.equals("\0"))) {
+            textToWrite = activityName + " - " + textToWrite;
         }
-        else{
-            System.out.println("Writing to file stop");
-            fw.append("stop:" + timestamp + "\n");
-        }
+        System.out.println("Writing to file: " + textToWrite);
+        fw.append(textToWrite);
         fw.flush();
-        System.out.println(timestamp);
-
-
     }
 
     public String getFileName() throws IOException {

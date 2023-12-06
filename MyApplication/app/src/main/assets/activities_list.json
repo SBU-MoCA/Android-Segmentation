@@ -1,6 +1,6 @@
 {
   "1": {
-    "activityName": "Kitchen Walk",
+    "activityName": "Walk to kitchen",
     "instructions": [
       "Please walk to the kitchen.",
       "Press the 'Activity Completed' button when you reach the kitchen."
@@ -12,7 +12,7 @@
     "alertAfter": 0
   },
   "2": {
-    "activityName": "Plate Removal",
+    "activityName": "Plate removal from kitchen",
     "instructions": [
       "Please take a plate out from the kitchen cabinet as shown.",
       "Press the 'Activity Completed' button when you are done."
@@ -27,7 +27,7 @@
     "alertUserSuccessText": "10 seconds of activity complete. Please continue to next activity"
   },
   "3": {
-    "activityName": "Food Removal",
+    "activityName": "Food removal from fridge",
     "instructions": [
       "Please remove any food item from the refrigerator.",
       "Unpack the food item.",

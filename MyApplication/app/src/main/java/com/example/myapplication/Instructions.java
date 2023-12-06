@@ -51,7 +51,8 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
     Boolean alertUser = false;
     Integer alertAfterSeconds = 0;
     String alertSuccessText = "Activity Complete. Please continue to next activity.";
-
+    String activityName = "";
+    String timeLogString = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,6 +72,12 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         String subjectId = intent.getStringExtra("subjectId");
         String activityId = intent.getStringExtra("activityId");
         String fileLocation = intent.getStringExtra("fileLocation");
+        Boolean restartedActivity = intent.getBooleanExtra("restartActivity", false);
+        if (restartedActivity) {
+            timeLogString = "restart";
+        } else {
+            timeLogString = "start";
+        }
         // adding subjectId as title of the page.
         getSupportActionBar().setTitle("Patient: " + subjectId);
 
@@ -90,6 +97,7 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         }
         try {
             activityDetails = jsonObject.getJSONObject(activityId);
+            activityName = activityDetails.getString("activityName");
             activityInstructions = activityDetails.getJSONArray("instructions");
             audioFilename = activityDetails.getString("audioFileName");
             gifImageName = activityDetails.getString("gifFileName");
@@ -141,7 +149,7 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
                 restartActivityButton.setVisibility(View.VISIBLE);
                 startActivitybutton.setVisibility(View.INVISIBLE);
                 // log the starting activity time
-                logActivityTimings(fw, mAppendFileWriter, "start");
+                logActivityTimings(fw, mAppendFileWriter, timeLogString, activityName);
                 // initialize required values if we need to alert user after x seconds
                 if (alertUser) {
                     // Initialize handler and runnable
@@ -196,14 +204,14 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         return  fileLocation + '_' + subjectId + ".txt";
     }
 
-    private void logActivityTimings(FileWriter fileWriter, JavaAppendFileWriter fileAppendWriter, String flag) {
+    private void logActivityTimings(FileWriter fileWriter, JavaAppendFileWriter fileAppendWriter, String flag, String activityName) {
         TimeZone timeZone = TimeZone.getTimeZone("UTC");
         Calendar calendar = Calendar.getInstance(timeZone);
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS", Locale.US);
         format.setTimeZone(timeZone);
         String time =  format.format(calendar.getTime());
         try {
-            fileAppendWriter.writeToFile(fileWriter, time, flag);
+            fileAppendWriter.writeToFile(fileWriter, time, flag, activityName);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -212,7 +220,7 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
 
     // onClick for activityCompleteButton
     private void openNextInstructionActivity(String subjectId, String jsonObject, String activityId, FileWriter fw, JavaAppendFileWriter mAppendFileWriter, String fileLocation) {
-        logActivityTimings(fw, mAppendFileWriter, "stop");
+        logActivityTimings(fw, mAppendFileWriter, "stop", "");
         Intent intent = new Intent(this, Instructions.class);
         intent.putExtra("subjectId", subjectId);
         intent.putExtra("jsonData", jsonObject);
@@ -230,6 +238,7 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         intent.putExtra("jsonData", jsonObject);
         intent.putExtra("activityId", activityId);
         intent.putExtra("fileLocation", fileLocation);
+        intent.putExtra("restartActivity", true);
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
