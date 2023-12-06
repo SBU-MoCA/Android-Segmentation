@@ -4,6 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.TransitionDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
@@ -92,7 +95,7 @@ public class Overview extends AppCompatActivity {
             activityDetails = jsonObject.getJSONObject(activityId);
             roomName = activityDetails.getString("roomName");
         } catch (JSONException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
 
         //Set title with the currently found room
@@ -150,27 +153,38 @@ public class Overview extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        displayNextGif(res, gifImageView, activityNumber, activityText);
+                        try {
+                            displayNextGif(res, gifImageView, activityNumber, activityText);
+                        }
+                        catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
                 });
             }
         }, 0, 5000); // Update every 5 seconds (adjust as needed)
     }
 
-    private void displayNextGif(Resources res, GifImageView gifImageView, TextView activityNumber, TextView activityText) {
+    private void displayNextGif(Resources res, GifImageView gifImageView, TextView activityNumber, TextView activityText) throws IOException {
         String gifImageName = roomActivities.get(currentActivity).gifImageName;
         JSONArray activityInstructions = roomActivities.get(currentActivity).instructions;
         String activityName = roomActivities.get(currentActivity).activityName;
 
-        int drawableGifId = res.getIdentifier(gifImageName, "drawable", getPackageName());
-        GifDrawable gifFromResource = null;
-        try {
-            gifFromResource = new GifDrawable( getResources(), drawableGifId);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        // Get resource identifier for the new GIF image
+        final int drawableGifId = res.getIdentifier(gifImageName, "drawable", getPackageName());
 
-        gifImageView.setImageDrawable(gifFromResource);
+        // Create a TransitionDrawable with a transparent drawable and the new GIF
+        final TransitionDrawable crossFadeDrawable = new TransitionDrawable(new Drawable[]{
+                new ColorDrawable(android.R.color.transparent),
+                new GifDrawable(getResources(), drawableGifId)
+        });
+
+        // Set the cross-fade duration (adjust as needed)
+        crossFadeDrawable.setCrossFadeEnabled(true);
+        crossFadeDrawable.startTransition(1000); // 500 milliseconds cross-fade duration
+
+        // Set the TransitionDrawable to the GifImageView
+        gifImageView.setImageDrawable(crossFadeDrawable);
 
         String activityTotal = Integer.toString(currentActivity + 1) + "/" + Integer.toString(roomActivities.size());
         activityNumber.setText(activityTotal);
@@ -182,6 +196,13 @@ public class Overview extends AppCompatActivity {
         if(currentActivity == roomActivities.size()) {
             currentActivity = 0;
         }
+
+        gifImageView.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                gifImageView.setImageResource(drawableGifId);
+            }
+        }, 1000);
     }
 
     @Override
