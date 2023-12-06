@@ -1,23 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/background_white">
 
     <TextView
-        android:id="@+id/gif_overview_text"
-        android:layout_width="wrap_content"
-        android:layout_height="129dp"
+        android:id="@+id/act_number"
+        android:layout_width="253dp"
+        android:layout_height="88dp"
         android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="2dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="121dp"
-        android:textAllCaps="true"
-        android:textColor="@color/primary_button"
-        android:textSize="16dp"
-        android:textStyle="bold" />
+        android:layout_marginStart="76dp"
+        android:layout_marginBottom="99dp"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="48sp" />
 
     <Button
         android:id="@+id/start_room"
@@ -40,10 +38,11 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="-1dp"
-        android:layout_marginTop="181dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="270dp" />
+        android:layout_centerVertical="true"
+        android:layout_marginStart="-3dp"
+        android:layout_marginTop="235dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginBottom="216dp" />
 
     <TextView
         android:id="@+id/room_title"
@@ -52,7 +51,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:textAlignment="center"
-        android:textColor="#3F51B5"
+        android:textColor="@color/primary_button"
         android:textSize="34sp" />
 
     <TextView
@@ -61,11 +60,10 @@
         android:layout_height="79dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="87dp"
-        android:text="TextView"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="132dp"
         android:textAlignment="center"
-        android:textColor="#2196F3"
+        android:textColor="@color/primary_button"
         android:textSize="34sp" />
 
 </RelativeLayout>

@@ -25,6 +25,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.TimeZone;
 import java.util.ArrayList;
 import java.util.Timer;
@@ -65,7 +66,7 @@ public class Overview extends AppCompatActivity {
         Resources res = context.getResources();
 
         TextView roomTitle = (TextView) findViewById(R.id.room_title);
-        TextView gifText = (TextView) findViewById(R.id.gif_overview_text);
+        TextView activityNumber = (TextView) findViewById(R.id.act_number);
         TextView activityText = (TextView) findViewById(R.id.activity_name);
         Button startRoomButton = (Button) findViewById(R.id.start_room);
         GifImageView gifImageView = (GifImageView) findViewById(R.id.overview_gif);
@@ -77,7 +78,7 @@ public class Overview extends AppCompatActivity {
 
         // getting jsonString passed from previous activity
         try {
-            jsonObject = new JSONObject(intent.getStringExtra("jsonData"));
+            jsonObject = new JSONObject(Objects.requireNonNull(intent.getStringExtra("jsonData")));
         } catch (JSONException e) {
             System.out.println("CODE ERROR: while parsing JSON data in instructions: " + e);
             e.printStackTrace();
@@ -95,7 +96,7 @@ public class Overview extends AppCompatActivity {
         }
 
         //Set title with the currently found room
-        String titleString = roomName + " Activities";
+        String titleString = "Overview of the\n" + roomName + " Activities";
         roomTitle.setText(titleString);
 
         //Parse json to find all the rooms that match the current room
@@ -125,7 +126,7 @@ public class Overview extends AppCompatActivity {
                System.out.println("clicked");
 
                 try {
-                    jsonObject = new JSONObject(intent.getStringExtra("jsonData"));
+                    jsonObject = new JSONObject(Objects.requireNonNull(intent.getStringExtra("jsonData")));
                 } catch (JSONException e) {
                     System.out.println("CODE ERROR: while parsing JSON data in instructions: " + e);
                     e.printStackTrace();
@@ -135,10 +136,7 @@ public class Overview extends AppCompatActivity {
             }
         });
 
-
-        //Display gif right away then start timer to cycle
-        displayNextGif(res, gifImageView, gifText, activityText);
-
+        //Display on a timer
         timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
@@ -146,14 +144,14 @@ public class Overview extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        displayNextGif(res, gifImageView, gifText, activityText);
+                        displayNextGif(res, gifImageView, activityNumber, activityText);
                     }
                 });
             }
-        }, 0, 3000); // Update every 5 seconds (adjust as needed)
+        }, 0, 5000); // Update every 5 seconds (adjust as needed)
     }
 
-    private void displayNextGif(Resources res, GifImageView gifImageView, TextView gifText, TextView activityText) {
+    private void displayNextGif(Resources res, GifImageView gifImageView, TextView activityNumber, TextView activityText) {
         String gifImageName = roomActivities.get(currentActivity).gifImageName;
         JSONArray activityInstructions = roomActivities.get(currentActivity).instructions;
         String activityName = roomActivities.get(currentActivity).activityName;
@@ -168,17 +166,8 @@ public class Overview extends AppCompatActivity {
 
         gifImageView.setImageDrawable(gifFromResource);
 
-        String instructionSet = "";
-        for (int i = 0; i < activityInstructions.length(); i += 1) {
-            try {
-                instructionSet += ( i + 1) + ". " + activityInstructions.getString(i);
-                instructionSet += "\n\n";
-            } catch (JSONException e) {
-                System.out.println("CODE ERROR: Failed to parse instructions: " + e);
-                throw new RuntimeException(e);
-            }
-        }
-        gifText.setText(instructionSet);
+        String activityTotal = Integer.toString(currentActivity + 1) + "/" + Integer.toString(roomActivities.size());
+        activityNumber.setText(activityTotal);
 
         activityText.setText(activityName);
 
