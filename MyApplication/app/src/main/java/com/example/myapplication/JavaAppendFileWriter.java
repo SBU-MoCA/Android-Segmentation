@@ -25,7 +25,7 @@ public class JavaAppendFileWriter extends Activity {
         Character terminatingCharacter = flag.equals("stop") ? '\n' : ',';
         String textToWrite = flag + ": " + timestamp + terminatingCharacter;
         System.out.println("activityName: " + activityName);
-        if (!activityName.equals("") && !(activityName.equals("\0"))) {
+        if (flag.equals("start") && !activityName.equals("") && !(activityName.equals("\0"))) {
             textToWrite = activityName + " - " + textToWrite;
         }
         System.out.println("Writing to file: " + textToWrite);
