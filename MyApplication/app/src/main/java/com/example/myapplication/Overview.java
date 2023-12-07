@@ -99,7 +99,7 @@ public class Overview extends AppCompatActivity {
         }
 
         //Set title with the currently found room
-        String titleString = "Overview of the\n" + roomName + " Activities";
+        String titleString = "Room: " + roomName;
         roomTitle.setText(titleString);
 
         //Parse json to find all the rooms that match the current room
@@ -189,7 +189,7 @@ public class Overview extends AppCompatActivity {
         String activityTotal = Integer.toString(currentActivity + 1) + "/" + Integer.toString(roomActivities.size());
         activityNumber.setText(activityTotal);
 
-        activityText.setText(activityName);
+        activityText.setText("Activity: " + activityName);
 
         currentActivity++;
 

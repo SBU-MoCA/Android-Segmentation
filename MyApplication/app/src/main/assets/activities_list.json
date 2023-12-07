@@ -3,66 +3,148 @@
     "activityName": "Walk to kitchen",
     "instructions": [
       "Please walk to the kitchen.",
-      "Press the 'Activity Completed' button when you reach the kitchen."
+      "Press 'Start' when you are ready.",
+      "Press the 'Next' button when you reach the kitchen."
     ],
     "roomName": "Kitchen",
-    "audioFileName": "walk",
-    "gifFileName": "walking",
+    "audioFileName": "walk_kitchen",
+    "gifFileName": "walk_kitchen",
     "alertUser": false,
     "alertAfter": 0
   },
   "2": {
-    "activityName": "Plate removal from kitchen",
+    "activityName": "Take plate out from cabinet",
     "instructions": [
       "Please take a plate out from the kitchen cabinet as shown.",
-      "Press the 'Activity Completed' button when you are done."
+      "Press 'Start' when you are ready.",
+      "Press the 'Next' button when you are done."
     ],
     "roomName": "Kitchen",
-    "audioFileName": "kitchen_cabinet",
-    "gifFileName": "kitchen_plate",
-    "alertUser": false,
-    "alertAfter": 0,
-    "alertUser": true,
-    "alertAfter": 10,
-    "alertUserSuccessText": "10 seconds of activity complete. Please continue to next activity"
-  },
-  "3": {
-    "activityName": "Food removal from fridge",
-    "instructions": [
-      "Please remove any food item from the refrigerator.",
-      "Unpack the food item.",
-      "Place the food item on the plate in the kitchen."
-    ],
-    "roomName": "kitchen",
-    "audioFileName": "open_fridge",
-    "gifFileName": "open_fridge"
-  },
-
-  "4": {
-    "activityName": "Plate removal from kitchen the second",
-    "instructions": [
-      "Please take a plate out from the kitchen cabinet as shown.",
-      "Press the 'Activity Completed' button when you are done."
-    ],
-    "roomName": "couch",
-    "audioFileName": "kitchen_cabinet",
-    "gifFileName": "kitchen_plate",
-    "alertUser": false,
-    "alertAfter": 0,
-    "alertUser": true,
-    "alertAfter": 10,
-    "alertUserSuccessText": "10 seconds of activity complete. Please continue to next activity"
-  },
-  "5": {
-    "activityName": "Walk to kitchen the second",
-    "instructions": [
-      "Please walk to the kitchen.",
-      "Press the 'Activity Completed' button when you reach the kitchen."
-    ],
-    "roomName": "couch",
-    "audioFileName": "walk",
-    "gifFileName": "walking",
+    "audioFileName": "take_plate_kitchen",
+    "gifFileName": "take_plate_kitchen",
     "alertUser": false,
     "alertAfter": 0
+   },
+  "3": {
+    "activityName": "Take food out from fridge",
+    "instructions": [
+      "Please take out any food item from the refrigerator.",
+      "Unpack the food item.",
+      "Place the food item on the plate in the kitchen.",
+      "Press 'Start' when you are ready.",
+      "Press the 'Next' button when you are done."
+    ],
+    "roomName": "kitchen",
+    "audioFileName": "take_food_kitchen",
+    "gifFileName": "take_food_kitchen",
+    "alertUser": false,
+    "alertAfter": 0
+  },
+  "4": {
+    "activityName": "Microwave food",
+    "instructions": [
+      "Place the plate with food in the microwave oven.",
+      "Wait for few seconds",
+      "Take food out of the microwave oven and place it on the slab.",
+      "Press 'Start' when you are ready.",
+      "Press the 'Next' button when you are done."
+    ],
+    "roomName": "kitchen",
+    "audioFileName": "heat_food_kitchen",
+    "gifFileName": "heat_food_kitchen",
+    "alertUser": false,
+    "alertAfter": 0
+  },
+  "5": {
+    "activityName": "Take cup out of cabinet",
+    "instructions": [
+      "Take a cup out from kitchen cabinet."
+    ],
+    "roomName": "kitchen",
+    "audioFileName": "take_cup_kitchen",
+    "gifFileName": "take_cup_kitchen",
+    "alertUser": false,
+    "alertAfter": 0
+  },
+  "6": {
+    "activityName": "Take drink out of fridge",
+    "instructions": [
+      "Take a drink out from the refrigerator."
+    ],
+    "roomName": "kitchen",
+    "audioFileName": "take_drink_kitchen",
+    "gifFileName": "take_drink_kitchen",
+    "alertUser": false,
+    "alertAfter": 0
+  },
+  "7": {
+    "activityName": "Pour drink into the cup",
+    "instructions": [
+      "Pour the drink into the cup."
+    ],
+    "roomName": "kitchen",
+    "audioFileName": "pour_drink_kitchen",
+    "gifFileName": "pour_drink_kitchen",
+    "alertUser": false,
+    "alertAfter": 0
+  },
+  "8": {
+    "activityName": "Walk to table and simulate eating",
+    "instructions": [
+      "Take the food and drink to the dining table.",
+      "Simulate eating and drinking (optional)."
+    ],
+    "roomName": "kitchen",
+    "audioFileName": "eat_drink_kitchen",
+    "gifFileName": "eat_drink_kitchen",
+    "alertUser": false,
+    "alertAfter": 0
+  },
+  "9": {
+    "activityName": "Place the items on the sink",
+    "instructions": [
+      "Place the plate and cup into the kitchen sink."
+    ],
+    "roomName": "kitchen",
+    "audioFileName": "sink_kitchen",
+    "gifFileName": "sink_kitchen",
+    "alertUser": false,
+    "alertAfter": 0
+  },
+  "10": {
+    "activityName": "Walk over to the couch",
+    "instructions": [
+      "Walk over to the couch and be seated."
+    ],
+    "roomName": "living",
+    "audioFileName": "walk_couch",
+    "gifFileName": "walk_couch",
+    "alertUser": false,
+    "alertAfter": 0
+  },
+  "11": {
+    "activityName": "Place the Masimo device in your fingertips",
+    "instructions": [
+      "Place the Masimo device in your fingertips.",
+      "Please insert your finger completely into the device."
+    ],
+    "roomName": "living",
+    "audioFileName": "device_couch",
+    "gifFileName": "device_couch",
+    "alertUser": false,
+    "alertAfter": 0
+  },
+  "12": {
+    "activityName": "Watch the video for 2 minutes",
+    "instructions": [
+      "Watch the video running on the screen.",
+      "Continue for 2 minutes."
+    ],
+    "roomName": "living",
+    "audioFileName": "video_couch",
+    "gifFileName": "video_couch",
+    "alertUser": true,
+    "alertAfter": 20,
+    "alertUserSuccessText": "Activity Complete. Please press 'Next'"
   }
 }
