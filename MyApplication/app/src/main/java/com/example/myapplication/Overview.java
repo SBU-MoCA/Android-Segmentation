@@ -189,7 +189,7 @@ public class Overview extends AppCompatActivity {
         String activityTotal = Integer.toString(currentActivity + 1) + "/" + Integer.toString(roomActivities.size());
         activityNumber.setText(activityTotal);
 
-        activityText.setText("Activity: " + activityName);
+        activityText.setText("Activity " + (currentActivity + 1) + ": " + activityName);
 
         currentActivity++;
 
