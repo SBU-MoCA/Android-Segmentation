@@ -34,7 +34,7 @@
       "Press 'Start' when you are ready.",
       "Press the 'Next' button when you are done."
     ],
-    "roomName": "kitchen",
+    "roomName": "Kitchen",
     "audioFileName": "take_food_kitchen",
     "gifFileName": "take_food_kitchen",
     "alertUser": false,
@@ -49,7 +49,7 @@
       "Press 'Start' when you are ready.",
       "Press the 'Next' button when you are done."
     ],
-    "roomName": "kitchen",
+    "roomName": "Kitchen",
     "audioFileName": "heat_food_kitchen",
     "gifFileName": "heat_food_kitchen",
     "alertUser": false,
@@ -60,7 +60,7 @@
     "instructions": [
       "Take a cup out from kitchen cabinet."
     ],
-    "roomName": "kitchen",
+    "roomName": "Kitchen",
     "audioFileName": "take_cup_kitchen",
     "gifFileName": "take_cup_kitchen",
     "alertUser": false,
@@ -71,7 +71,7 @@
     "instructions": [
       "Take a drink out from the refrigerator."
     ],
-    "roomName": "kitchen",
+    "roomName": "Kitchen",
     "audioFileName": "take_drink_kitchen",
     "gifFileName": "take_drink_kitchen",
     "alertUser": false,
@@ -82,7 +82,7 @@
     "instructions": [
       "Pour the drink into the cup."
     ],
-    "roomName": "kitchen",
+    "roomName": "Kitchen",
     "audioFileName": "pour_drink_kitchen",
     "gifFileName": "pour_drink_kitchen",
     "alertUser": false,
@@ -94,7 +94,7 @@
       "Take the food and drink to the dining table.",
       "Simulate eating and drinking (optional)."
     ],
-    "roomName": "kitchen",
+    "roomName": "Kitchen",
     "audioFileName": "eat_drink_kitchen",
     "gifFileName": "eat_drink_kitchen",
     "alertUser": false,
@@ -105,7 +105,7 @@
     "instructions": [
       "Place the plate and cup into the kitchen sink."
     ],
-    "roomName": "kitchen",
+    "roomName": "Kitchen",
     "audioFileName": "sink_kitchen",
     "gifFileName": "sink_kitchen",
     "alertUser": false,
@@ -116,7 +116,7 @@
     "instructions": [
       "Walk over to the couch and be seated."
     ],
-    "roomName": "living",
+    "roomName": "Living",
     "audioFileName": "walk_couch",
     "gifFileName": "walk_couch",
     "alertUser": false,
@@ -128,7 +128,7 @@
       "Place the Masimo device in your fingertips.",
       "Please insert your finger completely into the device."
     ],
-    "roomName": "living",
+    "roomName": "Living",
     "audioFileName": "device_couch",
     "gifFileName": "device_couch",
     "alertUser": false,
@@ -140,7 +140,7 @@
       "Watch the video running on the screen.",
       "Continue for 2 minutes."
     ],
-    "roomName": "living",
+    "roomName": "Living",
     "audioFileName": "video_couch",
     "gifFileName": "video_couch",
     "alertUser": true,
