@@ -28,7 +28,8 @@
         android:gravity="center"
         android:text="Start Activities"
         android:textColor="@color/white"
-        android:textSize="18dp" />
+        android:textSize="18dp"
+        />
 
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/overview_gif"
