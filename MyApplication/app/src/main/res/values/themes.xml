@@ -15,6 +15,7 @@
         <item name="android:lineSpacingExtra"> 8sp </item>
         <item name="android:windowAnimationStyle">@style/CustomActivityAnimation</item>
         <item name="android:fontFamily">@font/quicksand_bold</item>
+        <item name="actionBarStyle">@style/MyActionBar</item>
     </style>
 
     <style name="CustomActivityAnimation" parent="@android:style/Animation.Activity">
@@ -28,5 +29,11 @@
         <item name="android:textColorPrimary">@color/primary_button</item>
         <item name="android:colorAccent">@color/mild_red</item>
         <item name="android:background">@color/background_white</item>
+    </style>
+    <!-- ActionBar styles -->
+    <style name="MyActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+        <item name="android:background">@drawable/action_bar_gradient</item>
+        <!-- Support library compatibility -->
+        <item name="background">@drawable/action_bar_gradient</item>
     </style>
 </resources>
