@@ -73,7 +73,7 @@
     ],
     "roomName": "Kitchen",
     "audioFileName": "take_drink_kitchen",
-    "gifFileName": "take_drink_kitchen",
+    "gifFileName": "pour_drink_kitchen",
     "alertUser": false,
     "alertAfter": 0
   },
@@ -142,7 +142,7 @@
     ],
     "roomName": "Living",
     "audioFileName": "video_couch",
-    "gifFileName": "video_couch",
+    "gifFileName": "read_couch",
     "alertUser": true,
     "alertAfter": 20,
     "alertUserSuccessText": "Activity Complete. Please press 'Next'"
