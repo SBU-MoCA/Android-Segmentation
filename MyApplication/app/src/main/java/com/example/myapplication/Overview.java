@@ -72,7 +72,9 @@ public class Overview extends AppCompatActivity {
         TextView activityNumber = (TextView) findViewById(R.id.act_number);
         TextView activityText = (TextView) findViewById(R.id.activity_name);
         Button startRoomButton = (Button) findViewById(R.id.start_room);
+        startRoomButton.setVisibility(View.INVISIBLE);
         GifImageView gifImageView = (GifImageView) findViewById(R.id.overview_gif);
+        TextView disclaimerText = (TextView) findViewById(R.id.disclaimer);
 
         // getting information passed from previous activity
         subjectId = intent.getStringExtra("subjectId");
@@ -99,8 +101,9 @@ public class Overview extends AppCompatActivity {
         }
 
         //Set title with the currently found room
-        String titleString = "Room: " + roomName;
+        String titleString = "Overview of activities: " + roomName;
         roomTitle.setText(titleString);
+        disclaimerText.setText("You do not need to remember these activities. In the next step, the app will guide you through each activity step by step.");
 
         //Parse json to find all the rooms that match the current room
         //and store their gif paths and instructions
@@ -154,7 +157,7 @@ public class Overview extends AppCompatActivity {
                     @Override
                     public void run() {
                         try {
-                            displayNextGif(res, gifImageView, activityNumber, activityText);
+                            displayNextGif(res, gifImageView, activityNumber, activityText, startRoomButton);
                         }
                         catch (Exception e) {
                             e.printStackTrace();
@@ -165,7 +168,7 @@ public class Overview extends AppCompatActivity {
         }, 0, 5000); // Update every 5 seconds (adjust as needed)
     }
 
-    private void displayNextGif(Resources res, GifImageView gifImageView, TextView activityNumber, TextView activityText) throws IOException {
+    private void displayNextGif(Resources res, GifImageView gifImageView, TextView activityNumber, TextView activityText, Button startActivityButton) throws IOException {
         String gifImageName = roomActivities.get(currentActivity).gifImageName;
         JSONArray activityInstructions = roomActivities.get(currentActivity).instructions;
         String activityName = roomActivities.get(currentActivity).activityName;
@@ -191,10 +194,12 @@ public class Overview extends AppCompatActivity {
 
         activityText.setText("Activity " + (currentActivity + 1) + ": " + activityName);
 
+
         currentActivity++;
 
         if(currentActivity == roomActivities.size()) {
             currentActivity = 0;
+            startActivityButton.setVisibility(View.VISIBLE);
         }
 
         gifImageView.postDelayed(new Runnable() {
