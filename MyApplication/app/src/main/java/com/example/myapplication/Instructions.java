@@ -35,8 +35,10 @@ import org.json.JSONObject;
 import pl.droidsonroids.gif.GifDrawable;
 import pl.droidsonroids.gif.GifImageView;
 
+
 public class Instructions extends AppCompatActivity implements CustomDialog.CustomDialogListener, TimedActivityAlert.TimedAlertListener {
     public Instructions() throws IOException {}
+    String FINAL_ACTIVITY_NUMBER = "37";
     private JavaAppendFileWriter mAppendFileWriter = new JavaAppendFileWriter();
     private FileWriter fw;
     Context context = this;
@@ -208,6 +210,11 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
 //        });
 
         mp.start(); // start the audio once when page opens
+        if (activityId.equals(FINAL_ACTIVITY_NUMBER)) {
+            startActivitybutton.setVisibility(View.INVISIBLE);
+            restartActivityButton.setVisibility(View.INVISIBLE);
+            activityCompleteButton.setVisibility(View.VISIBLE);
+        }
 
     }
 
@@ -236,8 +243,10 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
 
         //Determine whether to call the overview activity
         Intent intent;
-
-        if(this.isLastActivity(jsonObject, activityId)) {
+         if (activityId.equals(FINAL_ACTIVITY_NUMBER)) {
+            intent = new Intent(this, StartupActivity.class);
+        }
+        else if(this.isLastActivity(jsonObject, activityId)) {
             intent = new Intent(this, Overview.class);
         }
         else {
