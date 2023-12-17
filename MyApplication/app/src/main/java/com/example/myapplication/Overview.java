@@ -207,7 +207,7 @@ public class Overview extends AppCompatActivity {
             public void run() {
                 gifImageView.setImageResource(drawableGifId);
             }
-        }, 1000);
+        }, 2000);
     }
 
     @Override

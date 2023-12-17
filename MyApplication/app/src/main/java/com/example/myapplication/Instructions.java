@@ -101,6 +101,7 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
             System.out.println("CODE ERROR: while parsing JSON data in instructions: " + e);
             e.printStackTrace();
         }
+        System.out.println("ACTIVITY ID: " + activityId);
         try {
             activityDetails = jsonObject.getJSONObject(activityId);
             activityName = activityDetails.getString("activityName");
