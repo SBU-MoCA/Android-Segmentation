@@ -104,6 +104,21 @@
         android:textColor="@color/primary_button"
         android:textSize="18dp"
         android:textStyle="bold" />
+    <Button
+        android:id="@+id/start_ver"
+        android:layout_width="300dp"
+        android:layout_height="55dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="-55dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/restart_button"
+        android:gravity="center"
+        android:text="Restart This Activity"
+        android:drawableRight="@drawable/restart_activity_icon"
+        android:paddingRight="15dp"
+        android:textColor="@color/white"
+        android:textSize="18dp"
+        />
 
 
 </RelativeLayout>

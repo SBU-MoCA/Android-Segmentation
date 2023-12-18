@@ -43,15 +43,15 @@ public class CustomDialog extends AppCompatDialogFragment {
         positiveBtn = (Button) promptView.findViewById(R.id.alertPositiveButton);
         negativeBtn = (Button) promptView.findViewById(R.id.alertNegativeButton);
         alertTextView = (TextView) promptView.findViewById(R.id.alertTextMessage);
-//        Boolean restartActivity = (this.activity == "restartActivity") ? true : false;
-//        String title = restartActivity ? "Are you sure you want to restart this activity?" : "Do you want to restart from beginning?";
+        Boolean restartActivity = (this.activity == "restartActivity") ? true : false;
+        String title = restartActivity ? "Do you want to restart this activity?" : "Do you want to restart from beginning?";
+        String buttonTxt = restartActivity ? "Restart Activity" : "Start Over";
 //        String message = "Press 'No' to continue.\n\nPress 'Yes' to restart.";
-//        builder.setTitle(title);
-        alertTextView.setText("Do you want to restart this activity?");
+        alertTextView.setText(title);
         /* Positive and negative buttons are negated for this action */
         positiveBtn.setText("Continue Activity");
 
-        negativeBtn.setText("Restart Activity");
+        negativeBtn.setText(buttonTxt);
 
 
         positiveBtn.setOnClickListener(new View.OnClickListener() {

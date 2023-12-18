@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -10,6 +11,9 @@ import android.os.Handler;
 import android.content.Intent;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -60,6 +64,7 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
     String alertSuccessText = "Activity Complete. Press 'Next'.";
     String activityName = "";
     String timeLogString = "";
+    String currentSubjectId = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -217,9 +222,24 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         }
 
     }
-
     public String getFileNameFormat(String fileLocation, String subjectId) {
+        currentSubjectId = fileLocation;
         return  fileLocation + '_' + subjectId + ".txt";
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.restart_activity_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch(item.getItemId()) {
+            case R.id.restart_all_button:
+                openDialog("startOver", "", "", "", "" );
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void logActivityTimings(FileWriter fileWriter, JavaAppendFileWriter fileAppendWriter, String flag, String activityName) {
@@ -305,8 +325,8 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
 
     // onClick for startOverActivity
     private void startOverFromStart(String subjectId, String jsonObject, String activityId, String fileLocation) throws IOException {
-        JavaAppendFileWriter.truncateFile(getFileNameFormat(fileLocation, subjectId));
-        Intent intent = new Intent(this, Instructions.class);
+//        JavaAppendFileWriter.getFileName(getFileNameFormat(fileLocation, subjectId));
+        Intent intent = new Intent(this, StartupActivity.class);
         intent.putExtra("subjectId", subjectId);
         intent.putExtra("jsonData", jsonObject);
         intent.putExtra("activityId", "1");
