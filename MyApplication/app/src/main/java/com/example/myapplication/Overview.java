@@ -103,7 +103,8 @@ public class Overview extends AppCompatActivity {
         //Set title with the currently found room
         String titleString = "Overview of activities: " + roomName;
         roomTitle.setText(titleString);
-        disclaimerText.setText("You do not need to remember these activities. In the next step, the app will guide you through each activity step by step.");
+        String disclaimerString = "No need to remember. App will guide through each activity.";
+        disclaimerText.setText(disclaimerString);
 
         //Parse json to find all the rooms that match the current room
         //and store their gif paths and instructions
@@ -157,7 +158,7 @@ public class Overview extends AppCompatActivity {
                     @Override
                     public void run() {
                         try {
-                            displayNextGif(res, gifImageView, activityNumber, activityText, startRoomButton);
+                            displayNextGif(res, gifImageView, activityNumber, activityText, startRoomButton, disclaimerText);
                         }
                         catch (Exception e) {
                             e.printStackTrace();
@@ -165,10 +166,11 @@ public class Overview extends AppCompatActivity {
                     }
                 });
             }
-        }, 0, 5000); // Update every 5 seconds (adjust as needed)
+        }, 0, 15000); // Update every 5 seconds (adjust as needed)
     }
 
-    private void displayNextGif(Resources res, GifImageView gifImageView, TextView activityNumber, TextView activityText, Button startActivityButton) throws IOException {
+    private void displayNextGif(Resources res, GifImageView gifImageView, TextView activityNumber, TextView activityText, Button startActivityButton, TextView disclaimerText) throws IOException {
+        System.out.println("Next GIF");
         String gifImageName = roomActivities.get(currentActivity).gifImageName;
         JSONArray activityInstructions = roomActivities.get(currentActivity).instructions;
         String activityName = roomActivities.get(currentActivity).activityName;
@@ -184,7 +186,7 @@ public class Overview extends AppCompatActivity {
 
         // Set the cross-fade duration (adjust as needed)
         crossFadeDrawable.setCrossFadeEnabled(true);
-        crossFadeDrawable.startTransition(1000); // 500 milliseconds cross-fade duration
+        crossFadeDrawable.startTransition(3000); // milliseconds cross-fade duration
 
         // Set the TransitionDrawable to the GifImageView
         gifImageView.setImageDrawable(crossFadeDrawable);
@@ -199,15 +201,16 @@ public class Overview extends AppCompatActivity {
 
         if(currentActivity == roomActivities.size()) {
             currentActivity = 0;
+            disclaimerText.setVisibility(View.INVISIBLE);
             startActivityButton.setVisibility(View.VISIBLE);
         }
 
-        gifImageView.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                gifImageView.setImageResource(drawableGifId);
-            }
-        }, 2000);
+//        gifImageView.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                gifImageView.setImageResource(drawableGifId);
+//            }
+//        }, 500);
     }
 
     @Override
