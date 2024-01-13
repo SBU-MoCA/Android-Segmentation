@@ -7,7 +7,8 @@
       "Press the 'Next' button when you reach the kitchen."
     ],
     "roomName": "Kitchen",
-    "audioFileName": "walk_kitchen",
+    "audioStartFileName": "walk_to_kitchen",
+    "audioNextFileName": "reach_kitchen",
     "gifFileName": "walk_kitchen",
     "alertUser": false,
     "alertAfter": 0
@@ -20,7 +21,8 @@
       "Press the 'Next' button when you are done."
     ],
     "roomName": "Kitchen",
-    "audioFileName": "take_plate_kitchen",
+    "audioStartFileName": "take_plate_out_start",
+    "audioNextFileName": "take_plate_out_end",
     "gifFileName": "take_plate_kitchen",
     "alertUser": false,
     "alertAfter": 0
@@ -35,7 +37,8 @@
       "Press the 'Next' button when you are done."
     ],
     "roomName": "Kitchen",
-    "audioFileName": "take_food_kitchen",
+    "audioStartFileName": "take_food_kitchen_start",
+    "audioNextFileName": "take_food_kitchen_end",
     "gifFileName": "take_food_kitchen",
     "alertUser": false,
     "alertAfter": 0
@@ -50,7 +53,8 @@
       "Press the 'Next' button when you are done."
     ],
     "roomName": "Kitchen",
-    "audioFileName": "heat_food_kitchen",
+    "audioStartFileName": "heat_food_kitchen_start",
+    "audioNextFileName": "heat_food_kitchen_end",
     "gifFileName": "heat_food_kitchen",
     "alertUser": false,
     "alertAfter": 0
@@ -63,7 +67,8 @@
       "Press the 'Next' button when you are done."
     ],
     "roomName": "Kitchen",
-    "audioFileName": "take_cup_kitchen",
+    "audioStartFileName": "take_cup_kitchen_start",
+    "audioNextFileName": "take_cup_kitchen_end",
     "gifFileName": "take_cup_kitchen",
     "alertUser": false,
     "alertAfter": 0
@@ -76,7 +81,8 @@
       "Press the 'Next' button when you are done."
     ],
     "roomName": "Kitchen",
-    "audioFileName": "take_drink_kitchen",
+    "audioStartFileName": "take_drink_kitchen_start",
+    "audioNextFileName": "take_drink_kitchen_end",
     "gifFileName": "take_drink_kitchen",
     "alertUser": false,
     "alertAfter": 0
@@ -89,7 +95,8 @@
       "Press the 'Next' button when you are done."
     ],
     "roomName": "Kitchen",
-    "audioFileName": "pour_drink_kitchen",
+    "audioStartFileName": "pour_drink_kitchen_start",
+    "audioNextFileName": "pour_drink_kitchen_end",
     "gifFileName": "pour_drink_kitchen",
     "alertUser": false,
     "alertAfter": 0
@@ -103,7 +110,8 @@
       "Press the 'Next' button when you are done."
     ],
     "roomName": "Kitchen",
-    "audioFileName": "eat_drink_kitchen",
+    "audioStartFileName": "eat_drink_kitchen_start",
+    "audioNextFileName": "eat_drink_kitchen_end",
     "gifFileName": "eat_drink_kitchen",
     "alertUser": false,
     "alertAfter": 0
@@ -116,7 +124,8 @@
       "Press the 'Next' button when you are done."
     ],
     "roomName": "Kitchen",
-    "audioFileName": "sink_kitchen",
+    "audioStartFileName": "sink_kitchen_start",
+    "audioNextFileName": "sink_kitchen_end",
     "gifFileName": "sink_kitchen",
     "alertUser": false,
     "alertAfter": 0

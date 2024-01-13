@@ -166,7 +166,7 @@ public class Overview extends AppCompatActivity {
                     }
                 });
             }
-        }, 0, 15000); // Update every 5 seconds (adjust as needed)
+        }, 0, 500); // Update every 5 seconds (adjust as needed)
     }
 
     private void displayNextGif(Resources res, GifImageView gifImageView, TextView activityNumber, TextView activityText, Button startActivityButton, TextView disclaimerText) throws IOException {

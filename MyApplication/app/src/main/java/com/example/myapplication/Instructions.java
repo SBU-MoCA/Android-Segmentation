@@ -47,6 +47,7 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
     private FileWriter fw;
     Context context = this;
     MediaPlayer mp = new MediaPlayer();
+    MediaPlayer mp1 = new MediaPlayer();
 
     // for time specific alerts.
     private Handler handler;
@@ -57,7 +58,8 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
     JSONObject jsonObject = null;
     JSONObject activityDetails = null;
     JSONArray activityInstructions = null;
-    String audioFilename = null;
+    String audioStartFilename = null;
+    String audioNextFilename = null;
     String gifImageName = null;
     Boolean alertUser = false;
     Integer alertAfterSeconds = 0;
@@ -113,7 +115,8 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
             activityDetails = jsonObject.getJSONObject(activityId);
             activityName = activityDetails.getString("activityName");
             activityInstructions = activityDetails.getJSONArray("instructions");
-            audioFilename = activityDetails.getString("audioFileName");
+            audioStartFilename = activityDetails.getString("audioStartFileName");
+            audioNextFilename = activityDetails.getString("audioNextFileName");
             gifImageName = activityDetails.getString("gifFileName");
             alertUser = activityDetails.getBoolean("alertUser");
             alertAfterSeconds = activityDetails.getInt("alertAfter");
@@ -125,7 +128,7 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
 
 
         // getting the audioFileName
-        int soundId = res.getIdentifier(audioFilename, "raw", context.getPackageName());
+        int soundId = res.getIdentifier(audioStartFilename, "raw", context.getPackageName());
         mp = MediaPlayer.create(this, soundId);
 
         // attaching play/pause feature to the button
@@ -152,6 +155,8 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         // attaching action for activity complete button
         final JSONObject newJSONTransferData = jsonObject;
 
+        int nextSoundId = res.getIdentifier(audioNextFilename, "raw", context.getPackageName());
+        mp1 = MediaPlayer.create(this, nextSoundId);
         // start activity button press
         startActivitybutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -174,6 +179,17 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
                 } else {
                     activityCompleteButton.setVisibility(View.VISIBLE);
                 }
+                playButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if(mp1.isPlaying()){
+                            mp1.pause();
+                        } else {
+                            mp1.start();
+                        }
+                    }
+                });
+                mp1.start();
 
             }
         });
@@ -194,6 +210,7 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         activityCompleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (mp1.isPlaying()) mp1.stop();
                 openNextInstructionActivity(subjectId, newJSONTransferData.toString(), activityId, fw, mAppendFileWriter, fileLocation);
             }
         });
