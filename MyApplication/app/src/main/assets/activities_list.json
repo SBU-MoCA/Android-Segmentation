@@ -138,7 +138,8 @@
       "Press the 'Next' button when you are done."
     ],
     "roomName": "Living",
-    "audioFileName": "walk_couch",
+    "audioStartFileName": "walk_couch_start",
+    "audioNextFileName": "walk_couch_end",
     "gifFileName": "walk_couch",
     "alertUser": false,
     "alertAfter": 0
@@ -152,7 +153,8 @@
       "Press the 'Next' button when you are done."
     ],
     "roomName": "Living",
-    "audioFileName": "device_couch",
+    "audioStartFileName": "device_couch_start",
+    "audioNextFileName": "device_couch_end",
     "gifFileName": "device_couch",
     "alertUser": false,
     "alertAfter": 0
@@ -165,7 +167,8 @@
       "Continue for 2 minutes."
     ],
     "roomName": "Living",
-    "audioFileName": "video_couch",
+    "audioStartFileName": "video_couch_start",
+    "audioNextFileName": "video_couch_end",
     "gifFileName": "video_couch",
     "alertUser": true,
     "alertAfter": 20,
@@ -180,7 +183,8 @@
       "Place the magazine back to the table after 1 minute."
     ],
     "roomName": "Living",
-    "audioFileName": "read_couch",
+    "audioStartFileName": "read_couch_start",
+    "audioNextFileName": "read_couch_end",
     "gifFileName": "read_couch",
     "alertUser": true,
     "alertAfter": 20,
@@ -195,7 +199,8 @@
       "Press the 'Next' button when you are done."
     ],
     "roomName": "Living",
-    "audioFileName": "device_couch_2",
+    "audioStartFileName": "device_couch_2_start",
+    "audioNextFileName": "device_couch_2_end",
     "gifFileName": "device_couch_2",
     "alertUser": false,
     "alertAfter": 0
