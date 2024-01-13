@@ -209,13 +209,14 @@
     "activityName": "Walk to the bathroom",
     "instructions": [
       "Walk to the bathroom.",
-      "The activities performed in the bathroom can be simulated.",
+      "The activities performed in the bathroom should be simulated.",
       "Please be careful not to actually use the facilities in the bathroom.",
       "Press 'Start' when you are ready.",
       "Press the 'Next' button when you are done."
     ],
     "roomName": "Bathroom",
-    "audioFileName": "walk_bathroom",
+    "audioStartFileName": "walk_bathroom_start",
+    "audioNextFileName": "walk_bathroom_end",
     "gifFileName": "walk_bathroom",
     "alertUser": false,
     "alertAfter": 0
@@ -223,14 +224,14 @@
   "16": {
     "activityName": "Shower simulation",
     "instructions": [
-      "Simulate taking off the shirt.",
       "Please move inside the shower cabinet.",
       "Simulate the motion of showering for 2 minutes",
-      "Press 'Start' when you are ready.",
-      "The app will alert you when 2 minutes has elapsed."
+      "The app will alert you when 2 minutes has elapsed.",
+      "Press 'Start' when you are ready."
     ],
     "roomName": "Bathroom",
-    "audioFileName": "shower",
+    "audioStartFileName": "shower_start",
+    "audioNextFileName": "shower_end",
     "gifFileName": "shower",
     "alertUser": true,
     "alertAfter": 20,
@@ -240,57 +241,69 @@
     "activityName": "Brush teeth",
     "instructions": [
       "Please move out of the shower cabinet and walk to the wash basin.",
-      "Simulate the motion of brushing your teeth naturally.",
+      "Simulate the motion of brushing your teeth naturally for 2 minutes",
+      "The app will alert you when 2 minutes has elapsed.",
       "Press 'Start' when you are ready.",
       "Press the 'Next' button when you are done"
     ],
     "roomName": "Bathroom",
-    "audioFileName": "brush",
+    "audioStartFileName": "brush_start",
+    "audioNextFileName": "brush_end",
     "gifFileName": "brush",
-    "alertUser": false,
-    "alertAfter": 0
+    "alertUser": true,
+    "alertAfter": 20,
+    "alertUserSuccessText": "Activity Complete. Please press 'Next'."
   },
   "18": {
     "activityName": "Wash face",
     "instructions": [
       "Please continue this activity in the wash basin.",
-      "Simulate the motion of washing your face naturally.",
+      "Simulate the motion of washing your face naturally for 1 minute.",
+      "The app will alert you when 1 minute has elapsed",
       "Press 'Start' when you are ready.",
       "Press the 'Next' button when you are done"
     ],
     "roomName": "Bathroom",
-    "audioFileName": "wash_face",
+    "audioStartFileName": "wash_face_start",
+    "audioNextFileName": "wash_face_end",
     "gifFileName": "wash_face",
-    "alertUser": false,
-    "alertAfter": 0
+    "alertUser": true,
+    "alertAfter": 20,
+    "alertUserSuccessText": "Activity Complete. Please press 'Next'."
   },
   "19": {
     "activityName": "Simulate using toilet",
     "instructions": [
       "Please walk on to the toilet seat.",
-      "Please simulate using the toilet.",
+      "Please simulate using the toilet for 2 minutes (sit, take out toilet roll and flush).",
+      "The app will alert you when 2 minute has elapsed",
       "Press 'Start' when you are ready.",
       "Press the 'Next' button when you are done"
     ],
     "roomName": "Bathroom",
-    "audioFileName": "toilet",
+    "audioStartFileName": "toilet_start",
+    "audioNextFileName": "toilet_end",
     "gifFileName": "toilet",
-    "alertUser": false,
-    "alertAfter": 0
+    "alertUser": true,
+    "alertAfter": 20,
+    "alertUserSuccessText": "Activity Complete. Please press 'Next'."
   },
   "20": {
     "activityName": "Washing hands",
     "instructions": [
       "Please walk to the wash basin.",
-      "Simulate washing hands.",
-      "Press 'Start' when you are ready.",
+      "Simulate washing hands for 30 seconds",
+      "The app will alert you when 30 seconds has elapsed",
+      "Press 'Start' when you are ready to walk.",
       "Press the 'Next' button when you are done"
     ],
     "roomName": "Bathroom",
-    "audioFileName": "wash_hand",
+    "audioStartFileName": "wash_hand_start",
+    "audioNextFileName": "wash_hand_end",
     "gifFileName": "wash_hand",
-    "alertUser": false,
-    "alertAfter": 0
+    "alertUser": true,
+    "alertAfter": 20,
+    "alertUserSuccessText": "Activity Complete. Please press 'Next'."
   },
   "21": {
     "activityName": "Walk to the bedroom",
