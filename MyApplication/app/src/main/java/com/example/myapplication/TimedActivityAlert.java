@@ -28,6 +28,8 @@ public class TimedActivityAlert extends AppCompatDialogFragment {
     private String jsonObject;
     private String activityId;
     private String fileLocation;
+    private String voiceFileName;
+    private String SAMPLE_TEXT = "1. Press 'Next' to move to next activity.\n2. Press 'Restart Activity' to try again.";
 
     TimedActivityAlert(
             String subjectId,
@@ -38,7 +40,7 @@ public class TimedActivityAlert extends AppCompatDialogFragment {
             String positiveButtonText,
             String negativeBtnText
     ) {
-        this.message = message;
+        this.message = (message.length() != 0) ? message : SAMPLE_TEXT;
         if (!positiveButtonText.equals("\0") || positiveButtonText.equals("")) {
             this.positiveBtnText = positiveButtonText;
         }
@@ -56,6 +58,7 @@ public class TimedActivityAlert extends AppCompatDialogFragment {
         View promptView = layoutInflater.inflate(R.layout.custom_dialog, null);
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.AlertDialog);
         builder.setView(promptView);
+        builder.setCancelable(false);
         positiveBtn = (Button) promptView.findViewById(R.id.alertPositiveButton);
         negativeBtn = (Button) promptView.findViewById(R.id.alertNegativeButton);
         alertTextView = (TextView) promptView.findViewById(R.id.alertTextMessage);

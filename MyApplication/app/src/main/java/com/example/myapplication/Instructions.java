@@ -46,8 +46,9 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
     private JavaAppendFileWriter mAppendFileWriter = new JavaAppendFileWriter();
     private FileWriter fw;
     Context context = this;
-    MediaPlayer mp = new MediaPlayer();
-    MediaPlayer mp1 = new MediaPlayer();
+    MediaPlayer mp = new MediaPlayer(); // media for Start button
+    MediaPlayer mp1 = new MediaPlayer(); // media for next button
+    MediaPlayer mp2 = new MediaPlayer(); // media for timed activity popup button.
 
     // for time specific alerts.
     private Handler handler;
@@ -63,10 +64,10 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
     String gifImageName = null;
     Boolean alertUser = false;
     Integer alertAfterSeconds = 0;
-    String alertSuccessText = "Activity Complete. Press 'Next'.";
     String activityName = "";
     String timeLogString = "";
     String currentSubjectId = "";
+    public String activityCompleteVoiceFile = "timed_activity_voice";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -120,7 +121,6 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
             gifImageName = activityDetails.getString("gifFileName");
             alertUser = activityDetails.getBoolean("alertUser");
             alertAfterSeconds = activityDetails.getInt("alertAfter");
-            alertSuccessText = activityDetails.getString("alertUserSuccessText");
         } catch (JSONException e) {
             System.out.println("CODE ERROR: while getting activity JSON data: " + e);
             e.printStackTrace();
@@ -175,7 +175,7 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
                     // Initialize handler and runnable
                     initializeHandlerAndRunnable(
                             subjectId, newJSONTransferData.toString(), activityId, fileLocation,
-                            alertAfterSeconds, alertSuccessText);
+                            alertAfterSeconds);
                 } else {
                     activityCompleteButton.setVisibility(View.VISIBLE);
                 }
@@ -372,6 +372,9 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
                 activityId,
                 fileLocation
         );
+        // Stopping any playing command to avoid overlap
+        if(mp.isPlaying()) mp.stop();
+        if(mp1.isPlaying()) mp1.stop();
         dialog.show(getSupportFragmentManager(), "customDialog");
     }
 
@@ -395,10 +398,19 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
     private void vibrate() {
         vibrator.vibrate(500);
     }
+    private void playActivityComplete() {
+        if (mp.isPlaying()) mp.stop();
+        if (mp1.isPlaying()) mp1.stop();
+        if (mp2.isPlaying()) mp2.stop();
+        Resources res = context.getResources();
+        int soundId = res.getIdentifier(activityCompleteVoiceFile, "raw", context.getPackageName());
+        mp2 = MediaPlayer.create(this, soundId);
+        mp2.start();
+    }
 
     public void initializeHandlerAndRunnable(
             String subjectId, String jsonObject, String activityId, String fileLocation,
-            Integer timeoutSeconds, String alertText)
+            Integer timeoutSeconds)
     {
         handler = new Handler();
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
@@ -407,9 +419,8 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
             public void run() {
                 // Show the dialog when the user has been inactive for x seconds
                 alertTimeoutDialog(
-                    subjectId, jsonObject, activityId, fileLocation, alertText
+                    subjectId, jsonObject, activityId, fileLocation
                 );
-                vibrate();
             }
         };
         // Set up touch listener to reset the timer on user interaction
@@ -427,18 +438,20 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
     }
 
     public void alertTimeoutDialog(
-            String subjectId, String jsonObject, String activityId, String fileLocation,
-            String alertText
+            String subjectId, String jsonObject, String activityId, String fileLocation
     ) {
         TimedActivityAlert timeoutDialogReminder =  new TimedActivityAlert(
                 subjectId,
                 jsonObject,
                 activityId,
                 fileLocation,
-                alertText,
+                "",
                 "Next",
-                ""
+                "Restart Activity"
         );
+        timeoutDialogReminder.setCancelable(false);
+        vibrate();
+        playActivityComplete();
         timeoutDialogReminder.show(getSupportFragmentManager(), "inactiveDialogReminder");
     }
 
@@ -448,6 +461,7 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
             String jsonObject,
             String activityId,
             String fileLocation) {
+        if(mp2.isPlaying()) mp2.stop();
         if (positiveActivity) {
             openNextInstructionActivity(subjectId, jsonObject, activityId, fw, mAppendFileWriter, fileLocation);
         } else {
