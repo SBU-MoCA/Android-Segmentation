@@ -229,6 +229,10 @@ public class Overview extends AppCompatActivity {
         intent.putExtra("jsonData", jsonObject.toString());
         intent.putExtra("activityId", currentActivity);
         intent.putExtra("fileLocation", fileLocation);
+        if (timer != null) {
+            timer.cancel();
+            timer.purge();
+        }
         startActivity(intent);
     }
 }
