@@ -7,8 +7,8 @@
       "Press the 'Next' button when you reach the kitchen."
     ],
     "roomName": "Kitchen",
-    "audioStartFileName": "walk_to_kitchen",
-    "audioNextFileName": "reach_kitchen",
+    "audioStartFileName": "walk_to_kitchen_first_start",
+    "audioNextFileName": "walk_to_kitchen_first_end",
     "gifFileName": "walk_kitchen",
     "alertUser": false,
     "alertAfter": 0
@@ -310,10 +310,11 @@
     "instructions": [
       "Please walk to the bedroom",
       "Press 'Start' when you are ready.",
-      "Press the 'Next' button when you are done"
+      "Press the 'Next' button when you are done."
     ],
     "roomName": "Bedroom",
-    "audioFileName": "walk_bedroom",
+    "audioStartFileName": "walk_bedroom_start",
+    "audioNextFileName": "walk_bedroom_end",
     "gifFileName": "walk_bedroom",
     "alertUser": false,
     "alertAfter": 0
@@ -328,7 +329,8 @@
       "Press the 'Next' button when you are done"
     ],
     "roomName": "Bedroom",
-    "audioFileName": "towel_1",
+    "audioStartFileName": "towel_1_start",
+    "audioNextFileName": "towel_1_end",
     "gifFileName": "towel_1",
     "alertUser": false,
     "alertAfter": 0
@@ -344,7 +346,8 @@
       "Press the 'Next' button when you are done"
     ],
     "roomName": "Bedroom",
-    "audioFileName": "towel_2",
+    "audioStartFileName": "towel_2_start",
+    "audioNextFileName": "towel_2_end",
     "gifFileName": "towel_2",
     "alertUser": false,
     "alertAfter": 0
@@ -358,7 +361,8 @@
       "Press the 'Next' button when you are done"
     ],
     "roomName": "Bedroom",
-    "audioFileName": "sit_bedroom",
+    "audioStartFileName": "sit_bedroom_start",
+    "audioNextFileName": "sit_bedroom_end",
     "gifFileName": "sit_bedroom",
     "alertUser": false,
     "alertAfter": 0
@@ -367,11 +371,13 @@
     "activityName": "Put on the Massimo Device",
     "instructions": [
       "Please put on the Massimo device placed on the bed.",
+      "Please insert your finger completely into the device.",
       "Press 'Start' when you are ready.",
       "Press the 'Next' button when you are done"
     ],
     "roomName": "Bedroom",
-    "audioFileName": "device_bedroom",
+    "audioStartFileName": "device_bedroom_start",
+    "audioNextFileName": "device_bedroom_end",
     "gifFileName": "device_bedroom",
     "alertUser": false,
     "alertAfter": 0
@@ -381,11 +387,12 @@
     "instructions": [
       "Please lie down in the bed facing the ceiling.",
       "Press 'Start' when you are ready.",
-      "Continue this for 5 minutes.",
-      "The app will alert you when 5 minutes has elapsed."
+      "Continue this for 2 minutes.",
+      "The app will alert you when 2 minutes has elapsed."
     ],
     "roomName": "Bedroom",
-    "audioFileName": "lie_bedroom",
+    "audioStartFileName": "lie_bedroom_start",
+    "audioNextFileName": "lie_bedroom_end",
     "gifFileName": "lie_bedroom",
     "alertUser": true,
     "alertAfter": 20,
@@ -397,11 +404,12 @@
       "Please change your posture.",
       "Lie down in bed on your stomach.",
       "Press 'Start' when you are ready.",
-      "Continue this for 5 minutes.",
-      "The app will alert you when 5 minutes has elapsed."
+      "Continue this for 2 minutes.",
+      "The app will alert you when 2 minutes has elapsed."
     ],
     "roomName": "Bedroom",
-    "audioFileName": "lie_bedroom_2",
+    "audioStartFileName": "lie_bedroom_2_start",
+    "audioNextFileName": "lie_bedroom_2_end",
     "gifFileName": "lie_bedroom_2",
     "alertUser": true,
     "alertAfter": 20,
@@ -413,11 +421,12 @@
       "Please change your posture.",
       "Lie down in bed on your side.",
       "Press 'Start' when you are ready.",
-      "Continue this for 5 minutes.",
-      "The app will alert you when 5 minutes has elapsed."
+      "Continue this for 2 minutes.",
+      "The app will alert you when 2 minutes has elapsed."
     ],
     "roomName": "Bedroom",
-    "audioFileName": "lie_bedroom_3",
+    "audioStartFileName": "lie_bedroom_3_start",
+    "audioNextFileName": "lie_bedroom_3_end",
     "gifFileName": "lie_bedroom_3",
     "alertUser": true,
     "alertAfter": 20,
@@ -433,7 +442,8 @@
       "Press 'Next' when you are done."
     ],
     "roomName": "Bedroom",
-    "audioFileName": "remove_device_bedroom",
+    "audioStartFileName": "remove_device_bedroom_start",
+    "audioNextFileName": "remove_device_bedroom_end",
     "gifFileName": "remove_device_bedroom",
     "alertUser": false,
     "alertAfter": 0
@@ -446,7 +456,8 @@
       "Press 'Next' when you have reached."
     ],
     "roomName": "Study",
-    "audioFileName": "walk_table",
+    "audioStartFileName": "walk_table_start",
+    "audioNextFileName": "walk_table_end",
     "gifFileName": "walk_table",
     "alertUser": false,
     "alertAfter": 0
@@ -460,7 +471,8 @@
       "Press 'Next' when you are done."
     ],
     "roomName": "Study",
-    "audioFileName": "device_table",
+    "audioStartFileName": "device_table_start",
+    "audioNextFileName": "device_table_end",
     "gifFileName": "device_table",
     "alertUser": false,
     "alertAfter": 0
@@ -468,13 +480,14 @@
   "32": {
     "activityName": "Surf the internet",
     "instructions": [
-      "Please use the laptop for surfing the internet or performing any other activity",
+      "Please use the laptop for surfing the internet.",
       "Continue this for 3 minutes.",
-      "Press 'Start' when you are ready.",
-      "The app will alert you when 3 minutes has elapsed."
+      "The app will alert you when 3 minutes has elapsed.",
+      "Press 'Start' when you are ready."
     ],
     "roomName": "Study",
-    "audioFileName": "surf_internet",
+    "audioStartFileName": "surf_internet_start",
+    "audioNextFileName": "surf_internet_end",
     "gifFileName": "surf_internet",
     "alertUser": true,
     "alertAfter": 20,
@@ -488,7 +501,8 @@
       "Press the 'Next' button when you are done."
     ],
     "roomName": "Study",
-    "audioFileName": "device_table_2",
+    "audioStartFileName": "device_table_2_start",
+    "audioNextFileName": "device_table_2_end",
     "gifFileName": "device_table_2",
     "alertUser": false,
     "alertAfter": 0
@@ -500,25 +514,29 @@
       "Press 'Start' when you are ready.",
       "Press the 'Next' button when you have reached."
     ],
-    "roomName": "Kitchen-Sink",
-    "audioFileName": "sink_kitchen",
-    "gifFileName": "sink_kitchen",
+    "roomName": "Sink",
+    "audioStartFileName": "kitchen_sink_start",
+    "audioNextFileName": "kitchen_sink_end",
+    "gifFileName": "walk_kitchen_sink",
     "alertUser": false,
     "alertAfter": 0
   },
   "35": {
     "activityName": "Washing dishes",
     "instructions": [
-      "Please simulate washing the dishes.",
+      "Please simulate washing the dishes for 1 minute",
       "Dry out your hands after washing.",
+      "The app will alert you when 1 minute has elapsed.",
       "Press 'Start' when you are ready.",
-      "Press the 'Next' button when you have reached."
+      "Press the 'Next' button when you are done."
     ],
-    "roomName": "Kitchen-Sink",
-    "audioFileName": "wash_dishesh",
+    "roomName": "Sink",
+    "audioStartFileName": "wash_dishes_start",
+    "audioNextFileName": "wash_dishes_end",
     "gifFileName": "wash_dishesh",
-    "alertUser": false,
-    "alertAfter": 0
+    "alertUser": true,
+    "alertAfter": 20,
+    "alertUserSuccessText": "Activity Complete. Please press 'Next' to move onto the next activity."
   },
   "36": {
     "activityName": "Exit the lab",
@@ -528,8 +546,9 @@
       "Press 'Start' when you are ready.",
       "Press the 'Done' button when you have reached."
     ],
-    "roomName": "Kitchen-Sink",
-    "audioFileName": "walk_out",
+    "roomName": "Sink",
+    "audioStartFileName": "walk_out_start",
+    "audioNextFileName": "walk_out_end",
     "gifFileName": "walk_out",
     "alertUser": false,
     "alertAfter": 0
@@ -539,8 +558,9 @@
     "instructions": [
       "We thank you for the corporation!"
     ],
-    "roomName": "Kitchen-Sink",
-    "audioFileName": "thank_you",
+    "roomName": "Sink",
+    "audioStartFileName": "thank_you",
+    "audioNextFileName": "thank_you",
     "gifFileName": "thank_you",
     "alertUser": false,
     "alertAfter": 0
