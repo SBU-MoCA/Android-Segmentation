@@ -64,6 +64,9 @@ public class Overview extends AppCompatActivity {
     private Handler handler;
     private Timer timer;
 
+    MediaPlayer mp; // overview screen voice command.
+    public String overviewScreenVoiceFile = "overview_screen";
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.location_overview);
@@ -170,6 +173,9 @@ public class Overview extends AppCompatActivity {
                 });
             }
         }, 0, 500); // Update every 5 seconds (adjust as needed)
+        int nextSoundId = res.getIdentifier(overviewScreenVoiceFile, "raw", context.getPackageName());
+        mp = MediaPlayer.create(this, nextSoundId);
+        mp.start();
     }
 
     private void displayNextGif(Resources res, GifImageView gifImageView, TextView activityNumber, TextView activityText, Button startActivityButton, TextView disclaimerText) throws IOException {
@@ -227,6 +233,7 @@ public class Overview extends AppCompatActivity {
     }
 
     public void openInstructionActivities(JSONObject jsonObject, String currentActivity) {
+        if(mp.isPlaying()) mp.stop();
         Intent intent = new Intent(this, Instructions.class);
         intent.putExtra("subjectId", subjectId);
         intent.putExtra("jsonData", jsonObject.toString());
