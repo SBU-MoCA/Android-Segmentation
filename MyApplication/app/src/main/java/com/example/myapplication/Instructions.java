@@ -181,7 +181,7 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         for (int i = 0; i < activityInstructions.length(); i += 1) {
             try {
                 instructionSet += ( i + 1) + ". " + activityInstructions.getString(i);
-                instructionSet += "\n\n";
+                instructionSet += "\n";
             } catch (JSONException e) {
                 System.out.println("CODE ERROR: Failed to parse instructions: " + e);
                 throw new RuntimeException(e);

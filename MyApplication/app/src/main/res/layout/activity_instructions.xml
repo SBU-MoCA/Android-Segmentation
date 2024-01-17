@@ -77,7 +77,7 @@
         android:layout_marginBottom="145dp"
         android:textAllCaps="true"
         android:textColor="@color/primary_button"
-        android:textSize="17dp"
+        android:textSize="18sp"
         android:textStyle="bold" />
 
     <Button
