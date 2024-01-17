@@ -66,6 +66,7 @@ public class Overview extends AppCompatActivity {
 
     MediaPlayer mp; // overview screen voice command.
     public String overviewScreenVoiceFile = "overview_screen";
+    public int gifTransitionTime = 17000;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -172,7 +173,7 @@ public class Overview extends AppCompatActivity {
                     }
                 });
             }
-        }, 0, 500); // Update every 5 seconds (adjust as needed)
+        }, 0, gifTransitionTime); // Update every 5 seconds (adjust as needed)
         int nextSoundId = res.getIdentifier(overviewScreenVoiceFile, "raw", context.getPackageName());
         mp = MediaPlayer.create(this, nextSoundId);
         mp.start();
