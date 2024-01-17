@@ -327,6 +327,9 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
 
     // onClick for restartActivityButton
     private void restartCurrentActivity(String subjectId, String jsonObject, String activityId, String fileLocation) {
+        if (mp.isPlaying()) mp.stop();
+        if (mp1.isPlaying()) mp1.stop();
+        if (mp2.isPlaying()) mp2.stop();
         removeTimer();
         System.out.println("Restarting activity: " + activityId);
 //        JavaAppendFileWriter.removeLastEntryFromFile(getFileNameFormat(fileLocation, subjectId));
@@ -342,6 +345,9 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
 
     // onClick for startOverActivity
     private void startOverFromStart(String subjectId, String jsonObject, String activityId, String fileLocation) throws IOException {
+        if (mp.isPlaying()) mp.stop();
+        if (mp1.isPlaying()) mp1.stop();
+        if (mp2.isPlaying()) mp2.stop();
 //        JavaAppendFileWriter.getFileName(getFileNameFormat(fileLocation, subjectId));
         Intent intent = new Intent(this, StartupActivity.class);
         intent.putExtra("subjectId", subjectId);
@@ -372,9 +378,6 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
                 activityId,
                 fileLocation
         );
-        // Stopping any playing command to avoid overlap
-        if(mp.isPlaying()) mp.stop();
-        if(mp1.isPlaying()) mp1.stop();
         dialog.show(getSupportFragmentManager(), "customDialog");
     }
 
