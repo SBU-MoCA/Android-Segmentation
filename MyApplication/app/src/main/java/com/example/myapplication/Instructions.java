@@ -40,18 +40,24 @@ import pl.droidsonroids.gif.GifDrawable;
 import pl.droidsonroids.gif.GifImageView;
 
 
-public class Instructions extends AppCompatActivity implements CustomDialog.CustomDialogListener, TimedActivityAlert.TimedAlertListener {
+public class Instructions extends AppCompatActivity implements CustomDialog.CustomDialogListener, TimedActivityAlert.TimedAlertListener, StartAlert.StartAlertListener {
     public Instructions() throws IOException {}
     String FINAL_ACTIVITY_NUMBER = "37";
     private JavaAppendFileWriter mAppendFileWriter = new JavaAppendFileWriter();
     private FileWriter fw;
+    public Boolean alertToStart;
     Context context = this;
     MediaPlayer mp = new MediaPlayer(); // media for Start button
     MediaPlayer mp1 = new MediaPlayer(); // media for next button
     MediaPlayer mp2 = new MediaPlayer(); // media for timed activity popup button.
+    MediaPlayer mp3 = new MediaPlayer(); // media for ready to start alert.
 
     // for time specific alerts.
     private Handler handler;
+
+    private Handler showStartAlertHandler;
+
+    private Runnable showStartDialogRunnable;
     private Runnable showDialogRunnable;
     private Vibrator vibrator;
 
@@ -68,6 +74,8 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
     String timeLogString = "";
     String currentSubjectId = "";
     public String activityCompleteVoiceFile = "timed_activity_voice";
+    public String startActivityAlertVoiceFile = "start_activity_ready";
+    public int startActivityAlertTimer = 20000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,6 +97,7 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         String activityId = intent.getStringExtra("activityId");
         String fileLocation = intent.getStringExtra("fileLocation");
         Boolean restartedActivity = intent.getBooleanExtra("restartActivity", false);
+        alertToStart = intent.getBooleanExtra("alertToStart", true);
         if (restartedActivity) {
             timeLogString = "restart";
         } else {
@@ -140,6 +149,7 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
                 } else {
                     mp.start();
                 }
+                removeTimerForStartButton();
             }
         });
 
@@ -161,36 +171,8 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         startActivitybutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mp.isPlaying()) {
-                    mp.stop();
-                }
-                restartActivityButton.setVisibility(View.VISIBLE);
-                startActivitybutton.setVisibility(View.INVISIBLE);
-                // log the starting activity time
-                logActivityTimings(fw, mAppendFileWriter, timeLogString, activityName);
-                // initialize required values if we need to alert user after x seconds
-                if (alertUser) {
-                    activityCompleteButton.setVisibility(View.INVISIBLE);
-                    timedActivityTextView.setText("Please Continue. A prompt will be displayed when it's time.");
-                    // Initialize handler and runnable
-                    initializeHandlerAndRunnable(
-                            subjectId, newJSONTransferData.toString(), activityId, fileLocation,
-                            alertAfterSeconds);
-                } else {
-                    activityCompleteButton.setVisibility(View.VISIBLE);
-                }
-                playButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if(mp1.isPlaying()){
-                            mp1.pause();
-                        } else {
-                            mp1.start();
-                        }
-                    }
-                });
-                mp1.start();
-
+                startButtonPressed(restartActivityButton, startActivitybutton, playButton, activityCompleteButton, timedActivityTextView, subjectId,
+                newJSONTransferData, activityId, fileLocation);
             }
         });
 
@@ -222,22 +204,38 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
                 openDialog("restartActivity", subjectId, newJSONTransferData.toString(), activityId, fileLocation);
             }
         });
-
-// startOverButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                System.out.println("Start over from beginning. Current activity: " + activityId);
-//                openDialog("startOver", subjectId, newJSONTransferData.toString(), activityId, fileLocation);
-//            }
-//        });
-
         mp.start(); // start the audio once when page opens
+
         if (activityId.equals(FINAL_ACTIVITY_NUMBER)) {
             startActivitybutton.setVisibility(View.INVISIBLE);
             restartActivityButton.setVisibility(View.INVISIBLE);
             activityCompleteButton.setVisibility(View.VISIBLE);
+        } else if (alertToStart) {
+            // alert user to start after 10 seconds of
+            mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                public void onCompletion(MediaPlayer mp) {
+                    showStartAlertHandler =  new Handler();
+                   showStartDialogRunnable = new Runnable() {
+                       @Override
+                       public void run() {
+                           showStartAlert(restartActivityButton, startActivitybutton, playButton, activityCompleteButton, timedActivityTextView, subjectId,
+                                   newJSONTransferData, activityId, fileLocation);
+                       }
+                   };
+                   removeAllTimers();
+                   vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                   startTimerForStartButton();
+                }
+            });
         }
 
+    }
+
+    public void stopAllMusicPlayers() {
+        if (mp != null && mp.isPlaying()) mp.stop();
+        if (mp1 != null && mp1.isPlaying()) mp1.stop();
+        if (mp2 != null && mp2.isPlaying()) mp2.stop();
+        if (mp3 != null && mp3.isPlaying()) mp3.stop();
     }
     public String getFileNameFormat(String fileLocation, String subjectId) {
         currentSubjectId = fileLocation;
@@ -250,6 +248,72 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         return true;
     }
 
+    private void startTimerForStartButton() {
+        showStartAlertHandler.postDelayed(showStartDialogRunnable, startActivityAlertTimer);
+    }
+
+    private void removeTimerForStartButton() {
+        if (showStartAlertHandler != null) {
+            showStartAlertHandler.removeCallbacks(showStartDialogRunnable);
+        }
+    }
+
+    private void removeAllTimers() {
+        removeTimerForStartButton();
+        removeTimer();
+    }
+
+    private void showStartAlert(Button restartActivityButton, Button startActivitybutton, Button playButton,  Button activityCompleteButton,
+                                TextView timedActivityTextView,
+                                String subjectId, JSONObject newJSONTransferData, String activityId, String fileLocation) {
+        StartAlert dialog = new StartAlert(
+                restartActivityButton, startActivitybutton, playButton, activityCompleteButton, timedActivityTextView, subjectId,
+                newJSONTransferData, activityId, fileLocation
+        );
+        dialog.setCancelable(false);
+        stopAllMusicPlayers();
+        Resources res = context.getResources();
+        int soundId = res.getIdentifier(startActivityAlertVoiceFile, "raw", context.getPackageName());
+        mp3 = MediaPlayer.create(this, soundId);
+        mp3.start();
+        vibrate();
+        dialog.show(getSupportFragmentManager(), "startAlertDialog");
+    }
+
+    private void startButtonPressed(
+            Button restartActivityButton, Button startActivitybutton, Button playButton,  Button activityCompleteButton,
+            TextView timedActivityTextView,
+            String subjectId, JSONObject newJSONTransferData, String activityId, String fileLocation
+    ) {
+        stopAllMusicPlayers();
+        restartActivityButton.setVisibility(View.VISIBLE);
+        startActivitybutton.setVisibility(View.INVISIBLE);
+        // log the starting activity time
+        logActivityTimings(fw, mAppendFileWriter, timeLogString, activityName);
+        // initialize required values if we need to alert user after x seconds
+        if (alertUser) {
+            activityCompleteButton.setVisibility(View.INVISIBLE);
+            timedActivityTextView.setText("Please Continue. A prompt will be displayed when it's time.");
+            // Initialize handler and runnable
+            initializeHandlerAndRunnable(
+                    subjectId, newJSONTransferData.toString(), activityId, fileLocation,
+                    alertAfterSeconds);
+        } else {
+            activityCompleteButton.setVisibility(View.VISIBLE);
+        }
+        playButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(mp1.isPlaying()){
+                    mp1.pause();
+                } else {
+                    mp1.start();
+                }
+            }
+        });
+        mp1.start();
+        removeTimerForStartButton();
+    }
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch(item.getItemId()) {
@@ -275,7 +339,8 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
 
     // onClick for activityCompleteButton
     private void openNextInstructionActivity(String subjectId, String jsonObject, String activityId, FileWriter fw, JavaAppendFileWriter mAppendFileWriter, String fileLocation) {
-        removeTimer();
+        removeAllTimers();
+        stopAllMusicPlayers();
         logActivityTimings(fw, mAppendFileWriter, "stop", "");
 
         //Determine whether to call the overview activity
@@ -294,6 +359,7 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         intent.putExtra("jsonData", jsonObject);
         intent.putExtra("activityId", Integer.toString((Integer.parseInt(activityId) + 1)));
         intent.putExtra("fileLocation", fileLocation);
+        intent.putExtra("alertToStart", alertToStart);
 
         startActivity(intent);
     }
@@ -327,10 +393,8 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
 
     // onClick for restartActivityButton
     private void restartCurrentActivity(String subjectId, String jsonObject, String activityId, String fileLocation) {
-        if (mp.isPlaying()) mp.stop();
-        if (mp1.isPlaying()) mp1.stop();
-        if (mp2.isPlaying()) mp2.stop();
-        removeTimer();
+        stopAllMusicPlayers();
+        removeAllTimers();
         System.out.println("Restarting activity: " + activityId);
 //        JavaAppendFileWriter.removeLastEntryFromFile(getFileNameFormat(fileLocation, subjectId));
         Intent intent = new Intent(this, Instructions.class);
@@ -339,21 +403,21 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         intent.putExtra("activityId", activityId);
         intent.putExtra("fileLocation", fileLocation);
         intent.putExtra("restartActivity", true);
+        intent.putExtra("alertToStart", alertToStart);
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
     // onClick for startOverActivity
     private void startOverFromStart(String subjectId, String jsonObject, String activityId, String fileLocation) throws IOException {
-        if (mp.isPlaying()) mp.stop();
-        if (mp1.isPlaying()) mp1.stop();
-        if (mp2.isPlaying()) mp2.stop();
-//        JavaAppendFileWriter.getFileName(getFileNameFormat(fileLocation, subjectId));
+        stopAllMusicPlayers();
+        removeAllTimers();
         Intent intent = new Intent(this, StartupActivity.class);
         intent.putExtra("subjectId", subjectId);
         intent.putExtra("jsonData", jsonObject);
         intent.putExtra("activityId", "1");
         intent.putExtra("fileLocation", fileLocation);
+        intent.putExtra("alertToStart", alertToStart);
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
@@ -366,6 +430,22 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         } else {
             startOverFromStart(subjectId, jsonObject, "1", fileLocation);
         }
+    }
+
+    // overridden from StartAlert Class.
+    @Override
+    public void onStartActivity( Button restartActivityButton, Button startActivitybutton, Button playButton,  Button activityCompleteButton,
+                                 TextView timedActivityTextView,
+                                 String subjectId, JSONObject newJSONTransferData, String activityId, String fileLocation) {
+        removeTimerForStartButton();
+        startButtonPressed(restartActivityButton, startActivitybutton, playButton, activityCompleteButton, timedActivityTextView, subjectId,
+                newJSONTransferData, activityId, fileLocation);
+    }
+
+    @Override
+    public void onBackToInstructions() {
+        stopAllMusicPlayers();
+        mp.start();
     }
 
     public void openDialog(

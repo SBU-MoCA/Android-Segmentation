@@ -83,5 +83,15 @@
         android:textSize="16dp"
         android:textStyle="bold" />
 
+    <Switch
+        android:id="@+id/alertToStartToggle"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="25dp"
+        android:checked="true"
+        android:text="Alert to Start" />
+
 
 </RelativeLayout>
