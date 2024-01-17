@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id='@+id/restart_all_button'
+        android:iconTint="@color/background_white"
+        android:icon="@drawable/restart_activity_icon"
+        android:title="Restart all activities"
+        app:showAsAction="ifRoom">
+    </item>
+
+</menu>

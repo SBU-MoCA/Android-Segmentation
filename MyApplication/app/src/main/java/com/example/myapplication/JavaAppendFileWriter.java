@@ -10,6 +10,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.RandomAccessFile;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
@@ -18,25 +19,18 @@ import java.util.Objects;
 import android.os.Bundle;
 
 public class JavaAppendFileWriter extends Activity {
-
-
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_main);
-//    }
-
     public FileWriter fw;
 
-    public void main(FileWriter fw, String timestamp, String flag) throws IOException {
-        if(Objects.equals(flag, "start")) {
-            fw.append("start:" + timestamp + ",");
+    public void writeToFile(FileWriter fw, String timestamp, String flag, String activityName) throws IOException {
+        Character terminatingCharacter = flag.equals("stop") ? '\n' : ',';
+        String textToWrite = flag + ": " + timestamp + terminatingCharacter;
+        System.out.println("activityName: " + activityName);
+        if (flag.equals("start") && !activityName.equals("") && !(activityName.equals("\0"))) {
+            textToWrite = activityName + " - " + textToWrite;
         }
-        else{
-            fw.append("stop:" + timestamp + "\n");
-        }
-        System.out.println(timestamp);
-
+        System.out.println("Writing to file: " + textToWrite);
+        fw.append(textToWrite);
+        fw.flush();
     }
 
     public String getFileName() throws IOException {
@@ -94,5 +88,43 @@ public class JavaAppendFileWriter extends Activity {
 
 //        return  text.toString();
         return null;
+    }
+
+    public static void removeLastEntryFromFile(String filePath) {
+        try {
+            RandomAccessFile file = new RandomAccessFile(filePath, "rw");
+            long length = file.length();
+
+            // Check if the file is empty
+            if (length == 0) {
+                System.out.println("File is empty.");
+                return;
+            }
+
+            long position = length - 1;
+            file.seek(position);
+
+            while (file.readByte() != '\n') {
+                position--;
+                // If we reach the beginning of the file, break the loop
+                if (position <= 0) {
+                    break;
+                }
+                file.seek(position);
+            }
+            // Truncate the file from the calculated position
+            file.setLength(position);
+            // Add a new line if the truncate position is not the first line
+            if (position != 0) file.writeBytes("\n");
+            file.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void truncateFile(String filePath) throws IOException {
+        FileWriter fw = new FileWriter(filePath);
+        fw.flush();
+        System.out.println("File Truncated: " + filePath);
     }
 }
