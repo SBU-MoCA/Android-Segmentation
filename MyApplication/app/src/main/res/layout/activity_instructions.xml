@@ -98,7 +98,7 @@
         android:layout_height="51dp"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
-        android:layout_marginBottom="95dp"
+        android:layout_marginBottom="78dp"
         android:gravity="center"
         android:textAllCaps="true"
         android:textColor="@color/primary_button"

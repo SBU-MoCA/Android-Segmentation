@@ -237,6 +237,13 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         if (mp2 != null && mp2.isPlaying()) mp2.stop();
         if (mp3 != null && mp3.isPlaying()) mp3.stop();
     }
+
+    public void releaseAllMediaPlayers() {
+        if (mp != null) mp.release();
+        if (mp1 != null) mp1.release();
+        if (mp2 != null) mp2.release();
+        if (mp3 != null) mp3.release();
+    }
     public String getFileNameFormat(String fileLocation, String subjectId) {
         currentSubjectId = fileLocation;
         return  fileLocation + '_' + subjectId + ".txt";
@@ -360,7 +367,7 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         intent.putExtra("activityId", Integer.toString((Integer.parseInt(activityId) + 1)));
         intent.putExtra("fileLocation", fileLocation);
         intent.putExtra("alertToStart", alertToStart);
-
+        releaseAllMediaPlayers();
         startActivity(intent);
     }
 
@@ -404,6 +411,7 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         intent.putExtra("fileLocation", fileLocation);
         intent.putExtra("restartActivity", true);
         intent.putExtra("alertToStart", alertToStart);
+        releaseAllMediaPlayers();
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
@@ -418,6 +426,7 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         intent.putExtra("activityId", "1");
         intent.putExtra("fileLocation", fileLocation);
         intent.putExtra("alertToStart", alertToStart);
+        releaseAllMediaPlayers();
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
