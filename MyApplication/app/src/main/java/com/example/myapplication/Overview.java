@@ -16,6 +16,7 @@ import android.os.Vibrator;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.util.Log;
 
@@ -81,6 +82,8 @@ public class Overview extends AppCompatActivity {
         startRoomButton.setVisibility(View.INVISIBLE);
         GifImageView gifImageView = (GifImageView) findViewById(R.id.overview_gif);
         TextView disclaimerText = (TextView) findViewById(R.id.disclaimer);
+        ImageView previousGif = (ImageView) findViewById(R.id.previousGif);
+        ImageView nextGif = (ImageView) findViewById(R.id.nextGif);
 
         // getting information passed from previous activity
         subjectId = intent.getStringExtra("subjectId");
@@ -156,7 +159,38 @@ public class Overview extends AppCompatActivity {
             }
         });
 
-        //Display on a timer
+        startTimer(res, gifImageView, activityNumber, activityText, startRoomButton, disclaimerText);
+
+        previousGif.setClickable(true);
+        previousGif.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               currentActivity-= 2;
+                if (currentActivity < 0) {
+                    currentActivity = 0;
+                }
+                startTimer(res, gifImageView, activityNumber, activityText, startRoomButton, disclaimerText);
+            }
+        });
+
+        nextGif.setClickable(true);
+        nextGif.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (currentActivity == roomActivities.size()) {
+                    currentActivity = 0;
+                }
+                startTimer(res, gifImageView, activityNumber, activityText, startRoomButton, disclaimerText);
+            }
+        });
+
+        int nextSoundId = res.getIdentifier(overviewScreenVoiceFile, "raw", context.getPackageName());
+        mp = MediaPlayer.create(this, nextSoundId);
+        mp.start();
+    }
+
+    private void startTimer(Resources res, GifImageView gifImageView, TextView activityNumber, TextView activityText, Button startRoomButton, TextView disclaimerText) {
+        removeTimer();
         timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
@@ -174,9 +208,13 @@ public class Overview extends AppCompatActivity {
                 });
             }
         }, 0, gifTransitionTime); // Update every 5 seconds (adjust as needed)
-        int nextSoundId = res.getIdentifier(overviewScreenVoiceFile, "raw", context.getPackageName());
-        mp = MediaPlayer.create(this, nextSoundId);
-        mp.start();
+    }
+
+    private void removeTimer() {
+        if (timer != null) {
+            timer.cancel();
+            timer.purge();
+        }
     }
 
     private void displayNextGif(Resources res, GifImageView gifImageView, TextView activityNumber, TextView activityText, Button startActivityButton, TextView disclaimerText) throws IOException {
@@ -227,10 +265,7 @@ public class Overview extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         // Stop the timer when the activity is destroyed
-        if (timer != null) {
-            timer.cancel();
-            timer.purge();
-        }
+        removeTimer();
     }
 
     public void openInstructionActivities(JSONObject jsonObject, String currentActivity) {
@@ -241,10 +276,7 @@ public class Overview extends AppCompatActivity {
         intent.putExtra("activityId", currentActivity);
         intent.putExtra("fileLocation", fileLocation);
         intent.putExtra("alertToStart", alertToStart);
-        if (timer != null) {
-            timer.cancel();
-            timer.purge();
-        }
+        removeTimer();
         startActivity(intent);
     }
 }
