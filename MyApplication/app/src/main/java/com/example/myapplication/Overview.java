@@ -15,6 +15,7 @@ import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -37,6 +38,7 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import pl.droidsonroids.gif.AnimationListener;
 import pl.droidsonroids.gif.GifDrawable;
 import pl.droidsonroids.gif.GifImageView;
 
@@ -89,6 +91,7 @@ public class Overview extends AppCompatActivity {
         Button startRoomButton = (Button) findViewById(R.id.start_room);
         startRoomButton.setVisibility(View.INVISIBLE);
         GifImageView gifImageView = (GifImageView) findViewById(R.id.overview_gif);
+        GifDrawable currentGif = null;
         TextView disclaimerText = (TextView) findViewById(R.id.disclaimer);
         ImageView previousGif = (ImageView) findViewById(R.id.previousGif);
         ImageView nextGif = (ImageView) findViewById(R.id.nextGif);
@@ -167,7 +170,12 @@ public class Overview extends AppCompatActivity {
             }
         });
 
-        startTimer(res, gifImageView, activityNumber, activityText, startRoomButton, disclaimerText);
+        try {
+            displayNextGif(res, gifImageView, activityNumber, activityText, startRoomButton, disclaimerText);
+        } catch (IOException e) {
+            System.out.println("Error in calling displayNextGif: " + e);
+            throw new RuntimeException(e);
+        }
 
         previousGif.setClickable(true);
         previousGif.setOnClickListener(new View.OnClickListener() {
@@ -177,7 +185,12 @@ public class Overview extends AppCompatActivity {
                 if (currentActivity < 0) {
                     currentActivity = 0;
                 }
-                startTimer(res, gifImageView, activityNumber, activityText, startRoomButton, disclaimerText);
+                try {
+                    displayNextGif(res, gifImageView, activityNumber, activityText, startRoomButton, disclaimerText);
+                } catch (IOException e) {
+                    System.out.println("Error in calling displayNextGif prevGifButton: " + e);
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -188,35 +201,41 @@ public class Overview extends AppCompatActivity {
                 if (currentActivity == roomActivities.size()) {
                     currentActivity = 0;
                 }
-                startTimer(res, gifImageView, activityNumber, activityText, startRoomButton, disclaimerText);
+                try {
+                    displayNextGif(res, gifImageView, activityNumber, activityText, startRoomButton, disclaimerText);
+                } catch (IOException e) {
+                    System.out.println("Error in calling displayNextGif nextGifButton: " + e);
+                    throw new RuntimeException(e);
+                }
             }
         });
+
 
         int nextSoundId = res.getIdentifier(overviewScreenVoiceFile, "raw", context.getPackageName());
         mp = MediaPlayer.create(this, nextSoundId);
         mp.start();
     }
 
-    private void startTimer(Resources res, GifImageView gifImageView, TextView activityNumber, TextView activityText, Button startRoomButton, TextView disclaimerText) {
-        removeTimer();
-        timer = new Timer();
-        timer.scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            displayNextGif(res, gifImageView, activityNumber, activityText, startRoomButton, disclaimerText);
-                        }
-                        catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
-            }
-        }, 0, gifTransitionTime); // Update every 5 seconds (adjust as needed)
-    }
+//    private void startTimer(Resources res, GifImageView gifImageView, TextView activityNumber, TextView activityText, Button startRoomButton, TextView disclaimerText) {
+//        removeTimer();
+//        timer = new Timer();
+//        timer.scheduleAtFixedRate(new TimerTask() {
+//            @Override
+//            public void run() {
+//                runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        try {
+//                            displayNextGif(res, gifImageView, activityNumber, activityText, startRoomButton, disclaimerText);
+//                        }
+//                        catch (Exception e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                });
+//            }
+//        }, 0, gifTransitionTime); // Update every 5 seconds (adjust as needed)
+//    }
 
     private void removeTimer() {
         if (timer != null) {
@@ -233,19 +252,20 @@ public class Overview extends AppCompatActivity {
 
         // Get resource identifier for the new GIF image
         final int drawableGifId = res.getIdentifier(gifImageName, "drawable", getPackageName());
-
+        GifDrawable currentGif =  new GifDrawable(getResources(), drawableGifId);
         // Create a TransitionDrawable with a transparent drawable and the new GIF
         final TransitionDrawable crossFadeDrawable = new TransitionDrawable(new Drawable[]{
                 new ColorDrawable(android.R.color.transparent),
-                new GifDrawable(getResources(), drawableGifId)
+                currentGif
         });
 
         // Set the cross-fade duration (adjust as needed)
         crossFadeDrawable.setCrossFadeEnabled(true);
         crossFadeDrawable.startTransition(3000); // milliseconds cross-fade duration
-
         // Set the TransitionDrawable to the GifImageView
         gifImageView.setImageDrawable(crossFadeDrawable);
+
+
 
         String activityTotal = Integer.toString(currentActivity + 1) + "/" + Integer.toString(roomActivities.size());
         activityNumber.setText(activityTotal);
@@ -260,6 +280,16 @@ public class Overview extends AppCompatActivity {
             disclaimerText.setVisibility(View.INVISIBLE);
             startActivityButton.setVisibility(View.VISIBLE);
         }
+        currentGif.addAnimationListener(new AnimationListener() {
+            @Override
+            public void onAnimationCompleted(int loopNumber) {
+                try {
+                    displayNextGif(res, gifImageView, activityNumber, activityText, startActivityButton, disclaimerText);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
 
 //        gifImageView.postDelayed(new Runnable() {
 //            @Override

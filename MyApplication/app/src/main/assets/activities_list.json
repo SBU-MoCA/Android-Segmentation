@@ -169,7 +169,7 @@
     "roomName": "COUCH",
     "audioStartFileName": "video_couch_start",
     "audioNextFileName": "video_couch_end",
-    "gifFileName": "video_couch",
+    "gifFileName": "surf_internet",
     "alertUser": true,
     "alertAfter": 20,
     "alertUserSuccessText": "Activity Complete. Please press 'Next'."
