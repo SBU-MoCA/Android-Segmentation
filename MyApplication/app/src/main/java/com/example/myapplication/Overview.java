@@ -28,7 +28,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Objects;
 import java.util.TimeZone;
 import java.util.ArrayList;
@@ -37,6 +39,7 @@ import java.util.TimerTask;
 
 import pl.droidsonroids.gif.GifDrawable;
 import pl.droidsonroids.gif.GifImageView;
+
 
 class ActivityResource {
     public JSONArray instructions;
@@ -51,8 +54,13 @@ class ActivityResource {
 }
 
 public class Overview extends AppCompatActivity {
-    public Overview() throws IOException {}
+
+
+    public Overview() throws IOException {
+
+    }
     Context context = this;
+    Helper helperClass = new Helper();
 
     String subjectId;
     String activityId;
@@ -111,7 +119,7 @@ public class Overview extends AppCompatActivity {
         }
 
         //Set title with the currently found room
-        String titleString = "Overview of activities: " + roomName;
+        String titleString = "Overview of activities: " + roomName + "  " + helperClass.roomMapping.get(roomName) + " / " + helperClass.roomMapping.size();
         roomTitle.setText(titleString);
         String disclaimerString = "No need to remember. App will guide through each activity.";
         disclaimerText.setText(disclaimerString);

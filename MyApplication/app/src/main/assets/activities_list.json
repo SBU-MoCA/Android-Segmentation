@@ -3,10 +3,10 @@
     "activityName": "Walk to kitchen",
     "instructions": [
       "Please walk to the kitchen.",
-      "Press 'Start' when you are ready.",
+      "Press 'Start' when you are ready to walk.",
       "Press the 'Next' button when you reach the kitchen."
     ],
-    "roomName": "Kitchen",
+    "roomName": "KITCHEN",
     "audioStartFileName": "walk_to_kitchen_first_start",
     "audioNextFileName": "walk_to_kitchen_first_end",
     "gifFileName": "walk_kitchen",
@@ -20,7 +20,7 @@
       "Press 'Start' when you are ready.",
       "Press the 'Next' button when you are done."
     ],
-    "roomName": "Kitchen",
+    "roomName": "KITCHEN",
     "audioStartFileName": "take_plate_out_start",
     "audioNextFileName": "take_plate_out_end",
     "gifFileName": "take_plate_kitchen",
@@ -36,7 +36,7 @@
       "Press 'Start' when you are ready.",
       "Press the 'Next' button when you are done."
     ],
-    "roomName": "Kitchen",
+    "roomName": "KITCHEN",
     "audioStartFileName": "take_food_kitchen_start",
     "audioNextFileName": "take_food_kitchen_end",
     "gifFileName": "take_food_kitchen",
@@ -52,7 +52,7 @@
       "Press 'Start' when you are ready.",
       "Press the 'Next' button when you are done."
     ],
-    "roomName": "Kitchen",
+    "roomName": "KITCHEN",
     "audioStartFileName": "heat_food_kitchen_start",
     "audioNextFileName": "heat_food_kitchen_end",
     "gifFileName": "heat_food_kitchen",
@@ -66,7 +66,7 @@
       "Press 'Start' when you are ready.",
       "Press the 'Next' button when you are done."
     ],
-    "roomName": "Kitchen",
+    "roomName": "KITCHEN",
     "audioStartFileName": "take_cup_kitchen_start",
     "audioNextFileName": "take_cup_kitchen_end",
     "gifFileName": "take_cup_kitchen",
@@ -80,7 +80,7 @@
       "Press 'Start' when you are ready.",
       "Press the 'Next' button when you are done."
     ],
-    "roomName": "Kitchen",
+    "roomName": "KITCHEN",
     "audioStartFileName": "take_drink_kitchen_start",
     "audioNextFileName": "take_drink_kitchen_end",
     "gifFileName": "take_drink_kitchen",
@@ -94,7 +94,7 @@
       "Press 'Start' when you are ready.",
       "Press the 'Next' button when you are done."
     ],
-    "roomName": "Kitchen",
+    "roomName": "KITCHEN",
     "audioStartFileName": "pour_drink_kitchen_start",
     "audioNextFileName": "pour_drink_kitchen_end",
     "gifFileName": "pour_drink_kitchen",
@@ -109,7 +109,7 @@
       "Press 'Start' when you are ready.",
       "Press the 'Next' button when you are done."
     ],
-    "roomName": "Kitchen",
+    "roomName": "KITCHEN",
     "audioStartFileName": "eat_drink_kitchen_start",
     "audioNextFileName": "eat_drink_kitchen_end",
     "gifFileName": "eat_drink_kitchen",
@@ -123,7 +123,7 @@
       "Press 'Start' when you are ready.",
       "Press the 'Next' button when you are done."
     ],
-    "roomName": "Kitchen",
+    "roomName": "KITCHEN",
     "audioStartFileName": "sink_kitchen_start",
     "audioNextFileName": "sink_kitchen_end",
     "gifFileName": "sink_kitchen",
@@ -137,7 +137,7 @@
       "Press 'Start' when you are ready.",
       "Press the 'Next' button when you are done."
     ],
-    "roomName": "Living",
+    "roomName": "COUCH",
     "audioStartFileName": "walk_couch_start",
     "audioNextFileName": "walk_couch_end",
     "gifFileName": "walk_couch",
@@ -152,7 +152,7 @@
       "Press 'Start' when you are ready.",
       "Press the 'Next' button when you are done."
     ],
-    "roomName": "Living",
+    "roomName": "COUCH",
     "audioStartFileName": "device_couch_start",
     "audioNextFileName": "device_couch_end",
     "gifFileName": "device_couch",
@@ -166,7 +166,7 @@
       "Press 'Start' when you are ready.",
       "Continue for 2 minutes."
     ],
-    "roomName": "Living",
+    "roomName": "COUCH",
     "audioStartFileName": "video_couch_start",
     "audioNextFileName": "video_couch_end",
     "gifFileName": "video_couch",
@@ -182,7 +182,7 @@
       "Press 'Start' when you are ready.",
       "Place the magazine back to the table after 1 minute."
     ],
-    "roomName": "Living",
+    "roomName": "COUCH",
     "audioStartFileName": "read_couch_start",
     "audioNextFileName": "read_couch_end",
     "gifFileName": "read_couch",
@@ -198,7 +198,7 @@
       "Press 'Start' when you are ready.",
       "Press the 'Next' button when you are done."
     ],
-    "roomName": "Living",
+    "roomName": "COUCH",
     "audioStartFileName": "device_couch_2_start",
     "audioNextFileName": "device_couch_2_end",
     "gifFileName": "device_couch_2",
@@ -214,7 +214,7 @@
       "Press 'Start' when you are ready.",
       "Press the 'Next' button when you are done."
     ],
-    "roomName": "Bathroom",
+    "roomName": "BATHROOM",
     "audioStartFileName": "walk_bathroom_start",
     "audioNextFileName": "walk_bathroom_end",
     "gifFileName": "walk_bathroom",
@@ -229,7 +229,7 @@
       "The app will alert you when 2 minutes has elapsed.",
       "Press 'Start' when you are ready."
     ],
-    "roomName": "Bathroom",
+    "roomName": "BATHROOM",
     "audioStartFileName": "shower_start",
     "audioNextFileName": "shower_end",
     "gifFileName": "shower",
@@ -246,7 +246,7 @@
       "Press 'Start' when you are ready.",
       "Press the 'Next' button when you are done"
     ],
-    "roomName": "Bathroom",
+    "roomName": "BATHROOM",
     "audioStartFileName": "brush_start",
     "audioNextFileName": "brush_end",
     "gifFileName": "brush",
@@ -263,7 +263,7 @@
       "Press 'Start' when you are ready.",
       "Press the 'Next' button when you are done"
     ],
-    "roomName": "Bathroom",
+    "roomName": "BATHROOM",
     "audioStartFileName": "wash_face_start",
     "audioNextFileName": "wash_face_end",
     "gifFileName": "wash_face",
@@ -280,7 +280,7 @@
       "Press 'Start' when you are ready.",
       "Press the 'Next' button when you are done"
     ],
-    "roomName": "Bathroom",
+    "roomName": "BATHROOM",
     "audioStartFileName": "toilet_start",
     "audioNextFileName": "toilet_end",
     "gifFileName": "toilet",
@@ -297,7 +297,7 @@
       "Press 'Start' when you are ready to walk.",
       "Press the 'Next' button when you are done"
     ],
-    "roomName": "Bathroom",
+    "roomName": "BATHROOM",
     "audioStartFileName": "wash_hand_start",
     "audioNextFileName": "wash_hand_end",
     "gifFileName": "wash_hand",
@@ -312,7 +312,7 @@
       "Press 'Start' when you are ready.",
       "Press the 'Next' button when you are done."
     ],
-    "roomName": "Bedroom",
+    "roomName": "BEDROOM",
     "audioStartFileName": "walk_bedroom_start",
     "audioNextFileName": "walk_bedroom_end",
     "gifFileName": "walk_bedroom",
@@ -328,7 +328,7 @@
       "Press 'Start' when you are ready.",
       "Press the 'Next' button when you are done"
     ],
-    "roomName": "Bedroom",
+    "roomName": "BEDROOM",
     "audioStartFileName": "towel_1_start",
     "audioNextFileName": "towel_1_end",
     "gifFileName": "towel_1",
@@ -345,7 +345,7 @@
       "Press 'Start' when you are ready.",
       "Press the 'Next' button when you are done"
     ],
-    "roomName": "Bedroom",
+    "roomName": "BEDROOM",
     "audioStartFileName": "towel_2_start",
     "audioNextFileName": "towel_2_end",
     "gifFileName": "towel_2",
@@ -360,7 +360,7 @@
       "Press 'Start' when you are ready.",
       "Press the 'Next' button when you are done"
     ],
-    "roomName": "Bedroom",
+    "roomName": "BEDROOM",
     "audioStartFileName": "sit_bedroom_start",
     "audioNextFileName": "sit_bedroom_end",
     "gifFileName": "sit_bedroom",
@@ -375,7 +375,7 @@
       "Press 'Start' when you are ready.",
       "Press the 'Next' button when you are done"
     ],
-    "roomName": "Bedroom",
+    "roomName": "BEDROOM",
     "audioStartFileName": "device_bedroom_start",
     "audioNextFileName": "device_bedroom_end",
     "gifFileName": "device_bedroom",
@@ -390,7 +390,7 @@
       "Continue this for 2 minutes.",
       "The app will alert you when 2 minutes has elapsed."
     ],
-    "roomName": "Bedroom",
+    "roomName": "BEDROOM",
     "audioStartFileName": "lie_bedroom_start",
     "audioNextFileName": "lie_bedroom_end",
     "gifFileName": "lie_bedroom",
@@ -407,7 +407,7 @@
       "Continue this for 2 minutes.",
       "The app will alert you when 2 minutes has elapsed."
     ],
-    "roomName": "Bedroom",
+    "roomName": "BEDROOM",
     "audioStartFileName": "lie_bedroom_2_start",
     "audioNextFileName": "lie_bedroom_2_end",
     "gifFileName": "lie_bedroom_2",
@@ -424,7 +424,7 @@
       "Continue this for 2 minutes.",
       "The app will alert you when 2 minutes has elapsed."
     ],
-    "roomName": "Bedroom",
+    "roomName": "BEDROOM",
     "audioStartFileName": "lie_bedroom_3_start",
     "audioNextFileName": "lie_bedroom_3_end",
     "gifFileName": "lie_bedroom_3",
@@ -441,7 +441,7 @@
       "Press 'Start' when you are ready.",
       "Press 'Next' when you are done."
     ],
-    "roomName": "Bedroom",
+    "roomName": "BEDROOM",
     "audioStartFileName": "remove_device_bedroom_start",
     "audioNextFileName": "remove_device_bedroom_end",
     "gifFileName": "remove_device_bedroom",
@@ -514,7 +514,7 @@
       "Press 'Start' when you are ready.",
       "Press the 'Next' button when you have reached."
     ],
-    "roomName": "Sink",
+    "roomName": "SINK",
     "audioStartFileName": "kitchen_sink_start",
     "audioNextFileName": "kitchen_sink_end",
     "gifFileName": "walk_kitchen_sink",
@@ -530,7 +530,7 @@
       "Press 'Start' when you are ready.",
       "Press the 'Next' button when you are done."
     ],
-    "roomName": "Sink",
+    "roomName": "SINK",
     "audioStartFileName": "wash_dishes_start",
     "audioNextFileName": "wash_dishes_end",
     "gifFileName": "wash_dishesh",
@@ -546,7 +546,7 @@
       "Press 'Start' when you are ready.",
       "Press the 'Done' button when you have reached."
     ],
-    "roomName": "Sink",
+    "roomName": "SINK",
     "audioStartFileName": "walk_out_start",
     "audioNextFileName": "walk_out_end",
     "gifFileName": "walk_out",
@@ -558,7 +558,7 @@
     "instructions": [
       "We thank you for the corporation!"
     ],
-    "roomName": "Sink",
+    "roomName": "SINK",
     "audioStartFileName": "thank_you",
     "audioNextFileName": "thank_you",
     "gifFileName": "thank_you",
