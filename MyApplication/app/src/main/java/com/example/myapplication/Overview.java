@@ -314,6 +314,7 @@ public class Overview extends AppCompatActivity {
         intent.putExtra("activityId", currentActivity);
         intent.putExtra("fileLocation", fileLocation);
         intent.putExtra("alertToStart", alertToStart);
+        intent.putExtra("roomActivitySize", roomActivities.size());
         removeTimer();
         startActivity(intent);
     }

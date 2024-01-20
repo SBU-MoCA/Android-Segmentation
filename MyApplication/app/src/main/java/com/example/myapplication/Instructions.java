@@ -73,9 +73,13 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
     String activityName = "";
     String timeLogString = "";
     String currentSubjectId = "";
+
+    Integer roomActivitySize;
+    Integer currentActivity;
+
     public String activityCompleteVoiceFile = "timed_activity_voice";
     public String startActivityAlertVoiceFile = "start_activity_ready";
-    public int startActivityAlertTimer = 6000;
+    public int startActivityAlertTimer = 5000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,6 +94,7 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         Button startActivitybutton = (Button) findViewById(R.id.start_activity);
         TextView instructionsTextView = (TextView) findViewById(R.id.instructions_text);
         TextView timedActivityTextView = (TextView) findViewById(R.id.timed_activity_text);
+        TextView activityLength = (TextView) findViewById(R.id.activity_length);
         GifImageView gifImageView = (GifImageView) findViewById(R.id.instruction_gif);
 
         // getting information passed from previous activity
@@ -98,6 +103,8 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         String fileLocation = intent.getStringExtra("fileLocation");
         Boolean restartedActivity = intent.getBooleanExtra("restartActivity", false);
         alertToStart = intent.getBooleanExtra("alertToStart", true);
+        roomActivitySize =  intent.getIntExtra("roomActivitySize", 0);
+        currentActivity = intent.getIntExtra("currentActivity", 1);
         if (restartedActivity) {
             timeLogString = "restart";
         } else {
@@ -139,6 +146,14 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         // getting the audioFileName
         int soundId = res.getIdentifier(audioStartFilename, "raw", context.getPackageName());
         mp = MediaPlayer.create(this, soundId);
+
+        if (roomActivitySize != 0) {
+            String activityLengthText = "Activity: " + currentActivity + "/" + roomActivitySize;
+            activityLength.setText(activityLengthText);
+            activityLength.setVisibility(View.VISIBLE);
+        } else {
+            activityLength.setVisibility(View.INVISIBLE);
+        }
 
         // attaching play/pause feature to the button
         playButton.setOnClickListener(new View.OnClickListener() {
@@ -367,6 +382,8 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         intent.putExtra("activityId", Integer.toString((Integer.parseInt(activityId) + 1)));
         intent.putExtra("fileLocation", fileLocation);
         intent.putExtra("alertToStart", alertToStart);
+        intent.putExtra("roomActivitySize", roomActivitySize);
+        intent.putExtra("currentActivity", currentActivity + 1);
         releaseAllMediaPlayers();
         startActivity(intent);
     }
@@ -411,6 +428,8 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         intent.putExtra("fileLocation", fileLocation);
         intent.putExtra("restartActivity", true);
         intent.putExtra("alertToStart", alertToStart);
+        intent.putExtra("roomActivitySize", roomActivitySize);
+        intent.putExtra("currentActivity", currentActivity + 1);
         releaseAllMediaPlayers();
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
@@ -426,6 +445,8 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         intent.putExtra("activityId", "1");
         intent.putExtra("fileLocation", fileLocation);
         intent.putExtra("alertToStart", alertToStart);
+        intent.putExtra("roomActivitySize", roomActivitySize);
+        intent.putExtra("currentActivity", currentActivity + 1);
         releaseAllMediaPlayers();
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);

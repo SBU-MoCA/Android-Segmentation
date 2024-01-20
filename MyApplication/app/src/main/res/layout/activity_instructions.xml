@@ -23,10 +23,10 @@
 
     <Button
         android:id="@+id/play_audio"
-        android:layout_width="215dp"
+        android:layout_width="205dp"
         android:layout_height="35dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerInParent="true"
+        android:layout_marginLeft="10dp"
         android:layout_marginBottom="345dp"
         android:background="@drawable/custom_button"
         android:drawableRight="@drawable/play_audio"
@@ -35,6 +35,19 @@
         android:text="Replay Voice"
         android:textColor="@color/white"
         android:textSize="18dp" />
+
+
+    <TextView
+        android:id="@+id/activity_length"
+        android:layout_width="145dp"
+        android:layout_height="35dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="345dp"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="20dp" />
 
     <Button
         android:id="@+id/activity_complete"
