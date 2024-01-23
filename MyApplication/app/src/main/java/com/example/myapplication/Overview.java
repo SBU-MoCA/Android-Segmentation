@@ -44,12 +44,10 @@ import pl.droidsonroids.gif.GifImageView;
 
 
 class ActivityResource {
-    public JSONArray instructions;
     public String gifImageName;
     public String activityName;
 
-    public ActivityResource(JSONArray instructions, String gifImageName, String activityName) {
-        this.instructions = instructions;
+    public ActivityResource(String gifImageName, String activityName) {
         this.gifImageName = gifImageName;
         this.activityName = activityName;
     }
@@ -138,7 +136,6 @@ public class Overview extends AppCompatActivity {
 
             try {
                 activityDetails = jsonObject.getJSONObject(Integer.toString(i));
-                instructions = activityDetails.getJSONArray("instructions");
                 gifImageName = activityDetails.getString("gifFileName");
                 activityName = activityDetails.getString("activityName");
                 roomNameAct = activityDetails.getString("roomName");
@@ -151,7 +148,7 @@ public class Overview extends AppCompatActivity {
 
             if(!roomNameAct.equals(roomName.toLowerCase())) break;
 
-            roomActivities.add(new ActivityResource(instructions, gifImageName, activityName));
+            roomActivities.add(new ActivityResource(gifImageName, activityName));
         }
 
         startRoomButton.setOnClickListener(new View.OnClickListener() {
@@ -247,7 +244,6 @@ public class Overview extends AppCompatActivity {
     private void displayNextGif(Resources res, GifImageView gifImageView, TextView activityNumber, TextView activityText, Button startActivityButton, TextView disclaimerText) throws IOException {
         System.out.println("Next GIF");
         String gifImageName = roomActivities.get(currentActivity).gifImageName;
-        JSONArray activityInstructions = roomActivities.get(currentActivity).instructions;
         String activityName = roomActivities.get(currentActivity).activityName;
 
         // Get resource identifier for the new GIF image

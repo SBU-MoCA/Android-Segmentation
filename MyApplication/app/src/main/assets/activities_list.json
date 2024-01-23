@@ -1,10 +1,12 @@
 {
   "1": {
     "activityName": "Walk to kitchen",
-    "instructions": [
+    "startInstructions": [
       "Please walk to the kitchen.",
-      "Press 'Start' when you are ready to walk.",
-      "Press the 'Next' button when you reach the kitchen."
+      "Press 'Start' when you are ready to walk."
+    ],
+    "nextInstructions": [
+      "Press 'Next' when you have reach the kitchen."
     ],
     "roomName": "KITCHEN",
     "audioStartFileName": "walk_to_kitchen_first_start",
@@ -15,10 +17,12 @@
   },
   "2": {
     "activityName": "Take plate out from cabinet",
-    "instructions": [
+    "startInstructions": [
       "Please take a plate out from the kitchen cabinet as shown.",
-      "Press 'Start' when you are ready.",
-      "Press the 'Next' button when you are done."
+      "Press 'Start' before you begin the activity."
+    ],
+    "nextInstructions": [
+      "Press 'Next' when you have placed the plate on the kitchen slab."
     ],
     "roomName": "KITCHEN",
     "audioStartFileName": "take_plate_out_start",
@@ -29,12 +33,14 @@
    },
   "3": {
     "activityName": "Take food out from fridge",
-    "instructions": [
+    "startInstructions": [
       "Please take out any food item from the refrigerator.",
       "Unpack the food item.",
-      "Place the food item on the plate in the kitchen.",
-      "Press 'Start' when you are ready.",
-      "Press the 'Next' button when you are done."
+      "Place the food item on the plate.",
+      "Press 'Start' before you begin the activity."
+    ],
+    "nextInstructions": [
+      "Press 'Next' when you have placed the food on the plate."
     ],
     "roomName": "KITCHEN",
     "audioStartFileName": "take_food_kitchen_start",
@@ -45,12 +51,14 @@
   },
   "4": {
     "activityName": "Microwave food",
-    "instructions": [
+    "startInstructions": [
       "Place the plate with food in the microwave oven.",
-      "Wait for few seconds",
-      "Take food out of the microwave oven and place it on the slab.",
-      "Press 'Start' when you are ready.",
-      "Press the 'Next' button when you are done."
+      "Wait for 10 seconds",
+      "Take the food out of the microwave oven and place it on the slab.",
+      "Press 'Start' before you begin the activity."
+    ],
+    "nextInstructions": [
+      "Press 'Next' when you have taken the food out of the microwave oven and placed it on the slab."
     ],
     "roomName": "KITCHEN",
     "audioStartFileName": "heat_food_kitchen_start",
@@ -61,10 +69,12 @@
   },
   "5": {
     "activityName": "Take cup out of cabinet",
-    "instructions": [
-      "Take a cup out from kitchen cabinet.",
-      "Press 'Start' when you are ready.",
-      "Press the 'Next' button when you are done."
+    "startInstructions": [
+      "Take a cup out from the kitchen cabinet.",
+      "Press 'Start' before you begin the activity."
+    ],
+    "nextInstructions": [
+      "Press 'Next' when you have placed the cup on the kitchen slab."
     ],
     "roomName": "KITCHEN",
     "audioStartFileName": "take_cup_kitchen_start",
@@ -75,10 +85,12 @@
   },
   "6": {
     "activityName": "Take drink out of fridge",
-    "instructions": [
-      "Take a drink out from the refrigerator.",
-      "Press 'Start' when you are ready.",
-      "Press the 'Next' button when you are done."
+    "startInstructions": [
+      "Take a drink out from the refrigerator and place it on the kitchen slab.",
+      "Press 'Start' before you begin the activity."
+    ],
+    "nextInstructions": [
+      "Press 'Next' when you have placed the drink on the kitchen slab."
     ],
     "roomName": "KITCHEN",
     "audioStartFileName": "take_drink_kitchen_start",
@@ -89,10 +101,12 @@
   },
   "7": {
     "activityName": "Pour drink into the cup",
-    "instructions": [
-      "Pour the drink into the cup.",
-      "Press 'Start' when you are ready.",
-      "Press the 'Next' button when you are done."
+    "startInstructions": [
+      "Pour some drink into the cup.",
+      "Press 'Start' before you begin the activity."
+    ],
+    "nextInstructions": [
+      "Press 'Next' when you have poured some drink into the cup."
     ],
     "roomName": "KITCHEN",
     "audioStartFileName": "pour_drink_kitchen_start",
@@ -103,11 +117,13 @@
   },
   "8": {
     "activityName": "Walk to table and simulate eating",
-    "instructions": [
+    "startInstructions": [
       "Take the food and drink to the dining table.",
-      "Simulate eating and drinking (optional).",
-      "Press 'Start' when you are ready.",
-      "Press the 'Next' button when you are done."
+      "Simulate eating and drinking for 3 times each.",
+      "Press 'Start' when you are ready to move to the dining table."
+    ],
+    "nextInstructions": [
+      "Press 'Next' when you have simulated eating and drinking for 3 times each."
     ],
     "roomName": "KITCHEN",
     "audioStartFileName": "eat_drink_kitchen_start",
@@ -118,10 +134,13 @@
   },
   "9": {
     "activityName": "Place the items on the sink",
-    "instructions": [
+    "startInstructions": [
+      "Please get up and walk towards the kitchen sink.",
       "Place the plate and cup into the kitchen sink.",
-      "Press 'Start' when you are ready.",
-      "Press the 'Next' button when you are done."
+      "Press 'Start' when you are ready to walk to the kitchen sink."
+    ],
+    "nextInstructions": [
+      "Press 'Next' when you have placed the plate and cup into the kitchen sink."
     ],
     "roomName": "KITCHEN",
     "audioStartFileName": "sink_kitchen_start",
@@ -132,10 +151,12 @@
   },
   "10": {
     "activityName": "Walk over to the couch",
-    "instructions": [
+    "startInstructions": [
       "Walk over to the couch and be seated.",
-      "Press 'Start' when you are ready.",
-      "Press the 'Next' button when you are done."
+      "Press 'Start' when you are ready to walk."
+    ],
+    "nextInstructions": [
+      "Press 'Next' when you are seated in the couch."
     ],
     "roomName": "COUCH",
     "audioStartFileName": "walk_couch_start",
@@ -146,11 +167,14 @@
   },
   "11": {
     "activityName": "Place the Massimo device in your fingertips",
-    "instructions": [
-      "Place the Massimo device in your fingertips.",
+    "startInstructions": [
+      "Place the Masimo device on your fingertips.",
       "Please insert your finger completely into the device.",
-      "Press 'Start' when you are ready.",
-      "Press the 'Next' button when you are done."
+      "Please continue to wear this device until the app asks you to remove it.",
+      "Press 'Start' when you are ready to insert the device in your fingertips."
+    ],
+    "nextInstructions": [
+      "Press 'Next' when you have placed the Masimo device on your fingertips."
     ],
     "roomName": "COUCH",
     "audioStartFileName": "device_couch_start",
@@ -161,42 +185,57 @@
   },
   "12": {
     "activityName": "Watch the video for 2 minutes",
-    "instructions": [
-      "Watch the video running on the screen.",
-      "Press 'Start' when you are ready.",
-      "Continue for 2 minutes."
+    "startInstructions": [
+      "Press the 'Spacebar' button in the laptop in front of you.",
+      "A video will start to play.",
+      "Watch the video for 30 seconds.",
+      "The app will alert you when 30 seconds has elapsed.",
+      "Press 'Start' before you begin the activity."
+    ],
+    "nextInstructions": [
+      "Continue to watch the video.",
+      "The app will alert you when 30 seconds has elapsed.",
+      "Press 'Next' when you see the alert in the app."
     ],
     "roomName": "COUCH",
     "audioStartFileName": "video_couch_start",
     "audioNextFileName": "video_couch_end",
     "gifFileName": "surf_internet",
     "alertUser": true,
-    "alertAfter": 20,
+    "alertAfter": 30,
     "alertUserSuccessText": "Activity Complete. Please press 'Next'."
   },
   "13": {
     "activityName": "Read magazine for 1 minute",
-    "instructions": [
+    "startInstructions": [
       "Take a magazine or book from the table.",
-      "Continue to read the magazine for 1 minute.",
-      "Press 'Start' when you are ready.",
-      "Place the magazine back to the table after 1 minute."
+      "Continue to read the magazine for 30 seconds.",
+      "The app will alert you when 30 seconds has elapsed.",
+      "Press 'Start' when you are ready to pick up the magazine.",
+    ],
+    "nextInstructions": [
+      "Continue to read the magazine.",
+      "The app will alert you when 30 seconds has elapsed.",
+      "Place the magazine or book back in the table after you see the alert in the app.",
+      "Press 'Next' to move to the next activity."
     ],
     "roomName": "COUCH",
     "audioStartFileName": "read_couch_start",
     "audioNextFileName": "read_couch_end",
     "gifFileName": "read_couch",
     "alertUser": true,
-    "alertAfter": 20,
+    "alertAfter": 30,
     "alertUserSuccessText": "Activity Complete. Place the magazine back to the table and press 'Next'."
   },
   "14": {
     "activityName": "Remove the Massimo device",
-    "instructions": [
-      "Remove the Massimo device from your fingers",
-      "Place the Massimo device on the table",
-      "Press 'Start' when you are ready.",
-      "Press the 'Next' button when you are done."
+    "startInstructions": [
+      "Remove the Masimo device from your fingers.",
+      "Carry the Masimo device with you in the given bag.",
+      "Press 'Start' before you remove the device."
+    ],
+    "nextInstructions": [
+      "Press 'Next' when you have removed the device and placed it in the bag."
     ],
     "roomName": "COUCH",
     "audioStartFileName": "device_couch_2_start",
@@ -207,12 +246,14 @@
   },
   "15": {
     "activityName": "Walk to the bathroom",
-    "instructions": [
-      "Walk to the bathroom.",
+    "startInstructions": [
+      "Please walk towards the bathroom.",
       "The activities performed in the bathroom should be simulated.",
       "Please be careful not to actually use the facilities in the bathroom.",
-      "Press 'Start' when you are ready.",
-      "Press the 'Next' button when you are done."
+      "Press 'Start' when you are ready to walk."
+    ],
+    "nextInstructions": [
+      "Press 'Next' when you have reached the bathroom."
     ],
     "roomName": "BATHROOM",
     "audioStartFileName": "walk_bathroom_start",
@@ -223,94 +264,117 @@
   },
   "16": {
     "activityName": "Shower simulation",
-    "instructions": [
+    "startInstructions": [
       "Please move inside the shower cabinet.",
-      "Simulate the motion of showering for 2 minutes",
-      "The app will alert you when 2 minutes has elapsed.",
-      "Press 'Start' when you are ready."
+      "Simulate the motion of showering for 30 seconds.",
+      "The app will alert you when 30 seconds has elapsed.",
+      "Press 'Start' before you move inside the shower cabinet."
+    ],
+    "nextInstructions": [
+      "Continue to simulate the motion of showering for 30 seconds.",
+      "The app will alert you when 30 seconds has elapsed.",
+      "Press 'Next' when you see the alert in the app."
     ],
     "roomName": "BATHROOM",
     "audioStartFileName": "shower_start",
     "audioNextFileName": "shower_end",
     "gifFileName": "shower",
     "alertUser": true,
-    "alertAfter": 20,
+    "alertAfter": 30,
     "alertUserSuccessText": "Activity Complete. Please press 'Next'."
   },
   "17": {
     "activityName": "Brush teeth",
-    "instructions": [
+    "startInstructions": [
       "Please move out of the shower cabinet and walk to the wash basin.",
-      "Simulate the motion of brushing your teeth naturally for 2 minutes",
-      "The app will alert you when 2 minutes has elapsed.",
-      "Press 'Start' when you are ready.",
-      "Press the 'Next' button when you are done"
+      "Simulate the motion of brushing your teeth for 30 seconds",
+      "The app will alert you when 30 seconds has elapsed.",
+      "Press 'Start' before you begin the activity."
+    ],
+    "nextInstructions": [
+      "Continue to simulate the motion of brushing for 30 seconds.",
+      "The app will alert you when 30 seconds has elapsed.",
+      "Press 'Next' when you see the alert in the app."
     ],
     "roomName": "BATHROOM",
     "audioStartFileName": "brush_start",
     "audioNextFileName": "brush_end",
     "gifFileName": "brush",
     "alertUser": true,
-    "alertAfter": 20,
+    "alertAfter": 30,
     "alertUserSuccessText": "Activity Complete. Please press 'Next'."
   },
   "18": {
     "activityName": "Wash face",
-    "instructions": [
+    "startInstructions": [
       "Please continue this activity in the wash basin.",
-      "Simulate the motion of washing your face naturally for 1 minute.",
-      "The app will alert you when 1 minute has elapsed",
-      "Press 'Start' when you are ready.",
-      "Press the 'Next' button when you are done"
+      "Simulate the motion of washing your face for 30 seconds.",
+      "The app will alert you when 30 seconds has elapsed",
+      "Press 'Start' before you begin the activity."
+    ],
+    "nextInstructions": [
+      "Continue to simulate the motion of washing your face for 30 seconds.",
+      "The app will alert you when 30 seconds has elapsed.",
+      "Press 'Next' when you see the alert in the app."
     ],
     "roomName": "BATHROOM",
     "audioStartFileName": "wash_face_start",
     "audioNextFileName": "wash_face_end",
     "gifFileName": "wash_face",
     "alertUser": true,
-    "alertAfter": 20,
+    "alertAfter": 30,
     "alertUserSuccessText": "Activity Complete. Please press 'Next'."
   },
   "19": {
     "activityName": "Simulate using toilet",
-    "instructions": [
+    "startInstructions": [
       "Please walk on to the toilet seat.",
-      "Please simulate using the toilet for 2 minutes (sit, take out toilet roll and flush).",
-      "The app will alert you when 2 minute has elapsed",
-      "Press 'Start' when you are ready.",
-      "Press the 'Next' button when you are done"
+      "Sit on the toilet for 30 seconds.",
+      "The app will alert you when 30 seconds has elapsed",
+      "Press 'Start' before you start the activity."
+    ],
+    "nextInstructions": [
+      "Continue to sit in the toilet for 30 seconds.",
+      "The app will alert you when 30 seconds has elapsed.",
+      "Press 'Next' when you see the alert in the app."
     ],
     "roomName": "BATHROOM",
     "audioStartFileName": "toilet_start",
     "audioNextFileName": "toilet_end",
     "gifFileName": "toilet",
     "alertUser": true,
-    "alertAfter": 20,
+    "alertAfter": 30,
     "alertUserSuccessText": "Activity Complete. Please press 'Next'."
   },
-  "20": {
+  "21": {
     "activityName": "Washing hands",
-    "instructions": [
-      "Please walk to the wash basin.",
-      "Simulate washing hands for 30 seconds",
+    "startInstructions": [
+      "Please walk back to the wash basin.",
+      "Simulate washing your hands for 30 seconds",
       "The app will alert you when 30 seconds has elapsed",
-      "Press 'Start' when you are ready to walk.",
-      "Press the 'Next' button when you are done"
+      "Press 'Start' before you begin the activity."
+    ],
+    "nextInstructions": [
+      "Continue to simulate washing hands for 30 seconds.",
+      "The app will alert you when 30 seconds has elapsed.",
+      "Press 'Next' when you see the alert in the app."
     ],
     "roomName": "BATHROOM",
     "audioStartFileName": "wash_hand_start",
     "audioNextFileName": "wash_hand_end",
     "gifFileName": "wash_hand",
     "alertUser": true,
-    "alertAfter": 20,
+    "alertAfter": 30,
     "alertUserSuccessText": "Activity Complete. Please press 'Next'."
   },
   "21": {
     "activityName": "Walk to the bedroom",
-    "instructions": [
-      "Please walk to the bedroom",
-      "Press 'Start' when you are ready.",
-      "Press the 'Next' button when you are done."
+    "startInstructions": [
+      "Please walk to the bedroom.",
+      "Press 'Start' when you are ready to walk."
+    ],
+    "nextInstructions": [
+      "Press 'Next' when you reach the bedroom."
     ],
     "roomName": "BEDROOM",
     "audioStartFileName": "walk_bedroom_start",
@@ -321,12 +385,14 @@
   },
   "22": {
     "activityName": "Hang towel in cabinet",
-    "instructions": [
+    "startInstructions": [
       "Please look for laundry basket near the bedroom door.",
       "Take out a towel from the basket and move to the bedroom closet.",
       "Open the closet door and hang up the towel in any one of the hangers",
-      "Press 'Start' when you are ready.",
-      "Press the 'Next' button when you are done"
+      "Press 'Start' before you begin the activity."
+    ],
+    "nextInstructions": [
+      "Press 'Next' when you have hung the towel in the bedroom closet."
     ],
     "roomName": "BEDROOM",
     "audioStartFileName": "towel_1_start",
@@ -337,13 +403,14 @@
   },
   "23": {
     "activityName": "Fold towel and place it in the cabinet",
-    "instructions": [
+    "startInstructions": [
       "Please walk back to the laundry basket.",
       "Take out another towel from the basket and move to the bedroom closet.",
-      "Fold the towel.",
-      "Open the closet door and place the towel inside the closet.",
-      "Press 'Start' when you are ready.",
-      "Press the 'Next' button when you are done"
+      "Fold the towel and place it inside the closet.",
+      "Press 'Start' before you begin the activity."
+    ],
+    "nextInstructions": [
+      "Press 'Next' when you have placed the folded towel inside the closet."
     ],
     "roomName": "BEDROOM",
     "audioStartFileName": "towel_2_start",
@@ -354,11 +421,13 @@
   },
   "24": {
     "activityName": "Remove shoes",
-    "instructions": [
+    "startInstructions": [
       "Please walk towards the bed in the bedroom.",
       "Take a seat and remove your shoes.",
-      "Press 'Start' when you are ready.",
-      "Press the 'Next' button when you are done"
+      "Press 'Start' before you begin the activity."
+    ],
+    "nextInstructions": [
+      "Press 'Next' when you are seated and have removed your shoes."
     ],
     "roomName": "BEDROOM",
     "audioStartFileName": "sit_bedroom_start",
@@ -369,11 +438,14 @@
   },
   "25": {
     "activityName": "Put on the Massimo Device",
-    "instructions": [
-      "Please put on the Massimo device placed on the bed.",
-      "Please insert your finger completely into the device.",
-      "Press 'Start' when you are ready.",
-      "Press the 'Next' button when you are done"
+    "startInstructions": [
+      "Please put the Masimo device back on your fingertips.",
+      "Insert your finger completely into the device.",
+      "Please continue to wear this device until the app asks you to remove it.",
+      "Press 'Start' before you begin the activity."
+    ],
+    "nextInstructions": [
+      "Press 'Next' when you have inserted the Masimo device into your fingertips."
     ],
     "roomName": "BEDROOM",
     "audioStartFileName": "device_bedroom_start",
@@ -384,11 +456,15 @@
   },
   "26": {
     "activityName": "Lie down in bed facing ceiling",
-    "instructions": [
-      "Please lie down in the bed facing the ceiling.",
-      "Press 'Start' when you are ready.",
-      "Continue this for 2 minutes.",
-      "The app will alert you when 2 minutes has elapsed."
+    "startInstructions": [
+      "Please lie down in the bed facing the ceiling for 2 minutes.",
+      "The app will alert you when 2 minutes has elapsed.",
+      "Press 'Start' before you begin the activity."
+    ],
+    "nextInstructions": [
+      "Continue to lie down facing the ceiling for 2 minutes.",
+      "The app will alert you when 2 minutes has elapsed.",
+      "Press 'Next' when you see the alert in the app."
     ],
     "roomName": "BEDROOM",
     "audioStartFileName": "lie_bedroom_start",
@@ -396,16 +472,20 @@
     "gifFileName": "lie_bedroom",
     "alertUser": true,
     "alertAfter": 20,
-    "alertUserSuccessText": "Activity Complete. Please press 'Next' to move onto the next posture."
+    "alertUserSuccessText": "Activity Complete. Please press 'Next' to move onto the next position."
   },
   "27": {
     "activityName": "Lie down in bed on your stomach",
-    "instructions": [
-      "Please change your posture.",
-      "Lie down in bed on your stomach.",
-      "Press 'Start' when you are ready.",
-      "Continue this for 2 minutes.",
-      "The app will alert you when 2 minutes has elapsed."
+    "startInstructions": [
+      "Please change your position.",
+      "Lie down in the bed on your stomach for 2 minutes.",
+      "The app will alert you when 2 minutes has elapsed.",
+      "Press 'Start' before you begin the activity."
+    ],
+    "nextInstructions": [
+      "Continue to lie down on your stomach for 2 minutes.",
+      "The app will alert you when 2 minutes has elapsed.",
+      "Press 'Next' when you see the alert in the app."
     ],
     "roomName": "BEDROOM",
     "audioStartFileName": "lie_bedroom_2_start",
@@ -418,11 +498,15 @@
   "28": {
     "activityName": "Lie down in bed on your side",
     "instructions": [
-      "Please change your posture.",
-      "Lie down in bed on your side.",
-      "Press 'Start' when you are ready.",
-      "Continue this for 2 minutes.",
-      "The app will alert you when 2 minutes has elapsed."
+      "Please change your position.",
+      "Lie down in bed on your side for 2 minutes.",
+      "The app will alert you when 2 minutes has elapsed.",
+      "Press 'Start' before you begin the activity."
+    ],
+    "nextInstructions": [
+      "Continue to lie down on your side for 2 minutes.",
+      "The app will alert you when 2 minutes has elapsed.",
+      "Press 'Next' when you see the alert in the app."
     ],
     "roomName": "BEDROOM",
     "audioStartFileName": "lie_bedroom_3_start",
@@ -434,12 +518,14 @@
   },
   "29": {
     "activityName": "Get up and remove device",
-    "instructions": [
+    "startInstructions": [
       "Please get up from your position.",
-      "Remove the device and place it on the bed.",
+      "Remove the Masimo device and place it back into your bag.",
       "You can wear your shoes back.",
-      "Press 'Start' when you are ready.",
-      "Press 'Next' when you are done."
+      "Press 'Start' before you begin the activity."
+    ],
+    "nextInstructions": [
+      "Press 'Next' when you have placed the Masimo device in the bag and wore your shoes."
     ],
     "roomName": "BEDROOM",
     "audioStartFileName": "remove_device_bedroom_start",
@@ -450,10 +536,12 @@
   },
   "30": {
     "activityName": "Walk to the study table",
-    "instructions": [
+    "startInstructions": [
       "Please walk to the study table outside the bedroom and be seated in the chair.",
-      "Press 'Start' when you are ready.",
-      "Press 'Next' when you have reached."
+      "Press 'Start' when you are ready to walk."
+    ],
+    "nextInstructions": [
+      "Press 'Next' when you are seated in the study chair."
     ],
     "roomName": "Study",
     "audioStartFileName": "walk_table_start",
@@ -464,11 +552,14 @@
   },
   "31": {
     "activityName": "Put on Massimo device",
-    "instructions": [
-      "Please look for a Massimo device on the table.",
-      "Put on the device on your fingertips as before.",
-      "Press 'Start' when you are ready.",
-      "Press 'Next' when you are done."
+    "startInstructions": [
+      "Please put the Masimo device back on your fingertips.",
+      "Insert your finger completely into the device.",
+      "Please continue to wear this device until the app asks you to remove it.",
+      "Press 'Start' before you begin the activity."
+    ],
+    "nextInstructions": [
+      "Press 'Next' when you have put the Masimo device on your fingertips."
     ],
     "roomName": "Study",
     "audioStartFileName": "device_table_start",
@@ -479,26 +570,32 @@
   },
   "32": {
     "activityName": "Surf the internet",
-    "instructions": [
-      "Please use the laptop for surfing the internet.",
-      "Continue this for 3 minutes.",
-      "The app will alert you when 3 minutes has elapsed.",
-      "Press 'Start' when you are ready."
+    "startInstructions": [
+      "Please use the laptop for 30 seconds.",
+      "The app will alert you when 30 seconds has elapsed.",
+      "Press 'Start' before your begin the activity."
+    ],
+    "nextInstructions": [
+      "Continue to use the laptop for 30 seconds.",
+      "The app will alert you when 30 seconds has elapsed.",
+      "Press 'Next' when you see the alert in the app."
     ],
     "roomName": "Study",
     "audioStartFileName": "surf_internet_start",
     "audioNextFileName": "surf_internet_end",
     "gifFileName": "surf_internet",
     "alertUser": true,
-    "alertAfter": 20,
+    "alertAfter": 30,
     "alertUserSuccessText": "Activity Complete. Please press 'Next' to move onto the next activity."
   },
   "33": {
     "activityName": "Remove the Massimo device",
-    "instructions": [
-      "Please remove the Massimo device and place it on the desk.",
-      "Press 'Start' when you are ready.",
-      "Press the 'Next' button when you are done."
+    "startInstructions": [
+      "Please remove the Masimo device and place it on the desk.",
+      "Press 'Start' before you begin the activity."
+    ],
+    "nextInstructions": [
+      "Press 'Next' when you have placed the device on the desk."
     ],
     "roomName": "Study",
     "audioStartFileName": "device_table_2_start",
@@ -509,10 +606,12 @@
   },
   "34": {
     "activityName": "Walk to kitchen sink",
-    "instructions": [
-      "Please walk to the kitchen near the kitchen sink.",
-      "Press 'Start' when you are ready.",
-      "Press the 'Next' button when you have reached."
+    "startInstructions": [
+      "Please walk to the kitchen towards the kitchen sink.",
+      "Press 'Start' when you are ready to walk."
+    ],
+    "nextInstructions": [
+      "Press 'Next' when you reach the kitchen sink."
     ],
     "roomName": "SINK",
     "audioStartFileName": "kitchen_sink_start",
@@ -523,12 +622,14 @@
   },
   "35": {
     "activityName": "Washing dishes",
-    "instructions": [
-      "Please simulate washing the dishes for 1 minute",
-      "Dry out your hands after washing.",
-      "The app will alert you when 1 minute has elapsed.",
-      "Press 'Start' when you are ready.",
-      "Press the 'Next' button when you are done."
+    "startInstructions": [
+      "Please simulate washing the dishes for 30 seconds",
+      "Simulate drying your hands after washing.",
+      "The app will alert you when 30 seconds.",
+      "Press 'Start' before you begin the activity."
+    ],
+    "nextInstructions": [
+      "Press 'Next' when you see the alert in the app."
     ],
     "roomName": "SINK",
     "audioStartFileName": "wash_dishes_start",
@@ -540,11 +641,13 @@
   },
   "36": {
     "activityName": "Exit the lab",
-    "instructions": [
+    "startInstructions": [
       "Please walk out to the door and exit the lab.",
       "This is the final step of this experiment.",
-      "Press 'Start' when you are ready.",
-      "Press the 'Done' button when you have reached."
+      "Press 'Start' when you are ready to walk."
+    ],
+    "nextInstructions": [
+      "Press 'Next' when you have exited the lab."
     ],
     "roomName": "SINK",
     "audioStartFileName": "walk_out_start",
@@ -556,7 +659,8 @@
   "37": {
     "activityName": "Thank You!",
     "instructions": [
-      "We thank you for the corporation!"
+      "We thank you for the corporation!",
+      "Have a nice day ahead!"
     ],
     "roomName": "SINK",
     "audioStartFileName": "thank_you",
