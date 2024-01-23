@@ -6,7 +6,7 @@
       "Press 'Start' when you are ready to walk."
     ],
     "nextInstructions": [
-      "Press 'Next' when you have reach the kitchen."
+      "Press 'Next' when you have reached the kitchen."
     ],
     "roomName": "KITCHEN",
     "audioStartFileName": "walk_to_kitchen_first_start",
@@ -120,7 +120,7 @@
     "startInstructions": [
       "Take the food and drink to the dining table.",
       "Simulate eating and drinking for 3 times each.",
-      "Press 'Start' when you are ready to move to the dining table."
+      "Press 'Start' when you are ready to walk to the dining table."
     ],
     "nextInstructions": [
       "Press 'Next' when you have simulated eating and drinking for 3 times each."
@@ -137,7 +137,7 @@
     "startInstructions": [
       "Please get up and walk towards the kitchen sink.",
       "Place the plate and cup into the kitchen sink.",
-      "Press 'Start' when you are ready to walk to the kitchen sink."
+      "Press 'Start' when you are ready to walk."
     ],
     "nextInstructions": [
       "Press 'Next' when you have placed the plate and cup into the kitchen sink."
@@ -171,7 +171,7 @@
       "Place the Masimo device on your fingertips.",
       "Please insert your finger completely into the device.",
       "Please continue to wear this device until the app asks you to remove it.",
-      "Press 'Start' when you are ready to insert the device in your fingertips."
+      "Press 'Start' when you are ready to insert your finger into the device."
     ],
     "nextInstructions": [
       "Press 'Next' when you have placed the Masimo device on your fingertips."
@@ -193,7 +193,7 @@
       "Press 'Start' before you begin the activity."
     ],
     "nextInstructions": [
-      "Continue to watch the video.",
+      "Continue to watch the video for 30 seconds.",
       "The app will alert you when 30 seconds has elapsed.",
       "Press 'Next' when you see the alert in the app."
     ],
@@ -211,7 +211,7 @@
       "Take a magazine or book from the table.",
       "Continue to read the magazine for 30 seconds.",
       "The app will alert you when 30 seconds has elapsed.",
-      "Press 'Start' when you are ready to pick up the magazine.",
+      "Press 'Start' when you are ready to pick up the magazine."
     ],
     "nextInstructions": [
       "Continue to read the magazine.",
@@ -231,7 +231,7 @@
     "activityName": "Remove the Massimo device",
     "startInstructions": [
       "Remove the Masimo device from your fingers.",
-      "Carry the Masimo device with you in the given bag.",
+      "Carry the device with you in the given bag.",
       "Press 'Start' before you remove the device."
     ],
     "nextInstructions": [
@@ -334,7 +334,7 @@
       "Press 'Start' before you start the activity."
     ],
     "nextInstructions": [
-      "Continue to sit in the toilet for 30 seconds.",
+      "Continue to sit on the toilet for 30 seconds.",
       "The app will alert you when 30 seconds has elapsed.",
       "Press 'Next' when you see the alert in the app."
     ],
@@ -374,7 +374,7 @@
       "Press 'Start' when you are ready to walk."
     ],
     "nextInstructions": [
-      "Press 'Next' when you reach the bedroom."
+      "Press 'Next' when you have reached the bedroom."
     ],
     "roomName": "BEDROOM",
     "audioStartFileName": "walk_bedroom_start",
@@ -611,7 +611,7 @@
       "Press 'Start' when you are ready to walk."
     ],
     "nextInstructions": [
-      "Press 'Next' when you reach the kitchen sink."
+      "Press 'Next' when you have reached the kitchen sink."
     ],
     "roomName": "SINK",
     "audioStartFileName": "kitchen_sink_start",
@@ -624,11 +624,14 @@
     "activityName": "Washing dishes",
     "startInstructions": [
       "Please simulate washing the dishes for 30 seconds",
-      "Simulate drying your hands after washing.",
-      "The app will alert you when 30 seconds.",
+      "Simulate drying your hands after washing to complete the activity.",
+      "The app will alert you when 30 seconds has elapsed.",
       "Press 'Start' before you begin the activity."
     ],
     "nextInstructions": [
+      "Continue to simulate washing the dishes for 30 seconds.",
+      "The app will alert you when 30 seconds has elapsed.",
+      "Simulate drying your hands after washing.",
       "Press 'Next' when you see the alert in the app."
     ],
     "roomName": "SINK",
@@ -636,7 +639,7 @@
     "audioNextFileName": "wash_dishes_end",
     "gifFileName": "wash_dishesh",
     "alertUser": true,
-    "alertAfter": 20,
+    "alertAfter": 30,
     "alertUserSuccessText": "Activity Complete. Please press 'Next' to move onto the next activity."
   },
   "36": {
