@@ -53,7 +53,7 @@
     "activityName": "Microwave food",
     "startInstructions": [
       "Place the plate with food in the microwave oven.",
-      "Wait for 10 seconds",
+      "Wait for 10 seconds.",
       "Take the food out of the microwave oven and place it on the slab.",
       "Press 'Start' before you begin the activity."
     ],
@@ -168,13 +168,13 @@
   "11": {
     "activityName": "Place the Massimo device in your fingertips",
     "startInstructions": [
-      "Place the Masimo device on your fingertips.",
-      "Please insert your finger completely into the device.",
+      "Please take the Masimo device.",
+      "Insert your finger completely into the device.",
       "Please continue to wear this device until the app asks you to remove it.",
-      "Press 'Start' when you are ready to insert your finger into the device."
+      "Press 'Start' when you are ready to insert your finger."
     ],
     "nextInstructions": [
-      "Press 'Next' when you have placed the Masimo device on your fingertips."
+      "Press 'Next' when you have inserted your finger into the device."
     ],
     "roomName": "COUCH",
     "audioStartFileName": "device_couch_start",
@@ -186,8 +186,7 @@
   "12": {
     "activityName": "Watch the video for 2 minutes",
     "startInstructions": [
-      "Press the 'Spacebar' button in the laptop in front of you.",
-      "A video will start to play.",
+      "Press the 'Spacebar' button in the laptop to play a video.",
       "Watch the video for 30 seconds.",
       "The app will alert you when 30 seconds has elapsed.",
       "Press 'Start' before you begin the activity."
@@ -248,8 +247,8 @@
     "activityName": "Walk to the bathroom",
     "startInstructions": [
       "Please walk towards the bathroom.",
-      "The activities performed in the bathroom should be simulated.",
-      "Please be careful not to actually use the facilities in the bathroom.",
+      "Please do not actually use the facilities in the bathroom.",
+      "All activities should be simulated.",
       "Press 'Start' when you are ready to walk."
     ],
     "nextInstructions": [
@@ -286,8 +285,8 @@
   "17": {
     "activityName": "Brush teeth",
     "startInstructions": [
-      "Please move out of the shower cabinet and walk to the wash basin.",
-      "Simulate the motion of brushing your teeth for 30 seconds",
+      "Please walk towards the wash basin.",
+      "Simulate brushing your teeth for 30 seconds.",
       "The app will alert you when 30 seconds has elapsed.",
       "Press 'Start' before you begin the activity."
     ],
@@ -307,7 +306,6 @@
   "18": {
     "activityName": "Wash face",
     "startInstructions": [
-      "Please continue this activity in the wash basin.",
       "Simulate the motion of washing your face for 30 seconds.",
       "The app will alert you when 30 seconds has elapsed",
       "Press 'Start' before you begin the activity."
@@ -330,7 +328,7 @@
     "startInstructions": [
       "Please walk on to the toilet seat.",
       "Sit on the toilet for 30 seconds.",
-      "The app will alert you when 30 seconds has elapsed",
+      "The app will alert you when 30 seconds has elapsed.",
       "Press 'Start' before you start the activity."
     ],
     "nextInstructions": [
@@ -346,12 +344,12 @@
     "alertAfter": 30,
     "alertUserSuccessText": "Activity Complete. Please press 'Next'."
   },
-  "21": {
+  "20": {
     "activityName": "Washing hands",
     "startInstructions": [
       "Please walk back to the wash basin.",
-      "Simulate washing your hands for 30 seconds",
-      "The app will alert you when 30 seconds has elapsed",
+      "Simulate washing your hands for 30 seconds.",
+      "The app will alert you when 30 seconds has elapsed.",
       "Press 'Start' before you begin the activity."
     ],
     "nextInstructions": [
@@ -386,9 +384,9 @@
   "22": {
     "activityName": "Hang towel in cabinet",
     "startInstructions": [
-      "Please look for laundry basket near the bedroom door.",
-      "Take out a towel from the basket and move to the bedroom closet.",
-      "Open the closet door and hang up the towel in any one of the hangers",
+      "Take out a towel from the laundry basket near the door.",
+      "Walk to the closet and open it.",
+      "Hang up the towel in any one of the hangers.",
       "Press 'Start' before you begin the activity."
     ],
     "nextInstructions": [
@@ -404,8 +402,8 @@
   "23": {
     "activityName": "Fold towel and place it in the cabinet",
     "startInstructions": [
-      "Please walk back to the laundry basket.",
-      "Take out another towel from the basket and move to the bedroom closet.",
+      "Take out another towel from the laundry basket.",
+      "Walk to the closet and open it.",
       "Fold the towel and place it inside the closet.",
       "Press 'Start' before you begin the activity."
     ],
@@ -439,13 +437,12 @@
   "25": {
     "activityName": "Put on the Massimo Device",
     "startInstructions": [
-      "Please put the Masimo device back on your fingertips.",
-      "Insert your finger completely into the device.",
+      "Please Insert your finger completely into the Masimo device.",
       "Please continue to wear this device until the app asks you to remove it.",
       "Press 'Start' before you begin the activity."
     ],
     "nextInstructions": [
-      "Press 'Next' when you have inserted the Masimo device into your fingertips."
+      "Press 'Next' when you have inserted your finger into the Masimo device."
     ],
     "roomName": "BEDROOM",
     "audioStartFileName": "device_bedroom_start",
@@ -497,7 +494,7 @@
   },
   "28": {
     "activityName": "Lie down in bed on your side",
-    "instructions": [
+    "startInstructions": [
       "Please change your position.",
       "Lie down in bed on your side for 2 minutes.",
       "The app will alert you when 2 minutes has elapsed.",
@@ -553,13 +550,12 @@
   "31": {
     "activityName": "Put on Massimo device",
     "startInstructions": [
-      "Please put the Masimo device back on your fingertips.",
-      "Insert your finger completely into the device.",
+      "Insert your finger completely into the Masimo device.",
       "Please continue to wear this device until the app asks you to remove it.",
       "Press 'Start' before you begin the activity."
     ],
     "nextInstructions": [
-      "Press 'Next' when you have put the Masimo device on your fingertips."
+      "Press 'Next' when you have inserted your finger into the Masimo device."
     ],
     "roomName": "Study",
     "audioStartFileName": "device_table_start",
@@ -573,7 +569,7 @@
     "startInstructions": [
       "Please use the laptop for 30 seconds.",
       "The app will alert you when 30 seconds has elapsed.",
-      "Press 'Start' before your begin the activity."
+      "Press 'Start' before you begin the activity."
     ],
     "nextInstructions": [
       "Continue to use the laptop for 30 seconds.",
@@ -624,7 +620,7 @@
     "activityName": "Washing dishes",
     "startInstructions": [
       "Please simulate washing the dishes for 30 seconds",
-      "Simulate drying your hands after washing to complete the activity.",
+      "Simulate drying your hands after washing.",
       "The app will alert you when 30 seconds has elapsed.",
       "Press 'Start' before you begin the activity."
     ],
@@ -661,7 +657,11 @@
   },
   "37": {
     "activityName": "Thank You!",
-    "instructions": [
+    "startInstructions": [
+      "We thank you for the corporation!",
+      "Have a nice day ahead!"
+    ],
+    "nextInstructions": [
       "We thank you for the corporation!",
       "Have a nice day ahead!"
     ],
