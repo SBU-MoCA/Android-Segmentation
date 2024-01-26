@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.content.Intent;
 import android.os.VibrationEffect;
@@ -51,6 +52,8 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
     MediaPlayer mp1 = new MediaPlayer(); // media for next button
     MediaPlayer mp2 = new MediaPlayer(); // media for timed activity popup button.
     MediaPlayer mp3 = new MediaPlayer(); // media for ready to start alert.
+
+    CountDownTimer cdt = null;
 
     TextView instructionsTextView;
 
@@ -265,6 +268,27 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
 
     }
 
+    public void startCountDownTimer(Integer time, TextView textField, String text) {
+        cdt = new CountDownTimer(time, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                String textWithTimer = text + " " + (millisUntilFinished / 1000) + " seconds.";
+                textField.setText(textWithTimer);
+            }
+            @Override
+            public void onFinish() {
+                cancelCountDownTimer();
+            }
+        };
+        cdt.start();
+    }
+
+    //cancel timer
+    void cancelCountDownTimer() {
+        if(cdt != null)
+            cdt.cancel();
+    }
+
     public void stopAllMusicPlayers() {
         if (mp != null && mp.isPlaying()) mp.stop();
         if (mp1 != null && mp1.isPlaying()) mp1.stop();
@@ -331,10 +355,19 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         startActivitybutton.setVisibility(View.INVISIBLE);
         // log the starting activity time
         logActivityTimings(fw, mAppendFileWriter, timeLogString, activityName);
+        Integer alertTimeInSeconds = 30; // default
+        JSONObject activityJSONObject = null;
+        try {
+            activityJSONObject = newJSONTransferData.getJSONObject(activityId);
+            alertTimeInSeconds = activityJSONObject.getInt("alertAfter");
+        } catch (JSONException e) {
+            System.out.println("ERROR in startButtonPressed JSON Fetch" + e);
+            e.printStackTrace();
+        }
         // initialize required values if we need to alert user after x seconds
         if (alertUser) {
             activityCompleteButton.setVisibility(View.INVISIBLE);
-            timedActivityTextView.setText("Please Continue. A prompt will be displayed when it's time.");
+            startCountDownTimer(alertTimeInSeconds * 1000, timedActivityTextView, "Please Continue. A prompt will be displayed after:");
             // Initialize handler and runnable
             initializeHandlerAndRunnable(
                     subjectId, newJSONTransferData.toString(), activityId, fileLocation,
@@ -383,6 +416,7 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
     private void openNextInstructionActivity(String subjectId, String jsonObject, String activityId, FileWriter fw, JavaAppendFileWriter mAppendFileWriter, String fileLocation) {
         removeAllTimers();
         stopAllMusicPlayers();
+        cancelCountDownTimer();
         logActivityTimings(fw, mAppendFileWriter, "stop", "");
 
         //Determine whether to call the overview activity
@@ -439,6 +473,7 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
     private void restartCurrentActivity(String subjectId, String jsonObject, String activityId, String fileLocation) {
         stopAllMusicPlayers();
         removeAllTimers();
+        cancelCountDownTimer();
         System.out.println("Restarting activity: " + activityId);
 //        JavaAppendFileWriter.removeLastEntryFromFile(getFileNameFormat(fileLocation, subjectId));
         Intent intent = new Intent(this, Instructions.class);
@@ -449,7 +484,7 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         intent.putExtra("restartActivity", true);
         intent.putExtra("alertToStart", alertToStart);
         intent.putExtra("roomActivitySize", roomActivitySize);
-        intent.putExtra("currentActivity", currentActivity + 1);
+        intent.putExtra("currentActivity", currentActivity);
         releaseAllMediaPlayers();
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
@@ -459,6 +494,7 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
     private void startOverFromStart(String subjectId, String jsonObject, String activityId, String fileLocation) throws IOException {
         stopAllMusicPlayers();
         removeAllTimers();
+        cancelCountDownTimer();
         Intent intent = new Intent(this, StartupActivity.class);
         intent.putExtra("subjectId", subjectId);
         intent.putExtra("jsonData", jsonObject);
