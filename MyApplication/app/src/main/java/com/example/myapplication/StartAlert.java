@@ -7,6 +7,8 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -49,6 +51,8 @@ public class StartAlert extends AppCompatDialogFragment {
         AlertDialog builder = alertBuilder.create();
         builder.setView(promptView);
 
+        WindowManager.LayoutParams windowLayout = builder.getWindow().getAttributes();
+        windowLayout.y = 450;
         positiveBtn = (Button) promptView.findViewById(R.id.alertPositiveButton);
         negativeBtn = (Button) promptView.findViewById(R.id.alertNegativeButton);
         alertTextView = (TextView) promptView.findViewById(R.id.alertTextMessage);

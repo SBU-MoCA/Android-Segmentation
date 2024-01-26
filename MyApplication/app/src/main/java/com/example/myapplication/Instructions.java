@@ -52,6 +52,8 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
     MediaPlayer mp2 = new MediaPlayer(); // media for timed activity popup button.
     MediaPlayer mp3 = new MediaPlayer(); // media for ready to start alert.
 
+    TextView instructionsTextView;
+
     // for time specific alerts.
     private Handler handler;
 
@@ -64,7 +66,8 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
     // getting jsonString passed from previous activity
     JSONObject jsonObject = null;
     JSONObject activityDetails = null;
-    JSONArray activityInstructions = null;
+    JSONArray activityStartInstructions = null;
+    JSONArray activityNextInstructions = null;
     String audioStartFilename = null;
     String audioNextFilename = null;
     String gifImageName = null;
@@ -73,9 +76,15 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
     String activityName = "";
     String timeLogString = "";
     String currentSubjectId = "";
+    String startInstructionSet = "";
+    String nextInstructionSet = "";
+
+    Integer roomActivitySize;
+    Integer currentActivity;
+
     public String activityCompleteVoiceFile = "timed_activity_voice";
     public String startActivityAlertVoiceFile = "start_activity_ready";
-    public int startActivityAlertTimer = 20000;
+    public int startActivityAlertTimer = 5000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,8 +97,9 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         activityCompleteButton.setVisibility(View.INVISIBLE);
         restartActivityButton.setVisibility(View.INVISIBLE);
         Button startActivitybutton = (Button) findViewById(R.id.start_activity);
-        TextView instructionsTextView = (TextView) findViewById(R.id.instructions_text);
+        instructionsTextView = (TextView) findViewById(R.id.instructions_text);
         TextView timedActivityTextView = (TextView) findViewById(R.id.timed_activity_text);
+        TextView activityLength = (TextView) findViewById(R.id.activity_length);
         GifImageView gifImageView = (GifImageView) findViewById(R.id.instruction_gif);
 
         // getting information passed from previous activity
@@ -98,6 +108,8 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         String fileLocation = intent.getStringExtra("fileLocation");
         Boolean restartedActivity = intent.getBooleanExtra("restartActivity", false);
         alertToStart = intent.getBooleanExtra("alertToStart", true);
+        roomActivitySize =  intent.getIntExtra("roomActivitySize", 0);
+        currentActivity = intent.getIntExtra("currentActivity", 1);
         if (restartedActivity) {
             timeLogString = "restart";
         } else {
@@ -124,7 +136,8 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         try {
             activityDetails = jsonObject.getJSONObject(activityId);
             activityName = activityDetails.getString("activityName");
-            activityInstructions = activityDetails.getJSONArray("instructions");
+            activityStartInstructions = activityDetails.getJSONArray("startInstructions");
+            activityNextInstructions = activityDetails.getJSONArray("nextInstructions");
             audioStartFilename = activityDetails.getString("audioStartFileName");
             audioNextFilename = activityDetails.getString("audioNextFileName");
             gifImageName = activityDetails.getString("gifFileName");
@@ -139,6 +152,14 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         // getting the audioFileName
         int soundId = res.getIdentifier(audioStartFilename, "raw", context.getPackageName());
         mp = MediaPlayer.create(this, soundId);
+
+        if (roomActivitySize != 0) {
+            String activityLengthText = "Activity: " + currentActivity + "/" + roomActivitySize;
+            activityLength.setText(activityLengthText);
+            activityLength.setVisibility(View.VISIBLE);
+        } else {
+            activityLength.setVisibility(View.INVISIBLE);
+        }
 
         // attaching play/pause feature to the button
         playButton.setOnClickListener(new View.OnClickListener() {
@@ -167,27 +188,40 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
 
         int nextSoundId = res.getIdentifier(audioNextFilename, "raw", context.getPackageName());
         mp1 = MediaPlayer.create(this, nextSoundId);
-        // start activity button press
-        startActivitybutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startButtonPressed(restartActivityButton, startActivitybutton, playButton, activityCompleteButton, timedActivityTextView, subjectId,
-                newJSONTransferData, activityId, fileLocation);
-            }
-        });
 
         // attaching instructions text
-        String instructionSet = "";
-        for (int i = 0; i < activityInstructions.length(); i += 1) {
+
+        for (int i = 0; i < activityStartInstructions.length(); i += 1) {
             try {
-                instructionSet += ( i + 1) + ". " + activityInstructions.getString(i);
-                instructionSet += "\n";
+                startInstructionSet += ( i + 1) + ". " + activityStartInstructions.getString(i);
+                startInstructionSet += "\n";
             } catch (JSONException e) {
                 System.out.println("CODE ERROR: Failed to parse instructions: " + e);
                 throw new RuntimeException(e);
             }
         }
-        instructionsTextView.setText(instructionSet);
+
+        for (int i = 0; i < activityNextInstructions.length(); i += 1) {
+            try {
+                nextInstructionSet += ( i + 1) + ". " + activityNextInstructions.getString(i);
+                nextInstructionSet += "\n";
+            } catch (JSONException e) {
+                System.out.println("CODE ERROR: Failed to parse instructions: " + e);
+                throw new RuntimeException(e);
+            }
+        }
+        instructionsTextView.setText(startInstructionSet);
+        String finalNextInstructionSet = nextInstructionSet;
+        // start activity button press
+        startActivitybutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startButtonPressed(restartActivityButton, startActivitybutton, playButton, activityCompleteButton, timedActivityTextView, subjectId,
+                        newJSONTransferData, activityId, fileLocation);
+
+                instructionsTextView.setText(finalNextInstructionSet);
+            }
+        });
 
         activityCompleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -236,6 +270,13 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         if (mp1 != null && mp1.isPlaying()) mp1.stop();
         if (mp2 != null && mp2.isPlaying()) mp2.stop();
         if (mp3 != null && mp3.isPlaying()) mp3.stop();
+    }
+
+    public void releaseAllMediaPlayers() {
+        if (mp != null) mp.release();
+        if (mp1 != null) mp1.release();
+        if (mp2 != null) mp2.release();
+        if (mp3 != null) mp3.release();
     }
     public String getFileNameFormat(String fileLocation, String subjectId) {
         currentSubjectId = fileLocation;
@@ -313,6 +354,7 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         });
         mp1.start();
         removeTimerForStartButton();
+        instructionsTextView.setText(nextInstructionSet);
     }
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -360,7 +402,9 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         intent.putExtra("activityId", Integer.toString((Integer.parseInt(activityId) + 1)));
         intent.putExtra("fileLocation", fileLocation);
         intent.putExtra("alertToStart", alertToStart);
-
+        intent.putExtra("roomActivitySize", roomActivitySize);
+        intent.putExtra("currentActivity", currentActivity + 1);
+        releaseAllMediaPlayers();
         startActivity(intent);
     }
 
@@ -404,6 +448,9 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         intent.putExtra("fileLocation", fileLocation);
         intent.putExtra("restartActivity", true);
         intent.putExtra("alertToStart", alertToStart);
+        intent.putExtra("roomActivitySize", roomActivitySize);
+        intent.putExtra("currentActivity", currentActivity + 1);
+        releaseAllMediaPlayers();
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
@@ -418,6 +465,9 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         intent.putExtra("activityId", "1");
         intent.putExtra("fileLocation", fileLocation);
         intent.putExtra("alertToStart", alertToStart);
+        intent.putExtra("roomActivitySize", roomActivitySize);
+        intent.putExtra("currentActivity", currentActivity + 1);
+        releaseAllMediaPlayers();
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
