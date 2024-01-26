@@ -166,7 +166,7 @@
     "alertAfter": 0
   },
   "11": {
-    "activityName": "Place the Massimo device in your fingertips",
+    "activityName": "Place the Masimo device in your fingertips",
     "startInstructions": [
       "Please take the Masimo device.",
       "Insert your finger completely into the device.",
@@ -227,7 +227,7 @@
     "alertUserSuccessText": "Activity Complete. Place the magazine back to the table and press 'Next'."
   },
   "14": {
-    "activityName": "Remove the Massimo device",
+    "activityName": "Remove the Masimo device",
     "startInstructions": [
       "Remove the Masimo device from your fingers.",
       "Carry the device with you in the given bag.",
@@ -435,7 +435,7 @@
     "alertAfter": 0
   },
   "25": {
-    "activityName": "Put on the Massimo Device",
+    "activityName": "Put on the Masimo Device",
     "startInstructions": [
       "Please Insert your finger completely into the Masimo device.",
       "Please continue to wear this device until the app asks you to remove it.",
@@ -548,7 +548,7 @@
     "alertAfter": 0
   },
   "31": {
-    "activityName": "Put on Massimo device",
+    "activityName": "Put on Masimo device",
     "startInstructions": [
       "Insert your finger completely into the Masimo device.",
       "Please continue to wear this device until the app asks you to remove it.",
@@ -585,7 +585,7 @@
     "alertUserSuccessText": "Activity Complete. Please press 'Next' to move onto the next activity."
   },
   "33": {
-    "activityName": "Remove the Massimo device",
+    "activityName": "Remove the Masimo device",
     "startInstructions": [
       "Please remove the Masimo device and place it on the desk.",
       "Press 'Start' before you begin the activity."
