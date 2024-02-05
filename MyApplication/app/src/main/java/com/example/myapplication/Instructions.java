@@ -219,7 +219,7 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         startActivitybutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startButtonPressed(restartActivityButton, startActivitybutton, playButton, activityCompleteButton, timedActivityTextView, subjectId,
+                startButtonPressed(restartActivityButton, startActivitybutton, playButton, activityCompleteButton, subjectId,
                         newJSONTransferData, activityId, fileLocation);
 
                 instructionsTextView.setText(finalNextInstructionSet);
@@ -268,15 +268,19 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
 
     }
 
-    public void startCountDownTimer(Integer time, TextView textField, String text) {
+    public void startCountDownTimer(Integer time) {
+        CountTimerDialog countTimerDialog = new CountTimerDialog();
+        countTimerDialog.setCancelable(false);
+        countTimerDialog.show(getSupportFragmentManager(), "countDownTimerDialog");
         cdt = new CountDownTimer(time, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                String textWithTimer = text + " " + (millisUntilFinished / 1000) + " seconds.";
-                textField.setText(textWithTimer);
+                String timeInSeconds = String.valueOf(millisUntilFinished / 1000);
+                countTimerDialog.setCountDownText(timeInSeconds);
             }
             @Override
             public void onFinish() {
+                countTimerDialog.dismiss();
                 cancelCountDownTimer();
             }
         };
@@ -347,7 +351,6 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
 
     private void startButtonPressed(
             Button restartActivityButton, Button startActivitybutton, Button playButton,  Button activityCompleteButton,
-            TextView timedActivityTextView,
             String subjectId, JSONObject newJSONTransferData, String activityId, String fileLocation
     ) {
         stopAllMusicPlayers();
@@ -367,7 +370,7 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         // initialize required values if we need to alert user after x seconds
         if (alertUser) {
             activityCompleteButton.setVisibility(View.INVISIBLE);
-            startCountDownTimer(alertTimeInSeconds * 1000, timedActivityTextView, "Please Continue. A prompt will be displayed after:");
+            startCountDownTimer(alertTimeInSeconds * 1000);
             // Initialize handler and runnable
             initializeHandlerAndRunnable(
                     subjectId, newJSONTransferData.toString(), activityId, fileLocation,
@@ -521,10 +524,9 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
     // overridden from StartAlert Class.
     @Override
     public void onStartActivity( Button restartActivityButton, Button startActivitybutton, Button playButton,  Button activityCompleteButton,
-                                 TextView timedActivityTextView,
                                  String subjectId, JSONObject newJSONTransferData, String activityId, String fileLocation) {
         removeTimerForStartButton();
-        startButtonPressed(restartActivityButton, startActivitybutton, playButton, activityCompleteButton, timedActivityTextView, subjectId,
+        startButtonPressed(restartActivityButton, startActivitybutton, playButton, activityCompleteButton, subjectId,
                 newJSONTransferData, activityId, fileLocation);
     }
 

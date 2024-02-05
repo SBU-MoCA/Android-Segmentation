@@ -79,7 +79,7 @@ public class StartAlert extends AppCompatDialogFragment {
             @Override
             public void onClick(View v) {
                 try {
-                    listener.onStartActivity(restartActivityButton, startActivitybutton, playButton, activityCompleteButton, timedActivityTextView, subjectId,
+                    listener.onStartActivity(restartActivityButton, startActivitybutton, playButton, activityCompleteButton, subjectId,
                             newJSONTransferData, activityId, fileLocation);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
@@ -93,7 +93,6 @@ public class StartAlert extends AppCompatDialogFragment {
 
     public interface StartAlertListener {
         void onStartActivity(Button restartActivityButton, Button startActivitybutton, Button playButton, Button activityCompleteButton,
-                             TextView timedActivityTextView,
                              String subjectId, JSONObject newJSONTransferData, String activityId, String fileLocation) throws IOException;
         void onBackToInstructions() throws IOException;
     }
