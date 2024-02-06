@@ -43,6 +43,7 @@ import pl.droidsonroids.gif.GifImageView;
 
 public class Instructions extends AppCompatActivity implements CustomDialog.CustomDialogListener, TimedActivityAlert.TimedAlertListener, StartAlert.StartAlertListener {
     public Instructions() throws IOException {}
+    Helper helperClass = new Helper();
     String FINAL_ACTIVITY_NUMBER = "37";
     private JavaAppendFileWriter mAppendFileWriter = new JavaAppendFileWriter();
     private FileWriter fw;
@@ -75,12 +76,14 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
     String audioNextFilename = null;
     String gifImageName = null;
     Boolean alertUser = false;
+    Boolean isOptionalActivity = false;
     Integer alertAfterSeconds = 0;
     String activityName = "";
     String timeLogString = "";
     String currentSubjectId = "";
     String startInstructionSet = "";
     String nextInstructionSet = "";
+    Boolean showOptionalActivities = true;
 
     Integer roomActivitySize;
     Integer currentActivity;
@@ -109,8 +112,9 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         String subjectId = intent.getStringExtra("subjectId");
         String activityId = intent.getStringExtra("activityId");
         String fileLocation = intent.getStringExtra("fileLocation");
-        Boolean restartedActivity = intent.getBooleanExtra("restartActivity", false);
+        boolean restartedActivity = intent.getBooleanExtra("restartActivity", false);
         alertToStart = intent.getBooleanExtra("alertToStart", true);
+        showOptionalActivities = intent.getBooleanExtra("showOptionalActivities", true);
         roomActivitySize =  intent.getIntExtra("roomActivitySize", 0);
         currentActivity = intent.getIntExtra("currentActivity", 1);
         if (restartedActivity) {
@@ -146,6 +150,7 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
             gifImageName = activityDetails.getString("gifFileName");
             alertUser = activityDetails.getBoolean("alertUser");
             alertAfterSeconds = activityDetails.getInt("alertAfter");
+            isOptionalActivity = activityDetails.getBoolean("optionalActivity");
         } catch (JSONException e) {
             System.out.println("CODE ERROR: while getting activity JSON data: " + e);
             e.printStackTrace();
@@ -434,6 +439,21 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
             intent = new Intent(this, Instructions.class);
         }
 
+
+        boolean contains = false;
+        if (!showOptionalActivities) {
+            // skip the next activity if it's an optional activity
+            for (int element : helperClass.OPTIONAL_ACTIVITY_LIST) {
+                if (element == (Integer.parseInt(activityId, 10) + 1)) {
+                    contains = true;
+                    break;
+                }
+            }
+            if (contains) {
+                activityId = Integer.toString((Integer.parseInt(activityId, 10) + 1));
+                currentActivity += 1;
+            }
+        }
         intent.putExtra("subjectId", subjectId);
         intent.putExtra("jsonData", jsonObject);
         intent.putExtra("activityId", Integer.toString((Integer.parseInt(activityId) + 1)));
@@ -441,6 +461,7 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         intent.putExtra("alertToStart", alertToStart);
         intent.putExtra("roomActivitySize", roomActivitySize);
         intent.putExtra("currentActivity", currentActivity + 1);
+        intent.putExtra("showOptionalActivities", showOptionalActivities);
         releaseAllMediaPlayers();
         startActivity(intent);
     }
@@ -488,6 +509,7 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         intent.putExtra("alertToStart", alertToStart);
         intent.putExtra("roomActivitySize", roomActivitySize);
         intent.putExtra("currentActivity", currentActivity);
+        intent.putExtra("showOptionalActivities", showOptionalActivities);
         releaseAllMediaPlayers();
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
@@ -506,6 +528,7 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         intent.putExtra("alertToStart", alertToStart);
         intent.putExtra("roomActivitySize", roomActivitySize);
         intent.putExtra("currentActivity", currentActivity + 1);
+        intent.putExtra("showOptionalActivities", showOptionalActivities);
         releaseAllMediaPlayers();
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);

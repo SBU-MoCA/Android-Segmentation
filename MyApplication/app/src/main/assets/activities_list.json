@@ -488,7 +488,8 @@
     "gifFileName": "lie_bedroom_2",
     "alertUser": true,
     "alertAfter": 20,
-    "alertUserSuccessText": "Activity Complete. Please press 'Next' to move onto the next posture."
+    "alertUserSuccessText": "Activity Complete. Please press 'Next' to move onto the next posture.",
+    "optionalActivity": true
   },
   "28": {
     "activityName": "Lie down in bed on your side",

@@ -68,6 +68,7 @@ public class Overview extends AppCompatActivity {
     JSONObject jsonObject;
 
     Boolean alertToStart;
+    Boolean showOptionalActivities;
     ArrayList<ActivityResource> roomActivities = new ArrayList<>();
     int currentActivity = 0;
     private Handler handler;
@@ -99,6 +100,7 @@ public class Overview extends AppCompatActivity {
         activityId = intent.getStringExtra("activityId");
         fileLocation = intent.getStringExtra("fileLocation");
         alertToStart = intent.getBooleanExtra("alertToStart", true);
+        showOptionalActivities = intent.getBooleanExtra("showOptionalActivities", true);
 
         // getting jsonString passed from previous activity
         try {
@@ -311,6 +313,7 @@ public class Overview extends AppCompatActivity {
         intent.putExtra("fileLocation", fileLocation);
         intent.putExtra("alertToStart", alertToStart);
         intent.putExtra("roomActivitySize", roomActivities.size());
+        intent.putExtra("showOptionalActivities", showOptionalActivities);
         removeTimer();
         startActivity(intent);
     }

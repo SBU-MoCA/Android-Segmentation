@@ -13,6 +13,8 @@ import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.ToggleButton;
 
+import com.google.android.material.switchmaterial.SwitchMaterial;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -21,13 +23,13 @@ import java.io.InputStream;
 
 public class StartupActivity extends AppCompatActivity {
     public StartupActivity() throws IOException {}
-    private JavaAppendFileWriter mAppendFileWriter = new JavaAppendFileWriter();
-    private String fileLocation = mAppendFileWriter.getFileName();
+    private final JavaAppendFileWriter mAppendFileWriter = new JavaAppendFileWriter();
+    private final String fileLocation = mAppendFileWriter.getFileName();
     private Button letsStartButton;
-    private Switch alertToStartToggle;
     private EditText inputPatientId; // TODO: Need to add validation for this.
 
     private Boolean alertToStart = true;
+    private Boolean showOptionalActivities = true;
 
 
     @Override
@@ -37,7 +39,8 @@ public class StartupActivity extends AppCompatActivity {
 
         letsStartButton = (Button) findViewById(R.id.letsStartButton);
         inputPatientId = (EditText) findViewById(R.id.inputPatientId);
-        alertToStartToggle = (Switch) findViewById(R.id.alertToStartToggle);
+        SwitchMaterial alertToStartToggle = (SwitchMaterial) findViewById(R.id.alertToStartToggle);
+        SwitchMaterial optionalActivitiesToggle = (SwitchMaterial) findViewById(R.id.optionalActivitiesToggle);
 
         // inputPatientId functions
         // disable the getStarted button at first
@@ -94,6 +97,12 @@ public class StartupActivity extends AppCompatActivity {
                 else alertToStart = false;
             }
         });
+        optionalActivitiesToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) showOptionalActivities = true;
+                else showOptionalActivities = false;
+            }
+        });
         letsStartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -109,6 +118,7 @@ public class StartupActivity extends AppCompatActivity {
         intent.putExtra("activityId", "1");
         intent.putExtra("fileLocation", fileLocation);
         intent.putExtra("alertToStart", alertToStart);
+        intent.putExtra("showOptionalActivities", showOptionalActivities);
         startActivity(intent);
     }
 }
