@@ -145,12 +145,21 @@ public class Overview extends AppCompatActivity {
             catch(JSONException e) {
                 break;
             }
-
-            roomNameAct = roomNameAct.toLowerCase();
-
-            if(!roomNameAct.equals(roomName.toLowerCase())) break;
-
-            roomActivities.add(new ActivityResource(gifImageName, activityName));
+            boolean contains = false;
+            if (!showOptionalActivities) {
+                // skip the next activity if it's an optional activity
+                for (int element : helperClass.OPTIONAL_ACTIVITY_LIST) {
+                    if (element == i) {
+                        contains = true;
+                        break;
+                    }
+                }
+            }
+            if (!contains) {
+                roomNameAct = roomNameAct.toLowerCase();
+                if (!roomNameAct.equals(roomName.toLowerCase())) break;
+                roomActivities.add(new ActivityResource(gifImageName, activityName));
+            }
         }
 
         startRoomButton.setOnClickListener(new View.OnClickListener() {

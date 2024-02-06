@@ -451,7 +451,6 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
             }
             if (contains) {
                 activityId = Integer.toString((Integer.parseInt(activityId, 10) + 1));
-                currentActivity += 1;
             }
         }
         intent.putExtra("subjectId", subjectId);
