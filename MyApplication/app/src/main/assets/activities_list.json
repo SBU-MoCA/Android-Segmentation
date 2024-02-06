@@ -2,244 +2,203 @@
   "1": {
     "activityName": "Walk to kitchen",
     "startInstructions": [
-      "Please walk to the kitchen.",
-      "Press 'Start' when you are ready to walk."
+      "Press ‘Start’ before you begin the activity.",
+      "Please walk over to the kitchen and place the grocery items in the refrigerator."
     ],
     "nextInstructions": [
-      "Press 'Next' when you have reached the kitchen."
+      "Press ‘Next’ when you have placed the grocery items in the refrigerator."
     ],
     "roomName": "KITCHEN",
-    "audioStartFileName": "walk_to_kitchen_first_start",
-    "audioNextFileName": "walk_to_kitchen_first_end",
-    "gifFileName": "walk_kitchen",
+    "audioStartFileName": "kitchen_walk_start",
+    "audioNextFileName": "kitchen_walk_end",
+    "gifFileName": "kitchen_walk",
     "alertUser": false,
     "alertAfter": 0
   },
   "2": {
     "activityName": "Take plate out from cabinet",
     "startInstructions": [
-      "Please take a plate out from the kitchen cabinet as shown.",
-      "Press 'Start' before you begin the activity."
+      "Press ‘Start’ before you begin the activity.",
+      "Please take a plate out from the kitchen cabinet and place it on the counter."
     ],
     "nextInstructions": [
-      "Press 'Next' when you have placed the plate on the kitchen slab."
+      "Press ‘Next’ when you have placed the plate on the kitchen counter."
     ],
     "roomName": "KITCHEN",
-    "audioStartFileName": "take_plate_out_start",
-    "audioNextFileName": "take_plate_out_end",
-    "gifFileName": "take_plate_kitchen",
+    "audioStartFileName": "kitchen_plate_start",
+    "audioNextFileName": "kitchen_plate_end",
+    "gifFileName": "kitchen_plate",
     "alertUser": false,
     "alertAfter": 0
    },
   "3": {
     "activityName": "Take food out from fridge",
     "startInstructions": [
-      "Please take out any food item from the refrigerator.",
-      "Unpack the food item.",
-      "Place the food item on the plate.",
-      "Press 'Start' before you begin the activity."
+      "Press ‘Start’ before you begin the activity.",
+      "Please take out the artificial sandwich from the refrigerator.",
+      "Unpack and place the sandwich on the plate."
     ],
     "nextInstructions": [
-      "Press 'Next' when you have placed the food on the plate."
+      "Press ‘Next’ when you have placed the sandwich on the plate."
     ],
     "roomName": "KITCHEN",
-    "audioStartFileName": "take_food_kitchen_start",
-    "audioNextFileName": "take_food_kitchen_end",
-    "gifFileName": "take_food_kitchen",
+    "audioStartFileName": "kitchen_snack_start",
+    "audioNextFileName": "kitchen_snack_end",
+    "gifFileName": "kitchen_snack",
     "alertUser": false,
     "alertAfter": 0
   },
   "4": {
-    "activityName": "Microwave food",
+    "activityName": "Take cup out of cabinet",
     "startInstructions": [
-      "Place the plate with food in the microwave oven.",
-      "Wait about 10 seconds.",
-      "Take the food out of the microwave oven and place it on the slab.",
-      "Press 'Start' before you begin the activity."
+      "Press ‘Start’ before you begin the activity.",
+      "Take out a cup from the kitchen cabinet and place it on the counter."
     ],
     "nextInstructions": [
-      "Press 'Next' when you have taken the food out of the microwave oven and placed it on the slab."
+      "Press ‘Next’ when you have placed the cup on the kitchen counter."
     ],
     "roomName": "KITCHEN",
-    "audioStartFileName": "heat_food_kitchen_start",
-    "audioNextFileName": "heat_food_kitchen_end",
-    "gifFileName": "heat_food_kitchen",
+    "audioStartFileName": "kitchen_cup_start",
+    "audioNextFileName": "kitchen_cup_end",
+    "gifFileName": "kitchen_cup",
     "alertUser": false,
     "alertAfter": 0
   },
   "5": {
-    "activityName": "Take cup out of cabinet",
+    "activityName": "Take drink out of fridge",
     "startInstructions": [
-      "Take a cup out from the kitchen cabinet.",
-      "Press 'Start' before you begin the activity."
+      "Press ‘Start’ before you begin the activity.",
+      "Take out a drink from the refrigerator and pour some into the cup."
     ],
     "nextInstructions": [
-      "Press 'Next' when you have placed the cup on the kitchen slab."
+      "Press ‘Next’ when you have poured some drink into the cup."
     ],
     "roomName": "KITCHEN",
-    "audioStartFileName": "take_cup_kitchen_start",
-    "audioNextFileName": "take_cup_kitchen_end",
-    "gifFileName": "take_cup_kitchen",
+    "audioStartFileName": "kitchen_drink_start",
+    "audioNextFileName": "kitchen_drink_end",
+    "gifFileName": "kitchen_drink",
     "alertUser": false,
     "alertAfter": 0
   },
   "6": {
-    "activityName": "Take drink out of fridge",
+    "activityName": "Walk to table and simulate eating",
     "startInstructions": [
-      "Take a drink out from the refrigerator and place it on the kitchen slab.",
-      "Press 'Start' before you begin the activity."
+      "Press ‘Start’ before you begin the activity.",
+      "Take the plate and cup to the dining table and be seated.",
+      "Act like eating and drinking, 3 times each."
     ],
     "nextInstructions": [
-      "Press 'Next' when you have placed the drink on the kitchen slab."
+      "Press ‘Next’ when you complete the act of eating and drinking 3 times each."
     ],
     "roomName": "KITCHEN",
-    "audioStartFileName": "take_drink_kitchen_start",
-    "audioNextFileName": "take_drink_kitchen_end",
-    "gifFileName": "take_drink_kitchen",
+    "audioStartFileName": "kitchen_eat_drink_start",
+    "audioNextFileName": "kitchen_eat_drink_end",
+    "gifFileName": "kitchen_eat_drink",
     "alertUser": false,
     "alertAfter": 0
   },
   "7": {
-    "activityName": "Pour drink into the cup",
+    "activityName": "Place the items on the sink",
     "startInstructions": [
-      "Pour some drink into the cup.",
-      "Press 'Start' before you begin the activity."
+      "Press ‘Start’ before you begin the activity.",
+      "Take the plate and cup and walk over to the kitchen sink.",
+      "Place the plate and cup into the kitchen sink."
     ],
     "nextInstructions": [
-      "Press 'Next' when you have poured some drink into the cup."
+      "Press ‘Next’ when you have placed the plate and cup into the kitchen sink."
     ],
     "roomName": "KITCHEN",
-    "audioStartFileName": "pour_drink_kitchen_start",
-    "audioNextFileName": "pour_drink_kitchen_end",
-    "gifFileName": "pour_drink_kitchen",
+    "audioStartFileName": "kitchen_sink_start",
+    "audioNextFileName": "kitchen_sink_end",
+    "gifFileName": "kitchen_sink",
     "alertUser": false,
     "alertAfter": 0
   },
   "8": {
-    "activityName": "Walk to table and simulate eating",
+    "activityName": "Walk over to the couch",
     "startInstructions": [
-      "Take the food and drink to the dining table.",
-      "Simulate eating and drinking for 3 times each.",
-      "Press 'Start' when you are ready to walk to the dining table."
+      "Press ‘Start’ before you begin the activity.",
+      "Please walk over to the couch and be seated."
     ],
     "nextInstructions": [
-      "Press 'Next' when you have simulated eating and drinking for 3 times each."
+      "Press 'Next' when you are seated on the couch to review the next set of activities."
     ],
     "roomName": "KITCHEN",
-    "audioStartFileName": "eat_drink_kitchen_start",
-    "audioNextFileName": "eat_drink_kitchen_end",
-    "gifFileName": "eat_drink_kitchen",
+    "audioStartFileName": "kitchen_couch_walk_start",
+    "audioNextFileName": "kitchen_couch_walk_end",
+    "gifFileName": "kitchen_couch_walk",
     "alertUser": false,
     "alertAfter": 0
   },
   "9": {
-    "activityName": "Place the items on the sink",
+    "activityName": "Place the Masimo device in your fingertips",
     "startInstructions": [
-      "Please get up and walk towards the kitchen sink.",
-      "Place the plate and cup into the kitchen sink.",
-      "Press 'Start' when you are ready to walk."
+      "Press ‘Start’ before you begin the activity.",
+      "Take the Masimo device and insert your finger completely into the device.",
+      "Continue to wear this device until the app asks you to remove it."
     ],
     "nextInstructions": [
-      "Press 'Next' when you have placed the plate and cup into the kitchen sink."
+      "Press ‘Next’ when you insert your finger into the device."
     ],
-    "roomName": "KITCHEN",
-    "audioStartFileName": "sink_kitchen_start",
-    "audioNextFileName": "sink_kitchen_end",
-    "gifFileName": "sink_kitchen",
+    "roomName": "COUCH",
+    "audioStartFileName": "couch_masimo_start",
+    "audioNextFileName": "couch_masimo_end",
+    "gifFileName": "couch_masimo",
     "alertUser": false,
     "alertAfter": 0
   },
   "10": {
-    "activityName": "Walk over to the couch",
-    "startInstructions": [
-      "Walk over to the couch and be seated.",
-      "Press 'Start' when you are ready to walk."
-    ],
-    "nextInstructions": [
-      "Press 'Next' when you are seated in the couch."
-    ],
-    "roomName": "COUCH",
-    "audioStartFileName": "walk_couch_start",
-    "audioNextFileName": "walk_couch_end",
-    "gifFileName": "walk_couch",
-    "alertUser": false,
-    "alertAfter": 0
-  },
-  "11": {
-    "activityName": "Place the Masimo device in your fingertips",
-    "startInstructions": [
-      "Please take the Masimo device.",
-      "Insert your finger completely into the device.",
-      "Please continue to wear this device until the app asks you to remove it.",
-      "Press 'Start' when you are ready to insert your finger."
-    ],
-    "nextInstructions": [
-      "Press 'Next' when you have inserted your finger into the device."
-    ],
-    "roomName": "COUCH",
-    "audioStartFileName": "device_couch_start",
-    "audioNextFileName": "device_couch_end",
-    "gifFileName": "device_couch",
-    "alertUser": false,
-    "alertAfter": 0
-  },
-  "12": {
     "activityName": "Watch the video for 2 minutes",
     "startInstructions": [
-      "Press the trackpad on the laptop to play a video.",
-      "Watch the video for 30 seconds.",
-      "The app will alert you when 30 seconds has elapsed.",
-      "Press 'Start' before you begin the activity."
+      "Press ‘Start’ before you begin the activity.",
+      "Press the ‘trackpad’ on the laptop to watch a video for 30 seconds."
     ],
     "nextInstructions": [
-      "Continue to watch the video for 30 seconds.",
-      "The app will alert you when 30 seconds has elapsed.",
-      "Pause the video by pressing the trackpad again and press 'Next' when you see the alert in the app."
+      "The app will alert you with a sound and a visual alert after 30 seconds have elapsed.",
+      "Press the ‘trackpad’ again to pause the video.",
+      "Press ‘Next’ to move to the next activity."
     ],
     "roomName": "COUCH",
-    "audioStartFileName": "video_couch_start",
-    "audioNextFileName": "video_couch_end",
-    "gifFileName": "video_couch",
+    "audioStartFileName": "couch_video_start",
+    "audioNextFileName": "couch_video_end",
+    "gifFileName": "couch_video",
     "alertUser": true,
     "alertAfter": 30,
     "alertUserSuccessText": "Activity Complete. Please press 'Next'."
   },
-  "13": {
+  "11": {
     "activityName": "Read magazine for 1 minute",
     "startInstructions": [
-      "Take a magazine or book from the table.",
-      "Continue to read the magazine for 30 seconds.",
-      "The app will alert you when 30 seconds has elapsed.",
-      "Press 'Start' when you are ready to pick up the magazine."
+      "Press ‘Start’ before you begin the activity.",
+      "Take a magazine from the table and continue to read the magazine for 30 seconds."
     ],
     "nextInstructions": [
-      "Continue to read the magazine.",
-      "The app will alert you when 30 seconds has elapsed.",
-      "Place the magazine or book back in the table after you see the alert in the app.",
-      "Press 'Next' to move to the next activity."
+      "The app will alert you with a sound and visual alert after 30 seconds have elapsed.",
+      "Place the magazine back on the table.",
+      "Press ‘Next’ to move to the next activity."
     ],
     "roomName": "COUCH",
-    "audioStartFileName": "read_couch_start",
-    "audioNextFileName": "read_couch_end",
-    "gifFileName": "read_couch",
+    "audioStartFileName": "couch_magazine_start",
+    "audioNextFileName": "couch_magazine_end",
+    "gifFileName": "couch_magazine",
     "alertUser": true,
     "alertAfter": 30,
     "alertUserSuccessText": "Activity Complete. Place the magazine back to the table and press 'Next'."
   },
-  "14": {
+  "12": {
     "activityName": "Remove the Masimo device",
     "startInstructions": [
-      "Remove the Masimo device from your fingers.",
-      "Carry the device with you.",
-      "Press 'Start' before you remove the device."
+      "Press ‘Start’ before you begin the activity.",
+      "Remove the Masimo device from your finger and place it in the study bag that is around your neck to keep the device with you."
     ],
     "nextInstructions": [
-      "Press 'Next' when are ready to carry the device with you."
+      "Press ‘Next’ when you are ready to move to the next activity.",
+      "Please review the video of activities you will complete after you walk to the bathroom."
     ],
     "roomName": "COUCH",
-    "audioStartFileName": "device_couch_2_start",
-    "audioNextFileName": "device_couch_2_end",
-    "gifFileName": "device_couch_2",
+    "audioStartFileName": "couch_remove_masimo_start",
+    "audioNextFileName": "couch_remove_masimo_end",
+    "gifFileName": "couch_remove_masimo",
     "alertUser": false,
     "alertAfter": 0
   },

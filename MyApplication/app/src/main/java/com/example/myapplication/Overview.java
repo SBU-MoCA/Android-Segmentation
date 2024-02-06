@@ -122,7 +122,7 @@ public class Overview extends AppCompatActivity {
         }
 
         //Set title with the currently found room
-        String titleString = "Overview of activities: " + roomName + "  " + helperClass.roomMapping.get(roomName) + " / " + helperClass.roomMapping.size();
+        String titleString = "Overview of activities at: " + roomName + "  " + helperClass.roomMapping.get(roomName) + " / " + helperClass.roomMapping.size();
         roomTitle.setText(titleString);
         String disclaimerString = "No need to remember. App will guide through each activity.";
         disclaimerText.setText(disclaimerString);

@@ -90,7 +90,7 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
 
     public String activityCompleteVoiceFile = "timed_activity_voice";
     public String startActivityAlertVoiceFile = "start_activity_ready";
-    public int startActivityAlertTimer = 5000;
+    public int startActivityAlertTimer = 3000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -201,7 +201,7 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
 
         for (int i = 0; i < activityStartInstructions.length(); i += 1) {
             try {
-                startInstructionSet += ( i + 1) + ". " + activityStartInstructions.getString(i);
+                startInstructionSet += ( i + 1) + ".)  " + activityStartInstructions.getString(i);
                 startInstructionSet += "\n";
             } catch (JSONException e) {
                 System.out.println("CODE ERROR: Failed to parse instructions: " + e);
@@ -211,7 +211,7 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
 
         for (int i = 0; i < activityNextInstructions.length(); i += 1) {
             try {
-                nextInstructionSet += ( i + 1) + ". " + activityNextInstructions.getString(i);
+                nextInstructionSet += ( i + 1) + ".)  " + activityNextInstructions.getString(i);
                 nextInstructionSet += "\n";
             } catch (JSONException e) {
                 System.out.println("CODE ERROR: Failed to parse instructions: " + e);
