@@ -44,7 +44,7 @@ import pl.droidsonroids.gif.GifImageView;
 public class Instructions extends AppCompatActivity implements CustomDialog.CustomDialogListener, TimedActivityAlert.TimedAlertListener, StartAlert.StartAlertListener {
     public Instructions() throws IOException {}
     Helper helperClass = new Helper();
-    String FINAL_ACTIVITY_NUMBER = "37";
+    String FINAL_ACTIVITY_NUMBER = "39"; // TODO: Update when number of activity changes.
     private JavaAppendFileWriter mAppendFileWriter = new JavaAppendFileWriter();
     private FileWriter fw;
     public Boolean alertToStart;

@@ -538,135 +538,131 @@
   "32": {
     "activityName": "Walk to the study table",
     "startInstructions": [
-      "Please walk to the study table outside the bedroom and be seated in the chair.",
-      "Press 'Start' when you are ready to walk."
+      "Press ‘Start’ before you begin the activity.",
+      "Please walk over to the desk outside the bedroom and be seated in the desk chair."
     ],
     "nextInstructions": [
-      "Press 'Next' when you are seated in the study chair."
+      "Press ‘Next’ when you are seated in the desk chair."
     ],
-    "roomName": "Study",
-    "audioStartFileName": "walk_table_start",
-    "audioNextFileName": "walk_table_end",
-    "gifFileName": "walk_table",
+    "roomName": "STUDY",
+    "audioStartFileName": "desk_walk_start",
+    "audioNextFileName": "desk_walk_end",
+    "gifFileName": "desk_walk",
     "alertUser": false,
     "alertAfter": 0
   },
   "33": {
     "activityName": "Put on Masimo device",
     "startInstructions": [
-      "Please take out the Masimo device.",
-      "Insert your finger completely into the Masimo device.",
-      "Continue to wear this device until the app asks you to remove it.",
-      "Press 'Start' before you begin the activity."
+      "Press ‘Start’ before you begin the activity.",
+      "Take out the Masimo device and insert your finger into the device",
+      "Continue to wear the device until the app asks you to remove it."
     ],
     "nextInstructions": [
-      "Press 'Next' when you have inserted your finger into the Masimo device."
+      "Press ‘Next’ when you have inserted your finger into the device."
     ],
-    "roomName": "Study",
-    "audioStartFileName": "device_table_start",
-    "audioNextFileName": "device_table_end",
-    "gifFileName": "device_table",
+    "roomName": "STUDY",
+    "audioStartFileName": "desk_device_start",
+    "audioNextFileName": "desk_device_end",
+    "gifFileName": "desk_device",
     "alertUser": false,
     "alertAfter": 0
   },
   "34": {
-    "activityName": "Surf the internet",
+    "activityName": "Retype the phrase on the laptop",
     "startInstructions": [
-      "Please use the laptop for 30 seconds.",
-      "The app will alert you when 30 seconds has elapsed.",
-      "Press 'Start' before you begin the activity."
+      "Press ‘Start’ before you begin the activity.",
+      "Use the keyboard to type the phrase displayed on the laptop screen in front of you."
     ],
     "nextInstructions": [
-      "Continue to use the laptop for 30 seconds.",
-      "The app will alert you when 30 seconds has elapsed.",
-      "Press 'Next' when you see the alert in the app."
+      "Press ‘Next’ when you have completed typing the phrase on the laptop."
     ],
-    "roomName": "Study",
-    "audioStartFileName": "surf_internet_start",
-    "audioNextFileName": "surf_internet_end",
-    "gifFileName": "surf_internet",
-    "alertUser": true,
-    "alertAfter": 30,
-    "alertUserSuccessText": "Activity Complete. Please press 'Next' to move onto the next activity."
+    "roomName": "STUDY",
+    "audioStartFileName": "desk_type_start",
+    "audioNextFileName": "desk_type_end",
+    "gifFileName": "desk_type",
+    "alertUser": false,
+    "alertAfter": 0
   },
   "35": {
     "activityName": "Remove the Masimo device",
     "startInstructions": [
-      "Please remove the Masimo device and place it on the desk.",
-      "Press 'Start' before you begin the activity."
+      "Press ‘Start’ before you begin the activity.",
+      "Take off the Masimo device and place it on the desk."
     ],
     "nextInstructions": [
-      "Press 'Next' when you have placed the device on the desk."
+      "Press 'Next' when you have placed the device on the desk.",
+      "Please review the video of activities you will complete after you walk back to the kitchen."
     ],
-    "roomName": "Study",
-    "audioStartFileName": "device_table_2_start",
-    "audioNextFileName": "device_table_2_end",
-    "gifFileName": "device_table_2",
+    "roomName": "STUDY",
+    "audioStartFileName": "desk_remove_device_start",
+    "audioNextFileName": "desk_remove_device_end",
+    "gifFileName": "desk_remove_device",
     "alertUser": false,
     "alertAfter": 0
   },
   "36": {
     "activityName": "Walk to kitchen sink",
     "startInstructions": [
-      "Please walk to the kitchen towards the kitchen sink.",
-      "Press 'Start' when you are ready to walk."
+      "Press ‘Start’ before you begin the activity.",
+      "Please walk back to the kitchen and over to the kitchen sink."
     ],
     "nextInstructions": [
       "Press 'Next' when you have reached the kitchen sink."
     ],
     "roomName": "SINK",
-    "audioStartFileName": "kitchen_sink_start",
-    "audioNextFileName": "kitchen_sink_end",
-    "gifFileName": "walk_kitchen_sink",
+    "audioStartFileName": "sink_walk_start",
+    "audioNextFileName": "sink_walk_end",
+    "gifFileName": "sink_walk",
     "alertUser": false,
     "alertAfter": 0
   },
   "37": {
     "activityName": "Washing dishes",
     "startInstructions": [
-      "Please simulate washing the dishes for 30 seconds.",
-      "The app will alert you when 30 seconds has elapsed.",
-      "Press 'Start' before you begin the activity."
+      "Press ‘Start’ before you begin the activity.",
+      "Simulate turning on the water in the sink.",
+      "Then, simulate washing the dishes for 30 seconds."
     ],
     "nextInstructions": [
-      "Continue to simulate washing the dishes for 30 seconds.",
-      "The app will alert you when 30 seconds has elapsed.",
-      "Press 'Next' when you see the alert in the app."
+      "Continue to simulate the motion of washing dishes until the app alerts you with a sound and a visual alert after 30 seconds have elapsed.",
+      "Place the plate and cup on the slab to dry.",
+      "Press ‘Next’ to move on to the next activity when you hear or see the alert in the app."
     ],
     "roomName": "SINK",
-    "audioStartFileName": "wash_dishes_start",
-    "audioNextFileName": "wash_dishes_end",
-    "gifFileName": "wash_dishesh",
+    "audioStartFileName": "sink_wash_dish_start",
+    "audioNextFileName": "sink_wash_dish_end",
+    "gifFileName": "sink_wash_dish",
     "alertUser": true,
     "alertAfter": 30,
     "alertUserSuccessText": "Activity Complete. Please press 'Next' to move onto the next activity."
   },
   "38": {
-    "activityName": "Exit the lab",
+    "activityName": "Exit the apartment",
     "startInstructions": [
-      "Please walk out to the door and exit the lab.",
-      "This is the final step of this experiment.",
-      "Press 'Start' when you are ready to walk."
+      "Press ‘Start’ before you begin the activity.",
+      "Please walk to the apartment’s door and exit the apartment."
     ],
     "nextInstructions": [
-      "Press 'Next' when you have exited the lab."
+      "Press ‘Next’ when you have exited the apartment.",
+      "The study team will be meeting you there."
     ],
     "roomName": "SINK",
-    "audioStartFileName": "walk_out_start",
-    "audioNextFileName": "walk_out_end",
-    "gifFileName": "walk_out",
+    "audioStartFileName": "sink_exit_start",
+    "audioNextFileName": "sink_exit_end",
+    "gifFileName": "sink_exit",
     "alertUser": false,
     "alertAfter": 0
   },
   "39": {
     "activityName": "Thank You!",
     "startInstructions": [
-      "We thank you for the corporation!",
-      "Have a nice day ahead!"
+      "We thank you for your participation.",
+      "Please return the device back to the study team and see the coordinator for your brief closeout interview."
     ],
     "nextInstructions": [
-      "We thank you for the corporation!",
-      "Have a nice day ahead!"
+      "We thank you for your participation.",
+      "Please return the device back to the study team and see the coordinator for your brief closeout interview."
     ],
     "roomName": "SINK",
     "audioStartFileName": "thank_you",
