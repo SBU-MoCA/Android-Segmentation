@@ -22,9 +22,11 @@ public class NTPTimeSync {
                 try {
                     ntpTimeSync.initialize();
                 } catch (IOException e) {
+                    // Handle the InvalidNtpServerResponseException: root delay violation by trying the same request multiple times.
                     System.out.println("TIME SYNC ERROR: " + e);
                     throw new IOException(e);
                 }
+                System.out.println("Time from NTP: " + TrueTime.now());
             } catch (Exception e) {
                 System.out.println("TIME SYNC RUNTIME ERROR: " + e);
                 throw new RuntimeException(e);
