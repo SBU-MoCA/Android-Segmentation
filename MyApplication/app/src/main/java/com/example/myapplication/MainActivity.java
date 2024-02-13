@@ -156,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
 
             textView.setText(time);
             try {
-                mAppendFileWriter.writeToFile(fw, time, "start", "");
+                mAppendFileWriter.writeToFile(fw, "start", "");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -179,7 +179,7 @@ public class MainActivity extends AppCompatActivity {
             TextView textView = findViewById(R.id.textView2);
             textView.setText(time);
             try {
-                mAppendFileWriter.writeToFile(fw, time, "stop", "");
+                mAppendFileWriter.writeToFile(fw, "stop", "");
 
             } catch (IOException e) {
                 e.printStackTrace();
