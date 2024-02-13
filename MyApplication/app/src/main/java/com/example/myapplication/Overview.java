@@ -68,6 +68,7 @@ public class Overview extends AppCompatActivity {
     JSONObject jsonObject;
 
     Boolean alertToStart;
+    Boolean showOptionalActivities;
     ArrayList<ActivityResource> roomActivities = new ArrayList<>();
     int currentActivity = 0;
     private Handler handler;
@@ -99,6 +100,7 @@ public class Overview extends AppCompatActivity {
         activityId = intent.getStringExtra("activityId");
         fileLocation = intent.getStringExtra("fileLocation");
         alertToStart = intent.getBooleanExtra("alertToStart", true);
+        showOptionalActivities = intent.getBooleanExtra("showOptionalActivities", true);
 
         // getting jsonString passed from previous activity
         try {
@@ -120,7 +122,7 @@ public class Overview extends AppCompatActivity {
         }
 
         //Set title with the currently found room
-        String titleString = "Overview of activities: " + roomName + "  " + helperClass.roomMapping.get(roomName) + " / " + helperClass.roomMapping.size();
+        String titleString = "Overview of activities at: " + roomName + "  " + helperClass.roomMapping.get(roomName) + " / " + helperClass.roomMapping.size();
         roomTitle.setText(titleString);
         String disclaimerString = "No need to remember. App will guide through each activity.";
         disclaimerText.setText(disclaimerString);
@@ -143,12 +145,21 @@ public class Overview extends AppCompatActivity {
             catch(JSONException e) {
                 break;
             }
-
-            roomNameAct = roomNameAct.toLowerCase();
-
-            if(!roomNameAct.equals(roomName.toLowerCase())) break;
-
-            roomActivities.add(new ActivityResource(gifImageName, activityName));
+            boolean contains = false;
+            if (!showOptionalActivities) {
+                // skip the next activity if it's an optional activity
+                for (int element : helperClass.OPTIONAL_ACTIVITY_LIST) {
+                    if (element == i) {
+                        contains = true;
+                        break;
+                    }
+                }
+            }
+            if (!contains) {
+                roomNameAct = roomNameAct.toLowerCase();
+                if (!roomNameAct.equals(roomName.toLowerCase())) break;
+                roomActivities.add(new ActivityResource(gifImageName, activityName));
+            }
         }
 
         startRoomButton.setOnClickListener(new View.OnClickListener() {
@@ -311,6 +322,7 @@ public class Overview extends AppCompatActivity {
         intent.putExtra("fileLocation", fileLocation);
         intent.putExtra("alertToStart", alertToStart);
         intent.putExtra("roomActivitySize", roomActivities.size());
+        intent.putExtra("showOptionalActivities", showOptionalActivities);
         removeTimer();
         startActivity(intent);
     }

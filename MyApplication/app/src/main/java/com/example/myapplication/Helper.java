@@ -1,10 +1,14 @@
 package com.example.myapplication;
 
+import java.sql.Array;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Helper {
     public Map<String, Integer> roomMapping = new HashMap<String, Integer>();
+
+    public Integer[] OPTIONAL_ACTIVITY_LIST = { 4 };
     public static enum activityGroups {
         KITCHEN,
         COUCH,

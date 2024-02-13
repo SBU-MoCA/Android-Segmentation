@@ -13,9 +13,9 @@
         android:layout_marginTop="15dp"
         android:layout_marginEnd="15dp"
         android:text=""
-        android:textStyle="normal"
         android:textColor="@color/primary_button"
-        android:textSize="24dp" />
+        android:textSize="24dp"
+        android:textStyle="normal" />
 
     <Button
         android:id="@+id/alertPositiveButton"

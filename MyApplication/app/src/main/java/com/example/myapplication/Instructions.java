@@ -43,7 +43,8 @@ import pl.droidsonroids.gif.GifImageView;
 
 public class Instructions extends AppCompatActivity implements CustomDialog.CustomDialogListener, TimedActivityAlert.TimedAlertListener, StartAlert.StartAlertListener {
     public Instructions() throws IOException {}
-    String FINAL_ACTIVITY_NUMBER = "37";
+    Helper helperClass = new Helper();
+    String FINAL_ACTIVITY_NUMBER = "39"; // TODO: Update when number of activity changes.
     private JavaAppendFileWriter mAppendFileWriter = new JavaAppendFileWriter();
     private FileWriter fw;
     public Boolean alertToStart;
@@ -75,19 +76,21 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
     String audioNextFilename = null;
     String gifImageName = null;
     Boolean alertUser = false;
+    Boolean isOptionalActivity = false;
     Integer alertAfterSeconds = 0;
     String activityName = "";
     String timeLogString = "";
     String currentSubjectId = "";
     String startInstructionSet = "";
     String nextInstructionSet = "";
+    Boolean showOptionalActivities = true;
 
     Integer roomActivitySize;
     Integer currentActivity;
 
     public String activityCompleteVoiceFile = "timed_activity_voice";
     public String startActivityAlertVoiceFile = "start_activity_ready";
-    public int startActivityAlertTimer = 5000;
+    public int startActivityAlertTimer = 3000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -109,8 +112,9 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         String subjectId = intent.getStringExtra("subjectId");
         String activityId = intent.getStringExtra("activityId");
         String fileLocation = intent.getStringExtra("fileLocation");
-        Boolean restartedActivity = intent.getBooleanExtra("restartActivity", false);
+        boolean restartedActivity = intent.getBooleanExtra("restartActivity", false);
         alertToStart = intent.getBooleanExtra("alertToStart", true);
+        showOptionalActivities = intent.getBooleanExtra("showOptionalActivities", true);
         roomActivitySize =  intent.getIntExtra("roomActivitySize", 0);
         currentActivity = intent.getIntExtra("currentActivity", 1);
         if (restartedActivity) {
@@ -146,6 +150,7 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
             gifImageName = activityDetails.getString("gifFileName");
             alertUser = activityDetails.getBoolean("alertUser");
             alertAfterSeconds = activityDetails.getInt("alertAfter");
+            isOptionalActivity = activityDetails.getBoolean("optionalActivity");
         } catch (JSONException e) {
             System.out.println("CODE ERROR: while getting activity JSON data: " + e);
             e.printStackTrace();
@@ -196,7 +201,7 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
 
         for (int i = 0; i < activityStartInstructions.length(); i += 1) {
             try {
-                startInstructionSet += ( i + 1) + ". " + activityStartInstructions.getString(i);
+                startInstructionSet += ( i + 1) + ".)  " + activityStartInstructions.getString(i);
                 startInstructionSet += "\n";
             } catch (JSONException e) {
                 System.out.println("CODE ERROR: Failed to parse instructions: " + e);
@@ -206,7 +211,7 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
 
         for (int i = 0; i < activityNextInstructions.length(); i += 1) {
             try {
-                nextInstructionSet += ( i + 1) + ". " + activityNextInstructions.getString(i);
+                nextInstructionSet += ( i + 1) + ".)  " + activityNextInstructions.getString(i);
                 nextInstructionSet += "\n";
             } catch (JSONException e) {
                 System.out.println("CODE ERROR: Failed to parse instructions: " + e);
@@ -219,7 +224,7 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         startActivitybutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startButtonPressed(restartActivityButton, startActivitybutton, playButton, activityCompleteButton, timedActivityTextView, subjectId,
+                startButtonPressed(restartActivityButton, startActivitybutton, playButton, activityCompleteButton, subjectId,
                         newJSONTransferData, activityId, fileLocation);
 
                 instructionsTextView.setText(finalNextInstructionSet);
@@ -268,15 +273,19 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
 
     }
 
-    public void startCountDownTimer(Integer time, TextView textField, String text) {
+    public void startCountDownTimer(Integer time) {
+        CountTimerDialog countTimerDialog = new CountTimerDialog();
+        countTimerDialog.setCancelable(false);
+        countTimerDialog.show(getSupportFragmentManager(), "countDownTimerDialog");
         cdt = new CountDownTimer(time, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                String textWithTimer = text + " " + (millisUntilFinished / 1000) + " seconds.";
-                textField.setText(textWithTimer);
+                String timeInSeconds = String.valueOf(millisUntilFinished / 1000);
+                countTimerDialog.setCountDownText(timeInSeconds);
             }
             @Override
             public void onFinish() {
+                countTimerDialog.dismiss();
                 cancelCountDownTimer();
             }
         };
@@ -347,7 +356,6 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
 
     private void startButtonPressed(
             Button restartActivityButton, Button startActivitybutton, Button playButton,  Button activityCompleteButton,
-            TextView timedActivityTextView,
             String subjectId, JSONObject newJSONTransferData, String activityId, String fileLocation
     ) {
         stopAllMusicPlayers();
@@ -367,7 +375,7 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         // initialize required values if we need to alert user after x seconds
         if (alertUser) {
             activityCompleteButton.setVisibility(View.INVISIBLE);
-            startCountDownTimer(alertTimeInSeconds * 1000, timedActivityTextView, "Please Continue. A prompt will be displayed after:");
+            startCountDownTimer(alertTimeInSeconds * 1000);
             // Initialize handler and runnable
             initializeHandlerAndRunnable(
                     subjectId, newJSONTransferData.toString(), activityId, fileLocation,
@@ -431,6 +439,20 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
             intent = new Intent(this, Instructions.class);
         }
 
+
+        boolean contains = false;
+        if (!showOptionalActivities) {
+            // skip the next activity if it's an optional activity
+            for (int element : helperClass.OPTIONAL_ACTIVITY_LIST) {
+                if (element == (Integer.parseInt(activityId, 10) + 1)) {
+                    contains = true;
+                    break;
+                }
+            }
+            if (contains) {
+                activityId = Integer.toString((Integer.parseInt(activityId, 10) + 1));
+            }
+        }
         intent.putExtra("subjectId", subjectId);
         intent.putExtra("jsonData", jsonObject);
         intent.putExtra("activityId", Integer.toString((Integer.parseInt(activityId) + 1)));
@@ -438,6 +460,7 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         intent.putExtra("alertToStart", alertToStart);
         intent.putExtra("roomActivitySize", roomActivitySize);
         intent.putExtra("currentActivity", currentActivity + 1);
+        intent.putExtra("showOptionalActivities", showOptionalActivities);
         releaseAllMediaPlayers();
         startActivity(intent);
     }
@@ -485,6 +508,7 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         intent.putExtra("alertToStart", alertToStart);
         intent.putExtra("roomActivitySize", roomActivitySize);
         intent.putExtra("currentActivity", currentActivity);
+        intent.putExtra("showOptionalActivities", showOptionalActivities);
         releaseAllMediaPlayers();
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
@@ -503,6 +527,7 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         intent.putExtra("alertToStart", alertToStart);
         intent.putExtra("roomActivitySize", roomActivitySize);
         intent.putExtra("currentActivity", currentActivity + 1);
+        intent.putExtra("showOptionalActivities", showOptionalActivities);
         releaseAllMediaPlayers();
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
@@ -521,10 +546,9 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
     // overridden from StartAlert Class.
     @Override
     public void onStartActivity( Button restartActivityButton, Button startActivitybutton, Button playButton,  Button activityCompleteButton,
-                                 TextView timedActivityTextView,
                                  String subjectId, JSONObject newJSONTransferData, String activityId, String fileLocation) {
         removeTimerForStartButton();
-        startButtonPressed(restartActivityButton, startActivitybutton, playButton, activityCompleteButton, timedActivityTextView, subjectId,
+        startButtonPressed(restartActivityButton, startActivitybutton, playButton, activityCompleteButton, subjectId,
                 newJSONTransferData, activityId, fileLocation);
     }
 

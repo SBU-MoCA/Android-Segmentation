@@ -20,8 +20,8 @@
         android:layout_marginEnd="2dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:srcCompat="@drawable/startup_svg" />
-
+        app:srcCompat="@drawable/startup_svg"
+        android:contentDescription="@string/the_home_page_image" />
     <Button
         android:id="@+id/letsStartButton"
         android:layout_width="300dp"
@@ -83,15 +83,27 @@
         android:textSize="16dp"
         android:textStyle="bold" />
 
-    <Switch
+    <com.google.android.material.switchmaterial.SwitchMaterial
         android:id="@+id/alertToStartToggle"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
+        android:layout_width="140dp"
+        android:layout_height="40dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerInParent="true"
-        android:layout_marginBottom="25dp"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginStart="10dp"
         android:checked="true"
         android:text="Alert to Start" />
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/optionalActivitiesToggle"
+        android:layout_width="180dp"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="10dp"
+        android:checked="true"
+        android:text="Optional Activities" />
 
 
 </RelativeLayout>
