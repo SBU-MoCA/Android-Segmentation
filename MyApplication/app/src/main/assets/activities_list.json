@@ -385,7 +385,7 @@
       "Walk back to the laundry basket and take out another towel."
     ],
     "nextInstructions": [
-      "Press 'Next' when you have placed the folded towel inside the closet."
+      "Press 'Next' when you have taken a towel from the laundry basket."
     ],
     "roomName": "BEDROOM",
     "audioStartFileName": "bedroom_another_towel_start",
@@ -514,7 +514,7 @@
     "audioNextFileName": "bedroom_get_up_end",
     "gifFileName": "bedroom_get_up",
     "alertUser": true,
-    "alertAfter": 20,
+    "alertAfter": 15,
     "alertUserSuccessText": "Activity Complete. Please press 'Next' to move onto the next posture."
   },
   "31": {

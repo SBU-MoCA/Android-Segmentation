@@ -23,8 +23,8 @@
 
     <Button
         android:id="@+id/play_audio"
-        android:layout_width="205dp"
-        android:layout_height="30dp"
+        android:layout_width="200dp"
+        android:layout_height="31dp"
         android:layout_alignParentBottom="true"
         android:layout_marginLeft="10dp"
         android:layout_marginBottom="345dp"
@@ -32,14 +32,14 @@
         android:drawableRight="@drawable/play_audio"
         android:gravity="center"
         android:paddingRight="10dp"
-        android:text="Replay Voice"
+        android:text="Play / Pause Voice"
         android:textColor="@color/white"
-        android:textSize="16dp" />
+        android:textSize="15dp" />
 
 
     <TextView
         android:id="@+id/activity_length"
-        android:layout_width="145dp"
+        android:layout_width="150dp"
         android:layout_height="35dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
@@ -88,7 +88,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="10dp"
-        android:layout_marginBottom="134dp"
+        android:layout_marginBottom="133dp"
         android:textAllCaps="true"
         android:textColor="@color/primary_button"
         android:textSize="17sp"

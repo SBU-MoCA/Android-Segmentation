@@ -8,7 +8,7 @@ import java.util.Map;
 public class Helper {
     public Map<String, Integer> roomMapping = new HashMap<String, Integer>();
 
-    public Integer[] OPTIONAL_ACTIVITY_LIST = { 4 };
+    public Integer[] OPTIONAL_ACTIVITY_LIST = { 29 };
     public static enum activityGroups {
         KITCHEN,
         COUCH,
