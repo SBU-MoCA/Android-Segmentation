@@ -232,7 +232,7 @@
     "roomName": "BATHROOM",
     "audioStartFileName": "bathroom_shower_stall_start",
     "audioNextFileName": "bathroom_shower_stall_end",
-    "gifFileName": "bathroom_shower",
+    "gifFileName": "bathroom_shower_stall",
     "alertAfter": 0
   },
   "15": {
@@ -342,7 +342,7 @@
     "roomName": "BATHROOM",
     "audioStartFileName": "bathroom_review_activity_start",
     "audioNextFileName": "bathroom_review_activity_end",
-    "gifFileName": "bathroom_toilet_seat",
+    "gifFileName": "bathroom_review_activity",
     "alertAfter": 0
   },
   "21": {
@@ -407,7 +407,7 @@
     "roomName": "BEDROOM",
     "audioStartFileName": "bedroom_towel_fold_start",
     "audioNextFileName": "bedroom_towel_fold_end",
-    "gifFileName": "bedroom_another_towel",
+    "gifFileName": "bedroom_towel_fold",
     "alertUser": false,
     "alertAfter": 0
   },
