@@ -296,7 +296,7 @@
     "activityName": "Simulate using toilet",
     "startInstructions": [
       "Press ‘Start’ before you begin the activity.",
-      "Walk over to the toilet seat, make sure the seat cover is down and be seated on the toilet seat cover.",
+      "Walk over to the toilet seat, make sure the seat cover is down and be seated on the toilet seat.",
       "Take out some toilet paper and simulate flushing the toilet.",
       "Throw away the toilet paper in the garbage can."
     ],
@@ -531,7 +531,7 @@
     "roomName": "BEDROOM",
     "audioStartFileName": "bedroom_shoes_start",
     "audioNextFileName": "bedroom_shoes_end",
-    "gifFileName": "bedroom_get_up",
+    "gifFileName": "bedroom_shoes",
     "alertUser": false,
     "alertAfter": 0
   },
