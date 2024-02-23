@@ -104,7 +104,6 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         restartActivityButton.setVisibility(View.INVISIBLE);
         Button startActivitybutton = (Button) findViewById(R.id.start_activity);
         instructionsTextView = (TextView) findViewById(R.id.instructions_text);
-        TextView timedActivityTextView = (TextView) findViewById(R.id.timed_activity_text);
         TextView activityLength = (TextView) findViewById(R.id.activity_length);
         GifImageView gifImageView = (GifImageView) findViewById(R.id.instruction_gif);
 
@@ -260,7 +259,7 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
                    showStartDialogRunnable = new Runnable() {
                        @Override
                        public void run() {
-                           showStartAlert(restartActivityButton, startActivitybutton, playButton, activityCompleteButton, timedActivityTextView, subjectId,
+                           showStartAlert(restartActivityButton, startActivitybutton, playButton, activityCompleteButton, subjectId,
                                    newJSONTransferData, activityId, fileLocation);
                        }
                    };
@@ -274,7 +273,7 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
     }
 
     public void startCountDownTimer(Integer time) {
-        CountTimerDialog countTimerDialog = new CountTimerDialog();
+        CountTimerDialog countTimerDialog = new CountTimerDialog(nextInstructionSet);
         countTimerDialog.setCancelable(false);
         countTimerDialog.show(getSupportFragmentManager(), "countDownTimerDialog");
         cdt = new CountDownTimer(time, 1000) {
@@ -338,10 +337,9 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
     }
 
     private void showStartAlert(Button restartActivityButton, Button startActivitybutton, Button playButton,  Button activityCompleteButton,
-                                TextView timedActivityTextView,
                                 String subjectId, JSONObject newJSONTransferData, String activityId, String fileLocation) {
         StartAlert dialog = new StartAlert(
-                restartActivityButton, startActivitybutton, playButton, activityCompleteButton, timedActivityTextView, subjectId,
+                restartActivityButton, startActivitybutton, playButton, activityCompleteButton, subjectId,
                 newJSONTransferData, activityId, fileLocation
         );
         dialog.setCancelable(false);

@@ -7,14 +7,13 @@
 
     <TextView
         android:id="@+id/titleText"
-        android:layout_width="390dp"
-        android:layout_height="120dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="10dp"
+        android:layout_width="400dp"
+        android:layout_height="320dp"
         android:layout_marginTop="15dp"
-        android:layout_marginEnd="15dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginStart="10dp"
         android:textColor="@color/primary_button"
-        android:textSize="24sp"
+        android:textSize="19sp"
         android:textStyle="normal" />
     <TextView
         android:id="@+id/countDownText"
@@ -22,7 +21,7 @@
         android:layout_height="80dp"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="334dp"
         android:layout_marginEnd="25dp"
         android:textAlignment="center"
         android:textColor="@color/primary_button"

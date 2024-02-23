@@ -26,18 +26,15 @@ public class StartAlert extends AppCompatDialogFragment {
     private TextView alertTextView;
 
     private Button restartActivityButton, startActivitybutton, playButton, activityCompleteButton;
-    private TextView timedActivityTextView;
     private String subjectId, activityId, fileLocation;
     private JSONObject newJSONTransferData;
 
     StartAlert(Button restartActivityButton, Button startActivitybutton, Button playButton,  Button activityCompleteButton,
-               TextView timedActivityTextView,
                String subjectId, JSONObject newJSONTransferData, String activityId, String fileLocation) {
         this.restartActivityButton = restartActivityButton;
         this.startActivitybutton = startActivitybutton;
         this.playButton = playButton;
         this.activityCompleteButton = activityCompleteButton;
-        this.timedActivityTextView = timedActivityTextView;
         this.subjectId = subjectId;
         this.newJSONTransferData = newJSONTransferData;
         this.activityId = activityId;

@@ -19,7 +19,12 @@ import java.io.IOException;
 
 public class CountTimerDialog extends AppCompatDialogFragment {
     private TextView countDownText;
-    CountTimerDialog() { }
+
+    private String SAMPLE_TEXT = "Please continue the activity. The app will alert you after:";
+    String message;
+    CountTimerDialog(String message) {
+        this.message = (message.length() != 0) ? message : SAMPLE_TEXT;
+    }
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         LayoutInflater layoutInflater = LayoutInflater.from(getContext());
@@ -28,10 +33,10 @@ public class CountTimerDialog extends AppCompatDialogFragment {
         AlertDialog builder = alertBuilder.create();
         builder.setView(promptView);
         WindowManager.LayoutParams windowLayout = builder.getWindow().getAttributes();
-        windowLayout.y = 450;
+        windowLayout.y = 425;
         builder.setCancelable(false);
         TextView titleText = (TextView) promptView.findViewById(R.id.titleText);
-        String titleTextString = "Please continue the activity. The app will alert you after:";
+        String titleTextString = this.message;
         titleText.setText(titleTextString);
         countDownText = (TextView) promptView.findViewById(R.id.countDownText);
         return builder;
