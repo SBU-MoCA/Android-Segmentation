@@ -148,7 +148,7 @@
     "alertAfter": 0
   },
   "10": {
-    "activityName": "Watch the video for 2 minutes",
+    "activityName": "Watch the video for 30 seconds",
     "startInstructions": [
       "Press ‘Start’ before you begin the activity.",
       "Press the ‘trackpad’ on the laptop to watch a video for 30 seconds."
@@ -167,7 +167,7 @@
     "alertUserSuccessText": "Activity Complete. Please press 'Next'."
   },
   "11": {
-    "activityName": "Read magazine for 1 minute",
+    "activityName": "Read magazine for 30 seconds",
     "startInstructions": [
       "Press ‘Start’ before you begin the activity.",
       "Take a magazine from the table and continue to read the magazine for 30 seconds."
@@ -536,7 +536,7 @@
     "alertAfter": 0
   },
   "32": {
-    "activityName": "Walk to the study table",
+    "activityName": "Walk to the desk outside bedroom",
     "startInstructions": [
       "Press ‘Start’ before you begin the activity.",
       "Please walk over to the desk outside the bedroom and be seated in the desk chair."
@@ -618,7 +618,7 @@
     "alertAfter": 0
   },
   "37": {
-    "activityName": "Washing dishes",
+    "activityName": "Simulate washing dishes",
     "startInstructions": [
       "Press ‘Start’ before you begin the activity.",
       "Simulate turning on the water in the sink.",
