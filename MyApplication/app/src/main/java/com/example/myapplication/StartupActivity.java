@@ -115,7 +115,7 @@ public class StartupActivity extends AppCompatActivity {
         Intent intent = new Intent(this, Overview.class);
         intent.putExtra("subjectId", inputPatientId.getText().toString());
         intent.putExtra("jsonData", jsonObject.toString());
-        intent.putExtra("activityId", "10");
+        intent.putExtra("activityId", "1");
         intent.putExtra("fileLocation", fileLocation);
         intent.putExtra("alertToStart", alertToStart);
         intent.putExtra("showOptionalActivities", showOptionalActivities);
