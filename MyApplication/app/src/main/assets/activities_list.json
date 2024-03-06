@@ -205,7 +205,7 @@
   "13": {
     "activityName": "Walk to the bathroom",
     "startInstructions": [
-      "All activities in the bathroom should be simulated. Please do no take off your clothes, turn on any water or use the toilet.",
+      "All activities in the bathroom should be simulated. Please do not take off your clothes, turn on any water or use the toilet.",
       "Press 'Start' before you begin the activity.",
       "Please walk to the bathroom and simulate removing your clothes to prepare for shower."
     ],
@@ -262,7 +262,7 @@
     ],
     "nextInstructions": [
       "Continue to simulate the motion of brushing until the app alerts you with a sound and a visual alert after 30 seconds have elapsed.",
-      "Replace your toothbrush in the cup",
+      "Re-place your toothbrush in the cup.",
       "Press ‘Next’ to move on to the next activity when you hear or see the alert in the app."
 
     ],
