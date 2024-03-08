@@ -46,6 +46,8 @@ public class StartAlert extends AppCompatDialogFragment {
         View promptView = layoutInflater.inflate(R.layout.custom_dialog, null);
         AlertDialog.Builder alertBuilder = new AlertDialog.Builder(getActivity(), R.style.AlertDialog);
         AlertDialog builder = alertBuilder.create();
+        // Make the dialog full screen
+        builder.getWindow().addFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
         builder.setView(promptView);
 
         WindowManager.LayoutParams windowLayout = builder.getWindow().getAttributes();

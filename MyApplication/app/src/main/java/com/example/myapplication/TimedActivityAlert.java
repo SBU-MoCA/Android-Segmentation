@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -107,7 +108,10 @@ public class TimedActivityAlert extends AppCompatDialogFragment {
 //                    @Override
 //                    public void onClick(DialogInterface dialog, int which) {}
 //                });
-        return builder.create();
+        Dialog dialogBuilder = builder.create();
+        // Make the dialog full screen
+        dialogBuilder.getWindow().addFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+        return dialogBuilder;
     }
 
     public interface TimedAlertListener {
