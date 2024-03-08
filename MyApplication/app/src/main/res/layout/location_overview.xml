@@ -80,7 +80,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="580dp"
+        android:layout_marginTop="625dp"
         android:layout_marginEnd="12dp"
         android:lineSpacingMultiplier="0.7"
         android:textColor="@color/primary_color"

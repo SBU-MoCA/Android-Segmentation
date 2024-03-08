@@ -15,6 +15,8 @@ import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -59,6 +61,8 @@ public class Overview extends AppCompatActivity {
     public Overview() throws IOException {
 
     }
+
+
     Context context = this;
     Helper helperClass = new Helper();
 
@@ -81,6 +85,12 @@ public class Overview extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.location_overview);
+        // Enable immersive mode
+        View decorView = getWindow().getDecorView();
+        int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+        decorView.setSystemUiVisibility(uiOptions);
         Intent intent = getIntent();
         Resources res = context.getResources();
 

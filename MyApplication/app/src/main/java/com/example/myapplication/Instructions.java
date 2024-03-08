@@ -1,9 +1,11 @@
 package com.example.myapplication;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -12,11 +14,14 @@ import android.os.Handler;
 import android.content.Intent;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -43,6 +48,7 @@ import pl.droidsonroids.gif.GifImageView;
 
 public class Instructions extends AppCompatActivity implements CustomDialog.CustomDialogListener, TimedActivityAlert.TimedAlertListener, StartAlert.StartAlertListener {
     public Instructions() throws IOException {}
+    private boolean isAppInBackground = false;
     Helper helperClass = new Helper();
     String FINAL_ACTIVITY_NUMBER = "39"; // TODO: Update when number of activity changes.
     private JavaAppendFileWriter mAppendFileWriter = new JavaAppendFileWriter();
@@ -94,6 +100,9 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_instructions);
         Intent intent = getIntent();
         Resources res = context.getResources();
@@ -270,6 +279,44 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
             });
         }
 
+    }
+
+
+    private void showExitConfirmationDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        // Set the message and negative button
+        builder.setMessage("Do you want to exit the app?");
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) { }
+        });
+
+        // Set the positive button with a custom color
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                moveTaskToBack(true);
+            }
+        });
+
+        // Get the AlertDialog and set a custom style to change the button color
+        AlertDialog alertDialog = builder.create();
+        alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialog) {
+                Button positiveButton = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
+                positiveButton.setTextColor(getResources().getColor(R.color.primary_button));
+                Button negativeButton = alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE);
+                negativeButton.setTextColor(getResources().getColor(R.color.mild_red));
+            }
+        });
+
+        alertDialog.show();
+    }
+    @Override
+    public void onBackPressed() {
+       showExitConfirmationDialog();
     }
 
     public void startCountDownTimer(Integer time) {
