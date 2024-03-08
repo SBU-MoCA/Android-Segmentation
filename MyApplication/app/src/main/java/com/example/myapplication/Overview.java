@@ -132,9 +132,9 @@ public class Overview extends AppCompatActivity {
         }
 
         //Set title with the currently found room
-        String titleString = "Overview of activities at: " + roomName + "  " + helperClass.roomMapping.get(roomName) + " / " + helperClass.roomMapping.size();
+        String titleString = roomName + "  " + helperClass.roomMapping.get(roomName) + " / " + helperClass.roomMapping.size();
         roomTitle.setText(titleString);
-        String disclaimerString = "No need to remember. App will guide through each activity.";
+        String disclaimerString = "The app will guide you through each of these activities in the next step. Scroll through the activities once and press 'Ready'.";
         disclaimerText.setText(disclaimerString);
 
         //Parse json to find all the rooms that match the current room
