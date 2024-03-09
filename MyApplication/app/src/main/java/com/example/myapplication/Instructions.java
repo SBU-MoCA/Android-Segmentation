@@ -90,6 +90,9 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
     String startInstructionSet = "";
     String nextInstructionSet = "";
     Boolean showOptionalActivities = true;
+    Boolean turnInBed = true;
+    Boolean takeOffShoes = true;
+    Boolean realFood = true;
 
     Integer roomActivitySize;
     Integer currentActivity;
@@ -125,7 +128,9 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         String fileLocation = intent.getStringExtra("fileLocation");
         boolean restartedActivity = intent.getBooleanExtra("restartActivity", false);
         alertToStart = intent.getBooleanExtra("alertToStart", true);
-        showOptionalActivities = intent.getBooleanExtra("showOptionalActivities", true);
+        turnInBed = intent.getBooleanExtra("turnInBed", true);
+        realFood = intent.getBooleanExtra("realFood", true);
+        takeOffShoes = intent.getBooleanExtra("takeOffShoes", true);
         roomActivitySize =  intent.getIntExtra("roomActivitySize", 0);
         currentActivity = intent.getIntExtra("currentActivity", 1);
         if (restartedActivity) {
@@ -487,20 +492,42 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
             intent = new Intent(this, Instructions.class);
         }
 
-
-        boolean contains = false;
-        if (!showOptionalActivities) {
+        // check if next activity is the activity to skip if the turnInBed switch if off.
+        if (!turnInBed) {
+            String tempActivityId = activityId;
             // skip the next activity if it's an optional activity
-            for (int element : helperClass.OPTIONAL_ACTIVITY_LIST) {
-                if (element == (Integer.parseInt(activityId, 10) + 1)) {
-                    contains = true;
-                    break;
+            for (int element : helperClass.TURN_IN_BED_ACTIVITY_LIST) {
+                if (element == (Integer.parseInt(tempActivityId, 10) + 1)) {
+                    tempActivityId = Integer.toString((Integer.parseInt(tempActivityId, 10) + 1));
                 }
             }
-            if (contains) {
+            activityId = tempActivityId;
+        }
+
+        // check if next activity is the activity to skip if takeOffShoes switch is off
+        if (!takeOffShoes) {
+            if (helperClass.TAKE_OFF_SHOES_ACTIVITY == ((Integer.parseInt(activityId, 10) + 1))) {
                 activityId = Integer.toString((Integer.parseInt(activityId, 10) + 1));
             }
         }
+
+        // Filter whether to show real or fake food activity.
+        String tempActivityId = activityId;
+        // change the activities
+        for (int element : helperClass.FOOD_ACTIVITIES_CHECK) {
+            System.out.println("ACTIVITY: " + activityId);
+            if (element == (Integer.parseInt(tempActivityId, 10))) {
+                int incrementor = 0;
+                if (realFood) {
+                    incrementor = 1;
+                }
+                tempActivityId = Integer.toString((Integer.parseInt(tempActivityId, 10) + incrementor));
+
+                System.out.println("NEW ACTIVITY: " + tempActivityId + realFood);
+                break;
+            }
+        }
+        activityId = tempActivityId;
         intent.putExtra("subjectId", subjectId);
         intent.putExtra("jsonData", jsonObject);
         intent.putExtra("activityId", Integer.toString((Integer.parseInt(activityId) + 1)));
@@ -508,7 +535,9 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         intent.putExtra("alertToStart", alertToStart);
         intent.putExtra("roomActivitySize", roomActivitySize);
         intent.putExtra("currentActivity", currentActivity + 1);
-        intent.putExtra("showOptionalActivities", showOptionalActivities);
+        intent.putExtra("turnInBed", turnInBed);
+        intent.putExtra("takeOffShoes", takeOffShoes);
+        intent.putExtra("realFood", realFood);
         releaseAllMediaPlayers();
         startActivity(intent);
     }
@@ -556,7 +585,9 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         intent.putExtra("alertToStart", alertToStart);
         intent.putExtra("roomActivitySize", roomActivitySize);
         intent.putExtra("currentActivity", currentActivity);
-        intent.putExtra("showOptionalActivities", showOptionalActivities);
+        intent.putExtra("turnInBed", turnInBed);
+        intent.putExtra("takeOffShoes", takeOffShoes);
+        intent.putExtra("realFood", realFood);
         releaseAllMediaPlayers();
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
@@ -575,7 +606,9 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         intent.putExtra("alertToStart", alertToStart);
         intent.putExtra("roomActivitySize", roomActivitySize);
         intent.putExtra("currentActivity", currentActivity + 1);
-        intent.putExtra("showOptionalActivities", showOptionalActivities);
+        intent.putExtra("turnInBed", turnInBed);
+        intent.putExtra("takeOffShoes", takeOffShoes);
+        intent.putExtra("realFood", realFood);
         releaseAllMediaPlayers();
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);

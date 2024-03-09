@@ -29,7 +29,10 @@ public class StartupActivity extends AppCompatActivity {
     private EditText inputPatientId; // TODO: Need to add validation for this.
 
     private Boolean alertToStart = true;
-    private Boolean showOptionalActivities = true;
+    private Boolean turnInBed = true;
+
+    private Boolean takeOffShoes = true;
+    private Boolean realFood = true;
 
 
     @Override
@@ -46,7 +49,9 @@ public class StartupActivity extends AppCompatActivity {
         letsStartButton = (Button) findViewById(R.id.letsStartButton);
         inputPatientId = (EditText) findViewById(R.id.inputPatientId);
         SwitchMaterial alertToStartToggle = (SwitchMaterial) findViewById(R.id.alertToStartToggle);
-        SwitchMaterial optionalActivitiesToggle = (SwitchMaterial) findViewById(R.id.optionalActivitiesToggle);
+        SwitchMaterial turnInBedToggle = (SwitchMaterial) findViewById(R.id.turnInBedToggle);
+        SwitchMaterial takeOffShoesToggle = (SwitchMaterial) findViewById(R.id.takeOutShoesToggle);
+        SwitchMaterial realFoodToggle = (SwitchMaterial) findViewById(R.id.foodActivityToggle);
 
         // inputPatientId functions
         // disable the getStarted button at first
@@ -103,12 +108,25 @@ public class StartupActivity extends AppCompatActivity {
                 else alertToStart = false;
             }
         });
-        optionalActivitiesToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        turnInBedToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) showOptionalActivities = true;
-                else showOptionalActivities = false;
+                if (isChecked) turnInBed = true;
+                else turnInBed = false;
             }
         });
+        takeOffShoesToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) takeOffShoes = true;
+                else takeOffShoes = false;
+            }
+        });
+        realFoodToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) realFood = true;
+                else realFood = false;
+            }
+        });
+
         letsStartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -121,10 +139,12 @@ public class StartupActivity extends AppCompatActivity {
         Intent intent = new Intent(this, Overview.class);
         intent.putExtra("subjectId", inputPatientId.getText().toString());
         intent.putExtra("jsonData", jsonObject.toString());
-        intent.putExtra("activityId", "1");
+        intent.putExtra("activityId", "25");
         intent.putExtra("fileLocation", fileLocation);
         intent.putExtra("alertToStart", alertToStart);
-        intent.putExtra("showOptionalActivities", showOptionalActivities);
+        intent.putExtra("turnInBed", turnInBed);
+        intent.putExtra("takeOffShoes", takeOffShoes);
+        intent.putExtra("realFood", realFood);
         startActivity(intent);
     }
 }

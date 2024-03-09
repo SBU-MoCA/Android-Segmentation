@@ -33,7 +33,7 @@
         android:checked="true"
         android:text="Alert to Start" />
     <com.google.android.material.switchmaterial.SwitchMaterial
-        android:id="@+id/optionalActivitiesToggle"
+        android:id="@+id/turnInBedToggle"
         android:layout_width="180dp"
         android:layout_height="40dp"
         android:layout_alignParentEnd="true"

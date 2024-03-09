@@ -72,7 +72,11 @@ public class Overview extends AppCompatActivity {
     JSONObject jsonObject;
 
     Boolean alertToStart;
-    Boolean showOptionalActivities;
+    Boolean turnInBed;
+
+    Boolean takeOffShoes;
+
+    Boolean realFood;
     ArrayList<ActivityResource> roomActivities = new ArrayList<>();
     int currentActivity = 0;
     private Handler handler;
@@ -110,7 +114,9 @@ public class Overview extends AppCompatActivity {
         activityId = intent.getStringExtra("activityId");
         fileLocation = intent.getStringExtra("fileLocation");
         alertToStart = intent.getBooleanExtra("alertToStart", true);
-        showOptionalActivities = intent.getBooleanExtra("showOptionalActivities", true);
+        turnInBed = intent.getBooleanExtra("turnInBed", true);
+        takeOffShoes = intent.getBooleanExtra("takeOffShoes", true);
+        realFood = intent.getBooleanExtra("realFood", true);
 
         // getting jsonString passed from previous activity
         try {
@@ -156,13 +162,23 @@ public class Overview extends AppCompatActivity {
                 break;
             }
             boolean contains = false;
-            if (!showOptionalActivities) {
+            if (!takeOffShoes && i == helperClass.TAKE_OFF_SHOES_ACTIVITY) {
+                contains = true;
+            } else if (!turnInBed) {
                 // skip the next activity if it's an optional activity
-                for (int element : helperClass.OPTIONAL_ACTIVITY_LIST) {
+                for (int element : helperClass.TURN_IN_BED_ACTIVITY_LIST) {
                     if (element == i) {
                         contains = true;
                         break;
                     }
+                }
+            }
+            int[] list = (realFood) ? helperClass.FAKE_FOOD_ACTIVITY_LIST : helperClass.REAL_FOOD_ACTIVITY_LIST;
+            // skip the next activity if it's an optional activity
+            for (int element : list) {
+                if (element == i) {
+                    contains = true;
+                    break;
                 }
             }
             if (!contains) {
@@ -332,7 +348,9 @@ public class Overview extends AppCompatActivity {
         intent.putExtra("fileLocation", fileLocation);
         intent.putExtra("alertToStart", alertToStart);
         intent.putExtra("roomActivitySize", roomActivities.size());
-        intent.putExtra("showOptionalActivities", showOptionalActivities);
+        intent.putExtra("turnInBed", turnInBed);
+        intent.putExtra("takeOffShoes", takeOffShoes);
+        intent.putExtra("realFood", realFood);
         removeTimer();
         startActivity(intent);
     }
