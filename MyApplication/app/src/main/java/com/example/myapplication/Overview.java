@@ -99,7 +99,6 @@ public class Overview extends AppCompatActivity {
         Resources res = context.getResources();
 
         TextView roomTitle = (TextView) findViewById(R.id.room_title);
-        TextView activityNumber = (TextView) findViewById(R.id.act_number);
         TextView activityText = (TextView) findViewById(R.id.activity_name);
         Button startRoomButton = (Button) findViewById(R.id.start_room);
         startRoomButton.setVisibility(View.INVISIBLE);
@@ -140,7 +139,7 @@ public class Overview extends AppCompatActivity {
         //Set title with the currently found room
         String titleString = roomName + "  " + helperClass.roomMapping.get(roomName) + " / " + helperClass.roomMapping.size();
         roomTitle.setText(titleString);
-        String disclaimerString = "The app will guide you through each of these activities in the next step. Scroll through the activities once and press 'Ready'.";
+        String disclaimerString = "This is an overview screen. No need to remember these activities. The app will guide you through each activity in the next step. Scroll through the activities once using the arrow buttons and press 'Ready'.";
         disclaimerText.setText(disclaimerString);
 
         //Parse json to find all the rooms that match the current room
@@ -205,7 +204,7 @@ public class Overview extends AppCompatActivity {
         });
 
         try {
-            displayNextGif(res, gifImageView, activityNumber, activityText, startRoomButton, disclaimerText);
+            displayNextGif(res, gifImageView, activityText, startRoomButton, disclaimerText);
         } catch (IOException e) {
             System.out.println("Error in calling displayNextGif: " + e);
             throw new RuntimeException(e);
@@ -220,7 +219,7 @@ public class Overview extends AppCompatActivity {
                     currentActivity = 0;
                 }
                 try {
-                    displayNextGif(res, gifImageView, activityNumber, activityText, startRoomButton, disclaimerText);
+                    displayNextGif(res, gifImageView, activityText, startRoomButton, disclaimerText);
                 } catch (IOException e) {
                     System.out.println("Error in calling displayNextGif prevGifButton: " + e);
                     throw new RuntimeException(e);
@@ -236,7 +235,7 @@ public class Overview extends AppCompatActivity {
                     currentActivity = 0;
                 }
                 try {
-                    displayNextGif(res, gifImageView, activityNumber, activityText, startRoomButton, disclaimerText);
+                    displayNextGif(res, gifImageView, activityText, startRoomButton, disclaimerText);
                 } catch (IOException e) {
                     System.out.println("Error in calling displayNextGif nextGifButton: " + e);
                     throw new RuntimeException(e);
@@ -278,7 +277,7 @@ public class Overview extends AppCompatActivity {
         }
     }
 
-    private void displayNextGif(Resources res, GifImageView gifImageView, TextView activityNumber, TextView activityText, Button startActivityButton, TextView disclaimerText) throws IOException {
+    private void displayNextGif(Resources res, GifImageView gifImageView, TextView activityText, Button startActivityButton, TextView disclaimerText) throws IOException {
         System.out.println("Next GIF");
         String gifImageName = roomActivities.get(currentActivity).gifImageName;
         String activityName = roomActivities.get(currentActivity).activityName;
@@ -298,12 +297,8 @@ public class Overview extends AppCompatActivity {
         // Set the TransitionDrawable to the GifImageView
         gifImageView.setImageDrawable(crossFadeDrawable);
 
-
-
-        String activityTotal = Integer.toString(currentActivity + 1) + "/" + Integer.toString(roomActivities.size());
-        activityNumber.setText(activityTotal);
-
-        activityText.setText("Activity " + (currentActivity + 1) + ": " + activityName);
+        String activityTotal ="Activity " + (currentActivity + 1) + " / " + Integer.toString(roomActivities.size()) + ": \n" + activityName;
+        activityText.setText(activityTotal);
 
 
         currentActivity++;
@@ -317,7 +312,7 @@ public class Overview extends AppCompatActivity {
             @Override
             public void onAnimationCompleted(int loopNumber) {
                 try {
-                    displayNextGif(res, gifImageView, activityNumber, activityText, startActivityButton, disclaimerText);
+                    displayNextGif(res, gifImageView, activityText, startActivityButton, disclaimerText);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
