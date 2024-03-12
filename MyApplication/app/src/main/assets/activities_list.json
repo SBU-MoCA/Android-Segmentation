@@ -241,7 +241,7 @@
     "startInstructions": [
       "All activities in the bathroom should be simulated. Please do not take off your clothes, turn on any water or use the toilet.",
       "Press 'Start' before you begin the activity.",
-      "Please walk to the bathroom and simulate removing your clothes to prepare for shower."
+      "Please walk to the bathroom and simulate removing your top and bottom clothes to prepare for shower."
     ],
     "nextInstructions": [
       "Press 'Next' when you are ready to go into the shower stall."
@@ -273,7 +273,7 @@
     "activityName": "Shower simulation",
     "startInstructions": [
       "Press ‘Start’ before you begin the activity.",
-      "Simulate the motion of showering for 30 seconds."
+      "Simulate the motion of showering your head and upper body for 30 seconds."
     ],
     "nextInstructions": [
       "The app will alert you after 30 seconds have elapsed.",
