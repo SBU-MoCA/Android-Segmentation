@@ -197,7 +197,7 @@
     "audioNextFileName": "couch_video_end",
     "gifFileName": "couch_video",
     "alertUser": true,
-    "alertAfter": 30,
+    "alertAfter": 35,
     "alertUserSuccessText": "Activity Complete. Please press 'Next'."
   },
   "13": {
@@ -216,7 +216,7 @@
     "audioNextFileName": "couch_magazine_end",
     "gifFileName": "couch_magazine",
     "alertUser": true,
-    "alertAfter": 30,
+    "alertAfter": 35,
     "alertUserSuccessText": "Activity Complete. Place the magazine back to the table and press 'Next'."
   },
   "14": {
@@ -284,7 +284,7 @@
     "audioNextFileName": "bathroom_shower_end",
     "gifFileName": "bathroom_shower",
     "alertUser": true,
-    "alertAfter": 30,
+    "alertAfter": 35,
     "alertUserSuccessText": "Activity Complete. Please press 'Next'."
   },
   "18": {
@@ -305,7 +305,7 @@
     "audioNextFileName": "bathroom_brush_end",
     "gifFileName": "bathroom_brush",
     "alertUser": true,
-    "alertAfter": 30,
+    "alertAfter": 35,
     "alertUserSuccessText": "Activity Complete. Please press 'Next'."
   },
   "19": {
@@ -323,7 +323,7 @@
     "audioNextFileName": "bathroom_wash_face_end",
     "gifFileName": "bathroom_wash_face",
     "alertUser": true,
-    "alertAfter": 30,
+    "alertAfter": 35,
     "alertUserSuccessText": "Activity Complete. Please press 'Next'."
   },
   "20": {
@@ -360,7 +360,7 @@
     "audioNextFileName": "bathroom_wash_hand_end",
     "gifFileName": "bathroom_wash_hand",
     "alertUser": true,
-    "alertAfter": 30,
+    "alertAfter": 35,
     "alertUserSuccessText": "Activity Complete. Please press 'Next'."
   },
   "22": {
@@ -493,7 +493,7 @@
     "audioNextFileName": "bedroom_lie_ceiling_end",
     "gifFileName": "bedroom_lie_ceiling",
     "alertUser": true,
-    "alertAfter": 20,
+    "alertAfter": 25,
     "alertUserSuccessText": "Activity Complete. Please press 'Next' to move onto the next position."
   },
   "30": {
@@ -511,7 +511,7 @@
     "audioNextFileName": "bedroom_lie_side_end",
     "gifFileName": "bedroom_lie_side",
     "alertUser": true,
-    "alertAfter": 20,
+    "alertAfter": 25,
     "alertUserSuccessText": "Activity Complete. Please press 'Next' to move onto the next posture.",
     "optionalActivity": true
   },
@@ -530,7 +530,7 @@
     "audioNextFileName": "bedroom_lie_stomach_end",
     "gifFileName": "bedroom_lie_stomach",
     "alertUser": true,
-    "alertAfter": 20,
+    "alertAfter": 25,
     "alertUserSuccessText": "Activity Complete. Please press 'Next' to move onto the next posture."
   },
   "32": {
@@ -548,7 +548,7 @@
     "audioNextFileName": "bedroom_get_up_end",
     "gifFileName": "bedroom_get_up",
     "alertUser": true,
-    "alertAfter": 15,
+    "alertAfter": 20,
     "alertUserSuccessText": "Activity Complete. Please press 'Next' to move onto the next posture."
   },
   "33": {
@@ -668,7 +668,7 @@
     "audioNextFileName": "sink_wash_dish_end",
     "gifFileName": "sink_wash_dish",
     "alertUser": true,
-    "alertAfter": 30,
+    "alertAfter": 35,
     "alertUserSuccessText": "Activity Complete. Please press 'Next' to move onto the next activity."
   },
   "40": {
