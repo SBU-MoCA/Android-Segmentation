@@ -7,6 +7,8 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -38,8 +40,9 @@ public class CustomDialog extends AppCompatDialogFragment {
         View promptView = layoutInflater.inflate(R.layout.custom_dialog, null);
         AlertDialog.Builder alertBuilder = new AlertDialog.Builder(getActivity(), R.style.AlertDialog);
         AlertDialog builder = alertBuilder.create();
+        // Make the dialog full screen
+        builder.getWindow().addFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
         builder.setView(promptView);
-
         positiveBtn = (Button) promptView.findViewById(R.id.alertPositiveButton);
         negativeBtn = (Button) promptView.findViewById(R.id.alertNegativeButton);
         alertTextView = (TextView) promptView.findViewById(R.id.alertTextMessage);

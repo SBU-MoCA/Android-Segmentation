@@ -1,9 +1,11 @@
 package com.example.myapplication;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -12,11 +14,14 @@ import android.os.Handler;
 import android.content.Intent;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -43,6 +48,7 @@ import pl.droidsonroids.gif.GifImageView;
 
 public class Instructions extends AppCompatActivity implements CustomDialog.CustomDialogListener, TimedActivityAlert.TimedAlertListener, StartAlert.StartAlertListener {
     public Instructions() throws IOException {}
+    private boolean isAppInBackground = false;
     Helper helperClass = new Helper();
     String FINAL_ACTIVITY_NUMBER = "39"; // TODO: Update when number of activity changes.
     private JavaAppendFileWriter mAppendFileWriter = new JavaAppendFileWriter();
@@ -84,6 +90,9 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
     String startInstructionSet = "";
     String nextInstructionSet = "";
     Boolean showOptionalActivities = true;
+    Boolean turnInBed = true;
+    Boolean takeOffShoes = true;
+    Boolean realFood = true;
 
     Integer roomActivitySize;
     Integer currentActivity;
@@ -95,6 +104,12 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_instructions);
+        View decorView = getWindow().getDecorView();
+        int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+        decorView.setSystemUiVisibility(uiOptions);
+
         Intent intent = getIntent();
         Resources res = context.getResources();
         Button playButton = (Button) findViewById(R.id.play_audio);
@@ -113,7 +128,9 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         String fileLocation = intent.getStringExtra("fileLocation");
         boolean restartedActivity = intent.getBooleanExtra("restartActivity", false);
         alertToStart = intent.getBooleanExtra("alertToStart", true);
-        showOptionalActivities = intent.getBooleanExtra("showOptionalActivities", true);
+        turnInBed = intent.getBooleanExtra("turnInBed", true);
+        realFood = intent.getBooleanExtra("realFood", true);
+        takeOffShoes = intent.getBooleanExtra("takeOffShoes", true);
         roomActivitySize =  intent.getIntExtra("roomActivitySize", 0);
         currentActivity = intent.getIntExtra("currentActivity", 1);
         if (restartedActivity) {
@@ -270,6 +287,44 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
             });
         }
 
+    }
+
+
+    private void showExitConfirmationDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        // Set the message and negative button
+        builder.setMessage("Do you want to exit the app?");
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) { }
+        });
+
+        // Set the positive button with a custom color
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                moveTaskToBack(true);
+            }
+        });
+
+        // Get the AlertDialog and set a custom style to change the button color
+        AlertDialog alertDialog = builder.create();
+        alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialog) {
+                Button positiveButton = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
+                positiveButton.setTextColor(getResources().getColor(R.color.primary_button));
+                Button negativeButton = alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE);
+                negativeButton.setTextColor(getResources().getColor(R.color.mild_red));
+            }
+        });
+
+        alertDialog.show();
+    }
+    @Override
+    public void onBackPressed() {
+       showExitConfirmationDialog();
     }
 
     public void startCountDownTimer(Integer time) {
@@ -437,20 +492,42 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
             intent = new Intent(this, Instructions.class);
         }
 
-
-        boolean contains = false;
-        if (!showOptionalActivities) {
+        // check if next activity is the activity to skip if the turnInBed switch if off.
+        if (!turnInBed) {
+            String tempActivityId = activityId;
             // skip the next activity if it's an optional activity
-            for (int element : helperClass.OPTIONAL_ACTIVITY_LIST) {
-                if (element == (Integer.parseInt(activityId, 10) + 1)) {
-                    contains = true;
-                    break;
+            for (int element : helperClass.TURN_IN_BED_ACTIVITY_LIST) {
+                if (element == (Integer.parseInt(tempActivityId, 10) + 1)) {
+                    tempActivityId = Integer.toString((Integer.parseInt(tempActivityId, 10) + 1));
                 }
             }
-            if (contains) {
+            activityId = tempActivityId;
+        }
+
+        // check if next activity is the activity to skip if takeOffShoes switch is off
+        if (!takeOffShoes) {
+            if (helperClass.TAKE_OFF_SHOES_ACTIVITY == ((Integer.parseInt(activityId, 10) + 1))) {
                 activityId = Integer.toString((Integer.parseInt(activityId, 10) + 1));
             }
         }
+
+        // Filter whether to show real or fake food activity.
+        String tempActivityId = activityId;
+        // change the activities
+        for (int element : helperClass.FOOD_ACTIVITIES_CHECK) {
+            System.out.println("ACTIVITY: " + activityId);
+            if (element == (Integer.parseInt(tempActivityId, 10))) {
+                int incrementor = 0;
+                if (realFood) {
+                    incrementor = 1;
+                }
+                tempActivityId = Integer.toString((Integer.parseInt(tempActivityId, 10) + incrementor));
+
+                System.out.println("NEW ACTIVITY: " + tempActivityId + realFood);
+                break;
+            }
+        }
+        activityId = tempActivityId;
         intent.putExtra("subjectId", subjectId);
         intent.putExtra("jsonData", jsonObject);
         intent.putExtra("activityId", Integer.toString((Integer.parseInt(activityId) + 1)));
@@ -458,7 +535,9 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         intent.putExtra("alertToStart", alertToStart);
         intent.putExtra("roomActivitySize", roomActivitySize);
         intent.putExtra("currentActivity", currentActivity + 1);
-        intent.putExtra("showOptionalActivities", showOptionalActivities);
+        intent.putExtra("turnInBed", turnInBed);
+        intent.putExtra("takeOffShoes", takeOffShoes);
+        intent.putExtra("realFood", realFood);
         releaseAllMediaPlayers();
         startActivity(intent);
     }
@@ -506,7 +585,9 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         intent.putExtra("alertToStart", alertToStart);
         intent.putExtra("roomActivitySize", roomActivitySize);
         intent.putExtra("currentActivity", currentActivity);
-        intent.putExtra("showOptionalActivities", showOptionalActivities);
+        intent.putExtra("turnInBed", turnInBed);
+        intent.putExtra("takeOffShoes", takeOffShoes);
+        intent.putExtra("realFood", realFood);
         releaseAllMediaPlayers();
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
@@ -525,7 +606,9 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
         intent.putExtra("alertToStart", alertToStart);
         intent.putExtra("roomActivitySize", roomActivitySize);
         intent.putExtra("currentActivity", currentActivity + 1);
-        intent.putExtra("showOptionalActivities", showOptionalActivities);
+        intent.putExtra("turnInBed", turnInBed);
+        intent.putExtra("takeOffShoes", takeOffShoes);
+        intent.putExtra("realFood", realFood);
         releaseAllMediaPlayers();
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);

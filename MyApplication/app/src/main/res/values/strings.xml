@@ -1,4 +1,7 @@
 <resources>
-    <string name="app_name">Home Of the future</string>
+    <string name="app_name">Home of the future</string>
     <string name="the_home_page_image">The home page image</string>
+    <string name="toggle_shoes_activity">Take off shoes</string>
+    <string name="toggle_bed_activity">Turn in bed</string>
+    <string name="toggle_food_activity">Real food</string>
 </resources>

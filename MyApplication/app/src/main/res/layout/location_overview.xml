@@ -21,18 +21,6 @@
         android:layout_centerInParent="true"
         app:srcCompat="@drawable/back_arrow_foreground" />
 
-    <TextView
-        android:id="@+id/act_number"
-        android:layout_width="250dp"
-        android:layout_height="35dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="55dp"
-        android:layout_marginBottom="85dp"
-        android:textAlignment="center"
-        android:textColor="#000000"
-        android:textSize="26sp" />
-
     <Button
         android:id="@+id/start_room"
         android:layout_width="337dp"
@@ -44,59 +32,56 @@
         android:gravity="center"
         android:text="Ready"
         android:textColor="@color/white"
-        android:textSize="18dp"
-        />
+        android:textSize="18dp" />
 
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/overview_gif"
         android:layout_width="wrap_content"
-        android:layout_height="347dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
         android:layout_marginStart="42dp"
-        android:layout_marginTop="133dp"
+        android:layout_marginTop="140dp"
         android:layout_marginEnd="40dp"
-        android:layout_marginBottom="123dp"
+        android:layout_marginBottom="185dp"
         android:scaleType="fitXY" />
 
     <TextView
         android:id="@+id/room_title"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
+        android:layout_height="35dp"
         android:textAlignment="center"
         android:textColor="@color/background_white"
         android:background="@color/primary_color"
-        android:textSize="24sp" />
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/disclaimer"
         android:layout_width="407dp"
-        android:layout_height="56dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="580dp"
-        android:layout_marginEnd="12dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="30dp"
         android:lineSpacingMultiplier="0.7"
         android:textColor="@color/primary_color"
-        android:textSize="22sp" />
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/activity_name"
         android:layout_width="412dp"
-        android:layout_height="61dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="0dp"
-        android:layout_marginTop="66dp"
+        android:layout_marginTop="45dp"
         android:lineSpacingMultiplier="0.8"
         android:textAlignment="center"
-        android:textColor="@color/primary_button"
-        android:textSize="24sp" />
+        android:textColor="@color/black"
+        android:textSize="27sp" />
 
 </RelativeLayout>

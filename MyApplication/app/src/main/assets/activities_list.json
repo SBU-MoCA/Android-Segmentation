@@ -32,7 +32,7 @@
     "alertAfter": 0
    },
   "3": {
-    "activityName": "Take food out from fridge",
+    "activityName": "Take artificial food out from fridge",
     "startInstructions": [
       "Press ‘Start’ before you begin the activity.",
       "Please take out the artificial sandwich from the refrigerator.",
@@ -49,6 +49,23 @@
     "alertAfter": 0
   },
   "4": {
+    "activityName": "Take food out from fridge",
+    "startInstructions": [
+      "Press ‘Start’ before you begin the activity.",
+      "Please take out the protein bar from the refrigerator.",
+      "Unpack and place the bar on the plate."
+    ],
+    "nextInstructions": [
+      "Press ‘Next’ when you have placed the bar on the plate."
+    ],
+    "roomName": "KITCHEN",
+    "audioStartFileName": "kitchen_snack_start",
+    "audioNextFileName": "kitchen_snack_end",
+    "gifFileName": "kitchen_snack",
+    "alertUser": false,
+    "alertAfter": 0
+  },
+  "5": {
     "activityName": "Take cup out of cabinet",
     "startInstructions": [
       "Press ‘Start’ before you begin the activity.",
@@ -64,7 +81,7 @@
     "alertUser": false,
     "alertAfter": 0
   },
-  "5": {
+  "6": {
     "activityName": "Take drink out of fridge",
     "startInstructions": [
       "Press ‘Start’ before you begin the activity.",
@@ -80,7 +97,7 @@
     "alertUser": false,
     "alertAfter": 0
   },
-  "6": {
+  "7": {
     "activityName": "Walk to table and simulate eating",
     "startInstructions": [
       "Press ‘Start’ before you begin the activity.",
@@ -97,7 +114,24 @@
     "alertUser": false,
     "alertAfter": 0
   },
-  "7": {
+  "8": {
+    "activityName": "Walk to table and eat the food",
+    "startInstructions": [
+      "Press ‘Start’ before you begin the activity.",
+      "Take the plate and cup to the dining table and be seated.",
+      "Enjoy your food and drink"
+    ],
+    "nextInstructions": [
+      "Press ‘Next’ when you are done."
+    ],
+    "roomName": "KITCHEN",
+    "audioStartFileName": "kitchen_eat_drink_start",
+    "audioNextFileName": "kitchen_eat_drink_end",
+    "gifFileName": "kitchen_eat_drink",
+    "alertUser": false,
+    "alertAfter": 0
+  },
+  "9": {
     "activityName": "Place the items on the sink",
     "startInstructions": [
       "Press ‘Start’ before you begin the activity.",
@@ -114,7 +148,7 @@
     "alertUser": false,
     "alertAfter": 0
   },
-  "8": {
+  "10": {
     "activityName": "Walk over to the couch",
     "startInstructions": [
       "Press ‘Start’ before you begin the activity.",
@@ -130,7 +164,7 @@
     "alertUser": false,
     "alertAfter": 0
   },
-  "9": {
+  "11": {
     "activityName": "Place the Masimo device in your fingertips",
     "startInstructions": [
       "Press ‘Start’ before you begin the activity.",
@@ -147,7 +181,7 @@
     "alertUser": false,
     "alertAfter": 0
   },
-  "10": {
+  "12": {
     "activityName": "Watch the video for 30 seconds",
     "startInstructions": [
       "Press ‘Start’ before you begin the activity.",
@@ -163,10 +197,10 @@
     "audioNextFileName": "couch_video_end",
     "gifFileName": "couch_video",
     "alertUser": true,
-    "alertAfter": 30,
+    "alertAfter": 35,
     "alertUserSuccessText": "Activity Complete. Please press 'Next'."
   },
-  "11": {
+  "13": {
     "activityName": "Read magazine for 30 seconds",
     "startInstructions": [
       "Press ‘Start’ before you begin the activity.",
@@ -182,10 +216,10 @@
     "audioNextFileName": "couch_magazine_end",
     "gifFileName": "couch_magazine",
     "alertUser": true,
-    "alertAfter": 30,
+    "alertAfter": 35,
     "alertUserSuccessText": "Activity Complete. Place the magazine back to the table and press 'Next'."
   },
-  "12": {
+  "14": {
     "activityName": "Remove the Masimo device",
     "startInstructions": [
       "Press ‘Start’ before you begin the activity.",
@@ -202,12 +236,12 @@
     "alertUser": false,
     "alertAfter": 0
   },
-  "13": {
+  "15": {
     "activityName": "Walk to the bathroom",
     "startInstructions": [
-      "All activities in the bathroom should be simulated. Please do no take off your clothes, turn on any water or use the toilet.",
+      "All activities in the bathroom should be simulated. Please do not take off your clothes, turn on any water or use the toilet.",
       "Press 'Start' before you begin the activity.",
-      "Please walk to the bathroom and simulate removing your clothes to prepare for shower."
+      "Please walk to the bathroom and simulate removing your top and bottom clothes to prepare for shower."
     ],
     "nextInstructions": [
       "Press 'Next' when you are ready to go into the shower stall."
@@ -219,7 +253,7 @@
     "alertUser": false,
     "alertAfter": 0
   },
-  "14": {
+  "16": {
     "activityName": "Enter shower stall",
     "startInstructions": [
       "Press 'Start' before you begin the activity.",
@@ -235,11 +269,11 @@
     "gifFileName": "bathroom_shower_stall",
     "alertAfter": 0
   },
-  "15": {
+  "17": {
     "activityName": "Shower simulation",
     "startInstructions": [
       "Press ‘Start’ before you begin the activity.",
-      "Simulate the motion of showering for 30 seconds."
+      "Simulate the motion of showering your head and upper body for 30 seconds."
     ],
     "nextInstructions": [
       "The app will alert you after 30 seconds have elapsed.",
@@ -250,10 +284,10 @@
     "audioNextFileName": "bathroom_shower_end",
     "gifFileName": "bathroom_shower",
     "alertUser": true,
-    "alertAfter": 30,
+    "alertAfter": 35,
     "alertUserSuccessText": "Activity Complete. Please press 'Next'."
   },
-  "16": {
+  "18": {
     "activityName": "Brush teeth",
     "startInstructions": [
       "Press ‘Start’ before you begin the activity.",
@@ -262,7 +296,7 @@
     ],
     "nextInstructions": [
       "Continue to simulate the motion of brushing until the app alerts you with a sound and a visual alert after 30 seconds have elapsed.",
-      "Replace your toothbrush in the cup",
+      "Re-place your toothbrush in the cup.",
       "Press ‘Next’ to move on to the next activity when you hear or see the alert in the app."
 
     ],
@@ -271,10 +305,10 @@
     "audioNextFileName": "bathroom_brush_end",
     "gifFileName": "bathroom_brush",
     "alertUser": true,
-    "alertAfter": 30,
+    "alertAfter": 35,
     "alertUserSuccessText": "Activity Complete. Please press 'Next'."
   },
-  "17": {
+  "19": {
     "activityName": "Wash face",
     "startInstructions": [
       "Press ‘Start’ before you begin the activity.",
@@ -289,10 +323,10 @@
     "audioNextFileName": "bathroom_wash_face_end",
     "gifFileName": "bathroom_wash_face",
     "alertUser": true,
-    "alertAfter": 30,
+    "alertAfter": 35,
     "alertUserSuccessText": "Activity Complete. Please press 'Next'."
   },
-  "18": {
+  "20": {
     "activityName": "Simulate using toilet",
     "startInstructions": [
       "Press ‘Start’ before you begin the activity.",
@@ -310,7 +344,7 @@
     "alertUser": false,
     "alertAfter": 0
   },
-  "19": {
+  "21": {
     "activityName": "Washing hands",
     "startInstructions": [
       "Press ‘Start’ before you begin the activity.",
@@ -326,10 +360,10 @@
     "audioNextFileName": "bathroom_wash_hand_end",
     "gifFileName": "bathroom_wash_hand",
     "alertUser": true,
-    "alertAfter": 30,
+    "alertAfter": 35,
     "alertUserSuccessText": "Activity Complete. Please press 'Next'."
   },
-  "20": {
+  "22": {
     "activityName": "Review next set of activities",
     "startInstructions": [
       "Press ‘Start’ before you begin the activity.",
@@ -345,7 +379,7 @@
     "gifFileName": "bathroom_review_activity",
     "alertAfter": 0
   },
-  "21": {
+  "23": {
     "activityName": "Walk to the bedroom",
     "startInstructions": [
       "Press ‘Start’ before you begin the activity.",
@@ -361,7 +395,7 @@
     "alertUser": false,
     "alertAfter": 0
   },
-  "22": {
+  "24": {
     "activityName": "Hang towel in cabinet",
     "startInstructions": [
       "Press ‘Start’ before you begin the activity.",
@@ -378,7 +412,7 @@
     "alertUser": false,
     "alertAfter": 0
   },
-  "23": {
+  "25": {
     "activityName": "Get another towel",
     "startInstructions": [
       "Press ‘Start’ before you begin the activity.",
@@ -394,7 +428,7 @@
     "alertUser": false,
     "alertAfter": 0
   },
-  "24": {
+  "26": {
     "activityName": "Fold and place it in the cabinet",
     "startInstructions": [
       "Press ‘Start’ before you begin the activity.",
@@ -411,7 +445,7 @@
     "alertUser": false,
     "alertAfter": 0
   },
-  "25": {
+  "27": {
     "activityName": "Remove shoes",
     "startInstructions": [
       "Press ‘Start’ before you begin the activity.",
@@ -427,7 +461,7 @@
     "alertUser": false,
     "alertAfter": 0
   },
-  "26": {
+  "28": {
     "activityName": "Put on the Masimo Device",
     "startInstructions": [
       "Press ‘Start’ before you begin the activity.",
@@ -444,7 +478,7 @@
     "alertUser": false,
     "alertAfter": 0
   },
-  "27": {
+  "29": {
     "activityName": "Lie down on the bed facing the ceiling",
     "startInstructions": [
       "Press ‘Start’ before you begin the activity",
@@ -459,10 +493,10 @@
     "audioNextFileName": "bedroom_lie_ceiling_end",
     "gifFileName": "bedroom_lie_ceiling",
     "alertUser": true,
-    "alertAfter": 20,
+    "alertAfter": 25,
     "alertUserSuccessText": "Activity Complete. Please press 'Next' to move onto the next position."
   },
-  "28": {
+  "30": {
     "activityName": "Lie down on the bed on your side",
     "startInstructions": [
       "Press ‘Start’ before you begin the activity.",
@@ -477,11 +511,11 @@
     "audioNextFileName": "bedroom_lie_side_end",
     "gifFileName": "bedroom_lie_side",
     "alertUser": true,
-    "alertAfter": 20,
+    "alertAfter": 25,
     "alertUserSuccessText": "Activity Complete. Please press 'Next' to move onto the next posture.",
     "optionalActivity": true
   },
-  "29": {
+  "31": {
     "activityName": "Lie down on the bed on your stomach",
     "startInstructions": [
       "Press 'Start' before you begin the activity.",
@@ -496,10 +530,10 @@
     "audioNextFileName": "bedroom_lie_stomach_end",
     "gifFileName": "bedroom_lie_stomach",
     "alertUser": true,
-    "alertAfter": 20,
+    "alertAfter": 25,
     "alertUserSuccessText": "Activity Complete. Please press 'Next' to move onto the next posture."
   },
-  "30": {
+  "32": {
     "activityName": "Get up and stay seated",
     "startInstructions": [
       "Press ‘Start’ before you begin the activity.",
@@ -514,10 +548,10 @@
     "audioNextFileName": "bedroom_get_up_end",
     "gifFileName": "bedroom_get_up",
     "alertUser": true,
-    "alertAfter": 15,
+    "alertAfter": 20,
     "alertUserSuccessText": "Activity Complete. Please press 'Next' to move onto the next posture."
   },
-  "31": {
+  "33": {
     "activityName": "Remove the device and wear your shoes",
     "startInstructions": [
       "Press ‘Start’ before you begin the activity.",
@@ -535,7 +569,7 @@
     "alertUser": false,
     "alertAfter": 0
   },
-  "32": {
+  "34": {
     "activityName": "Walk to the desk outside bedroom",
     "startInstructions": [
       "Press ‘Start’ before you begin the activity.",
@@ -551,7 +585,7 @@
     "alertUser": false,
     "alertAfter": 0
   },
-  "33": {
+  "35": {
     "activityName": "Put on Masimo device",
     "startInstructions": [
       "Press ‘Start’ before you begin the activity.",
@@ -568,7 +602,7 @@
     "alertUser": false,
     "alertAfter": 0
   },
-  "34": {
+  "36": {
     "activityName": "Retype the phrase on the laptop",
     "startInstructions": [
       "Press ‘Start’ before you begin the activity.",
@@ -584,7 +618,7 @@
     "alertUser": false,
     "alertAfter": 0
   },
-  "35": {
+  "37": {
     "activityName": "Remove the Masimo device",
     "startInstructions": [
       "Press ‘Start’ before you begin the activity.",
@@ -601,7 +635,7 @@
     "alertUser": false,
     "alertAfter": 0
   },
-  "36": {
+  "38": {
     "activityName": "Walk to kitchen sink",
     "startInstructions": [
       "Press ‘Start’ before you begin the activity.",
@@ -617,7 +651,7 @@
     "alertUser": false,
     "alertAfter": 0
   },
-  "37": {
+  "39": {
     "activityName": "Simulate washing dishes",
     "startInstructions": [
       "Press ‘Start’ before you begin the activity.",
@@ -634,10 +668,10 @@
     "audioNextFileName": "sink_wash_dish_end",
     "gifFileName": "sink_wash_dish",
     "alertUser": true,
-    "alertAfter": 30,
+    "alertAfter": 35,
     "alertUserSuccessText": "Activity Complete. Please press 'Next' to move onto the next activity."
   },
-  "38": {
+  "40": {
     "activityName": "Exit the apartment",
     "startInstructions": [
       "Press ‘Start’ before you begin the activity.",
@@ -654,7 +688,7 @@
     "alertUser": false,
     "alertAfter": 0
   },
-  "39": {
+  "41": {
     "activityName": "Thank You!",
     "startInstructions": [
       "We thank you for your participation.",

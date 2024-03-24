@@ -15,6 +15,8 @@ import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -59,6 +61,8 @@ public class Overview extends AppCompatActivity {
     public Overview() throws IOException {
 
     }
+
+
     Context context = this;
     Helper helperClass = new Helper();
 
@@ -68,7 +72,11 @@ public class Overview extends AppCompatActivity {
     JSONObject jsonObject;
 
     Boolean alertToStart;
-    Boolean showOptionalActivities;
+    Boolean turnInBed;
+
+    Boolean takeOffShoes;
+
+    Boolean realFood;
     ArrayList<ActivityResource> roomActivities = new ArrayList<>();
     int currentActivity = 0;
     private Handler handler;
@@ -81,11 +89,16 @@ public class Overview extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.location_overview);
+        // Enable immersive mode
+        View decorView = getWindow().getDecorView();
+        int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+        decorView.setSystemUiVisibility(uiOptions);
         Intent intent = getIntent();
         Resources res = context.getResources();
 
         TextView roomTitle = (TextView) findViewById(R.id.room_title);
-        TextView activityNumber = (TextView) findViewById(R.id.act_number);
         TextView activityText = (TextView) findViewById(R.id.activity_name);
         Button startRoomButton = (Button) findViewById(R.id.start_room);
         startRoomButton.setVisibility(View.INVISIBLE);
@@ -100,7 +113,9 @@ public class Overview extends AppCompatActivity {
         activityId = intent.getStringExtra("activityId");
         fileLocation = intent.getStringExtra("fileLocation");
         alertToStart = intent.getBooleanExtra("alertToStart", true);
-        showOptionalActivities = intent.getBooleanExtra("showOptionalActivities", true);
+        turnInBed = intent.getBooleanExtra("turnInBed", true);
+        takeOffShoes = intent.getBooleanExtra("takeOffShoes", true);
+        realFood = intent.getBooleanExtra("realFood", true);
 
         // getting jsonString passed from previous activity
         try {
@@ -122,9 +137,9 @@ public class Overview extends AppCompatActivity {
         }
 
         //Set title with the currently found room
-        String titleString = "Overview of activities at: " + roomName + "  " + helperClass.roomMapping.get(roomName) + " / " + helperClass.roomMapping.size();
+        String titleString = roomName + "  " + helperClass.roomMapping.get(roomName) + " / " + helperClass.roomMapping.size();
         roomTitle.setText(titleString);
-        String disclaimerString = "No need to remember. App will guide through each activity.";
+        String disclaimerString = "This is an overview screen. No need to remember these activities. The app will guide you through each activity in the next step. Scroll through the activities once using the arrow buttons and press 'Ready'.";
         disclaimerText.setText(disclaimerString);
 
         //Parse json to find all the rooms that match the current room
@@ -146,13 +161,23 @@ public class Overview extends AppCompatActivity {
                 break;
             }
             boolean contains = false;
-            if (!showOptionalActivities) {
+            if (!takeOffShoes && i == helperClass.TAKE_OFF_SHOES_ACTIVITY) {
+                contains = true;
+            } else if (!turnInBed) {
                 // skip the next activity if it's an optional activity
-                for (int element : helperClass.OPTIONAL_ACTIVITY_LIST) {
+                for (int element : helperClass.TURN_IN_BED_ACTIVITY_LIST) {
                     if (element == i) {
                         contains = true;
                         break;
                     }
+                }
+            }
+            int[] list = (realFood) ? helperClass.FAKE_FOOD_ACTIVITY_LIST : helperClass.REAL_FOOD_ACTIVITY_LIST;
+            // skip the next activity if it's an optional activity
+            for (int element : list) {
+                if (element == i) {
+                    contains = true;
+                    break;
                 }
             }
             if (!contains) {
@@ -179,7 +204,7 @@ public class Overview extends AppCompatActivity {
         });
 
         try {
-            displayNextGif(res, gifImageView, activityNumber, activityText, startRoomButton, disclaimerText);
+            displayNextGif(res, gifImageView, activityText, startRoomButton, disclaimerText);
         } catch (IOException e) {
             System.out.println("Error in calling displayNextGif: " + e);
             throw new RuntimeException(e);
@@ -194,7 +219,7 @@ public class Overview extends AppCompatActivity {
                     currentActivity = 0;
                 }
                 try {
-                    displayNextGif(res, gifImageView, activityNumber, activityText, startRoomButton, disclaimerText);
+                    displayNextGif(res, gifImageView, activityText, startRoomButton, disclaimerText);
                 } catch (IOException e) {
                     System.out.println("Error in calling displayNextGif prevGifButton: " + e);
                     throw new RuntimeException(e);
@@ -210,7 +235,7 @@ public class Overview extends AppCompatActivity {
                     currentActivity = 0;
                 }
                 try {
-                    displayNextGif(res, gifImageView, activityNumber, activityText, startRoomButton, disclaimerText);
+                    displayNextGif(res, gifImageView, activityText, startRoomButton, disclaimerText);
                 } catch (IOException e) {
                     System.out.println("Error in calling displayNextGif nextGifButton: " + e);
                     throw new RuntimeException(e);
@@ -252,7 +277,7 @@ public class Overview extends AppCompatActivity {
         }
     }
 
-    private void displayNextGif(Resources res, GifImageView gifImageView, TextView activityNumber, TextView activityText, Button startActivityButton, TextView disclaimerText) throws IOException {
+    private void displayNextGif(Resources res, GifImageView gifImageView, TextView activityText, Button startActivityButton, TextView disclaimerText) throws IOException {
         System.out.println("Next GIF");
         String gifImageName = roomActivities.get(currentActivity).gifImageName;
         String activityName = roomActivities.get(currentActivity).activityName;
@@ -272,12 +297,8 @@ public class Overview extends AppCompatActivity {
         // Set the TransitionDrawable to the GifImageView
         gifImageView.setImageDrawable(crossFadeDrawable);
 
-
-
-        String activityTotal = Integer.toString(currentActivity + 1) + "/" + Integer.toString(roomActivities.size());
-        activityNumber.setText(activityTotal);
-
-        activityText.setText("Activity " + (currentActivity + 1) + ": " + activityName);
+        String activityTotal ="Activity " + (currentActivity + 1) + " / " + Integer.toString(roomActivities.size()) + ": \n" + activityName;
+        activityText.setText(activityTotal);
 
 
         currentActivity++;
@@ -291,7 +312,7 @@ public class Overview extends AppCompatActivity {
             @Override
             public void onAnimationCompleted(int loopNumber) {
                 try {
-                    displayNextGif(res, gifImageView, activityNumber, activityText, startActivityButton, disclaimerText);
+                    displayNextGif(res, gifImageView, activityText, startActivityButton, disclaimerText);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -322,7 +343,9 @@ public class Overview extends AppCompatActivity {
         intent.putExtra("fileLocation", fileLocation);
         intent.putExtra("alertToStart", alertToStart);
         intent.putExtra("roomActivitySize", roomActivities.size());
-        intent.putExtra("showOptionalActivities", showOptionalActivities);
+        intent.putExtra("turnInBed", turnInBed);
+        intent.putExtra("takeOffShoes", takeOffShoes);
+        intent.putExtra("realFood", realFood);
         removeTimer();
         startActivity(intent);
     }

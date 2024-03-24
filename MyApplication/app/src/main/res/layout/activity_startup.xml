@@ -5,30 +5,70 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_white"
-    tools:context=".StartupActivity">
+    tools:context=".StartupActivity"
+    android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
 
     <ImageView
         android:id="@+id/startupImage"
         android:layout_width="407dp"
-        android:layout_height="391dp"
+        android:layout_height="340dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_centerInParent="true"
         android:layout_marginStart="2dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="2dp"
+        android:contentDescription="@string/the_home_page_image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:srcCompat="@drawable/startup_svg"
-        android:contentDescription="@string/the_home_page_image" />
+        app:srcCompat="@drawable/startup_svg" />
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/alertToStartToggle"
+        android:layout_width="140dp"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="350dp"
+        android:checked="true"
+        android:text="Alert to Start" />
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/turnInBedToggle"
+        android:layout_width="180dp"
+        android:layout_height="40dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="350dp"
+        android:layout_marginEnd="15dp"
+        android:checked="true"
+        android:text="Turn in bed" />
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/foodActivityToggle"
+        android:layout_width="140dp"
+        android:layout_height="40dp"
+
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="390dp"
+        android:checked="true"
+        android:text="Real Food" />
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/takeOutShoesToggle"
+        android:layout_width="180dp"
+        android:layout_height="40dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="390dp"
+        android:layout_marginEnd="15dp"
+        android:checked="true"
+        android:text="Take off shoes" />
+
     <Button
         android:id="@+id/letsStartButton"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
-        android:layout_marginBottom="62dp"
+        android:layout_marginBottom="45dp"
         android:background="@drawable/custom_button"
         android:gravity="center"
         android:text="Get Started"
@@ -37,11 +77,11 @@
 
     <EditText
         android:id="@+id/inputPatientId"
-        android:layout_width="300dp"
-        android:layout_height="53dp"
+        android:layout_width="295dp"
+        android:layout_height="63dp"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
-        android:layout_marginBottom="121dp"
+        android:layout_marginBottom="105dp"
         android:background="@drawable/custom_text_input"
         android:ems="10"
         android:hint="ENTER SUBJECT ID"
@@ -49,7 +89,7 @@
         android:textAlignment="center"
         android:textColor="@color/primary_button"
         android:textColorHint="@color/primary_button"
-        android:textSize="16sp"/>
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/startupInstruction"
@@ -61,7 +101,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginStart="37dp"
         android:layout_marginEnd="68dp"
-        android:layout_marginBottom="221dp"
+        android:layout_marginBottom="200dp"
         android:text="LET'S GET STARTED."
         android:textColor="@color/primary_button"
         android:textSize="24dp"
@@ -77,33 +117,11 @@
         android:layout_centerHorizontal="true"
         android:layout_marginStart="38dp"
         android:layout_marginEnd="67dp"
-        android:layout_marginBottom="194dp"
+        android:layout_marginBottom="180dp"
         android:text="Enter the subject's id to begin:"
         android:textColor="@color/primary_button"
         android:textSize="16dp"
         android:textStyle="bold" />
-
-    <com.google.android.material.switchmaterial.SwitchMaterial
-        android:id="@+id/alertToStartToggle"
-        android:layout_width="140dp"
-        android:layout_height="40dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerVertical="true"
-        android:layout_marginBottom="20dp"
-        android:layout_marginStart="10dp"
-        android:checked="true"
-        android:text="Alert to Start" />
-    <com.google.android.material.switchmaterial.SwitchMaterial
-        android:id="@+id/optionalActivitiesToggle"
-        android:layout_width="180dp"
-        android:layout_height="40dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        android:layout_marginBottom="20dp"
-        android:layout_marginEnd="10dp"
-        android:checked="true"
-        android:text="Optional Activities" />
 
 
 </RelativeLayout>

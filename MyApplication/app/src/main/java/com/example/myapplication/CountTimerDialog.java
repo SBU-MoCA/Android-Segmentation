@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
@@ -31,6 +32,9 @@ public class CountTimerDialog extends AppCompatDialogFragment {
         View promptView = layoutInflater.inflate(R.layout.countdown_timer_dialog, null);
         AlertDialog.Builder alertBuilder = new AlertDialog.Builder(getActivity(), R.style.AlertDialog);
         AlertDialog builder = alertBuilder.create();
+        // Make the dialog full screen
+        builder.getWindow().addFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+
         builder.setView(promptView);
         WindowManager.LayoutParams windowLayout = builder.getWindow().getAttributes();
         windowLayout.y = 425;
