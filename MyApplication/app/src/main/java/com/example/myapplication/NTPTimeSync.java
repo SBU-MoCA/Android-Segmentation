@@ -17,7 +17,7 @@ public class NTPTimeSync {
             try  {
                 // TODO: get the timezone of edge server from cloud server and set timezone of app.
                 TrueTime ntpTimeSync = TrueTime.build()
-                        .withNtpHost("pool.ntp.org") // same connection on the edge server as well
+                        .withNtpHost("debian.pool.ntp.org") // same connection on the edge server as well
                         .withLoggingEnabled(true);
                 try {
                     ntpTimeSync.initialize();
