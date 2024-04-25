@@ -139,7 +139,7 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
             timeLogString = "start";
         }
         // adding subjectId as title of the page.
-        getSupportActionBar().setTitle("Participant: " + subjectId);
+        getSupportActionBar().setTitle("Patient: " + subjectId);
 
         // set the filename for writing
         String fileName = getFileNameFormat(fileLocation, subjectId);
@@ -172,10 +172,6 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
             e.printStackTrace();
         }
 
-        if (activityId.equals("1")) {
-            new NTPTimeSync();
-            // All the functions in this package are static.
-        }
 
         // getting the audioFileName
         int soundId = res.getIdentifier(audioStartFilename, "raw", context.getPackageName());
@@ -464,8 +460,13 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
     }
 
     private void logActivityTimings(FileWriter fileWriter, JavaAppendFileWriter fileAppendWriter, String flag, String activityName) {
+        TimeZone timeZone = TimeZone.getTimeZone("UTC");
+        Calendar calendar = Calendar.getInstance(timeZone);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS", Locale.US);
+        format.setTimeZone(timeZone);
+        String time =  format.format(calendar.getTime());
         try {
-            fileAppendWriter.writeToFile(fileWriter, flag, activityName);
+            fileAppendWriter.writeToFile(fileWriter, time, flag, activityName);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -509,9 +510,15 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
                 activityId = Integer.toString((Integer.parseInt(activityId, 10) + 1));
             }
         }
-
-        // Filter whether to show real or fake food activity.
+       // skip real food activities if artificial food is selected.
         String tempActivityId = activityId;
+        for (int element : helperClass.FAKE_FOOD_ACTIVITY_LIST) {
+            if (element == (Integer.parseInt(tempActivityId, 10)) && !realFood) {
+               tempActivityId = Integer.toString((Integer.parseInt(tempActivityId, 10) + 1));
+                break;
+            }
+        }
+        // Filter whether to show real or fake food activity.
         // change the activities
         for (int element : helperClass.FOOD_ACTIVITIES_CHECK) {
             System.out.println("ACTIVITY: " + activityId);

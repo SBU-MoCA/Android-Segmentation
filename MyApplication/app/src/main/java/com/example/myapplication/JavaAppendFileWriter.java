@@ -21,10 +21,9 @@ import android.os.Bundle;
 public class JavaAppendFileWriter extends Activity {
     public FileWriter fw;
 
-    public void writeToFile(FileWriter fw, String flag, String activityName) throws IOException {
-        String ntpServerTime = NTPTimeSync.getFormattedDateTime();
+    public void writeToFile(FileWriter fw, String timestamp, String flag, String activityName) throws IOException {
         Character terminatingCharacter = flag.equals("stop") ? '\n' : ',';
-        String textToWrite = flag + ": " + ntpServerTime + terminatingCharacter;
+        String textToWrite = flag + ": " + timestamp + terminatingCharacter;
         System.out.println("activityName: " + activityName);
         if (flag.equals("start") && !activityName.equals("") && !(activityName.equals("\0"))) {
             textToWrite = activityName + " - " + textToWrite;
