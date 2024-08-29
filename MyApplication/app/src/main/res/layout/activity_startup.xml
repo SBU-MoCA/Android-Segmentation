@@ -84,7 +84,7 @@
         android:layout_marginBottom="105dp"
         android:background="@drawable/custom_text_input"
         android:ems="10"
-        android:hint="ENTER SUBJECT ID"
+        android:hint="ENTER PARTICIPANT ID"
         android:inputType="text"
         android:textAlignment="center"
         android:textColor="@color/primary_button"
