@@ -50,7 +50,7 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
     public Instructions() throws IOException {}
     private boolean isAppInBackground = false;
     Helper helperClass = new Helper();
-    String FINAL_ACTIVITY_NUMBER = "39"; // TODO: Update when number of activity changes.
+    String FINAL_ACTIVITY_NUMBER = "41"; // TODO: Update when number of activity changes.
     private JavaAppendFileWriter mAppendFileWriter = new JavaAppendFileWriter();
     private FileWriter fw;
     public Boolean alertToStart;
