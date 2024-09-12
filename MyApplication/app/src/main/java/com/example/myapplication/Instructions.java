@@ -99,7 +99,7 @@ public class Instructions extends AppCompatActivity implements CustomDialog.Cust
 
     public String activityCompleteVoiceFile = "timed_activity_voice";
     public String startActivityAlertVoiceFile = "start_activity_ready";
-    public int startActivityAlertTimer = 3000;
+    public int startActivityAlertTimer = 7000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
