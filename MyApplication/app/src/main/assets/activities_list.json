@@ -493,7 +493,7 @@
     "audioNextFileName": "bedroom_lie_ceiling_end",
     "gifFileName": "bedroom_lie_ceiling",
     "alertUser": true,
-    "alertAfter": 25,
+    "alertAfter": 120,
     "alertUserSuccessText": "Activity Complete. Please press 'Next' to move onto the next position."
   },
   "30": {
@@ -511,7 +511,7 @@
     "audioNextFileName": "bedroom_lie_side_end",
     "gifFileName": "bedroom_lie_side",
     "alertUser": true,
-    "alertAfter": 25,
+    "alertAfter": 120,
     "alertUserSuccessText": "Activity Complete. Please press 'Next' to move onto the next posture.",
     "optionalActivity": true
   },
@@ -530,7 +530,7 @@
     "audioNextFileName": "bedroom_lie_stomach_end",
     "gifFileName": "bedroom_lie_stomach",
     "alertUser": true,
-    "alertAfter": 25,
+    "alertAfter": 120,
     "alertUserSuccessText": "Activity Complete. Please press 'Next' to move onto the next posture."
   },
   "32": {
