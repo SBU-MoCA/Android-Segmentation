@@ -125,8 +125,8 @@
       "Press ‘Next’ when you are done."
     ],
     "roomName": "KITCHEN",
-    "audioStartFileName": "kitchen_eat_drink_start",
-    "audioNextFileName": "kitchen_eat_drink_end",
+    "audioStartFileName": "kitchen_eat_drink_start_real",
+    "audioNextFileName": "kitchen_eat_drink_end_real",
     "gifFileName": "kitchen_eat_drink",
     "alertUser": false,
     "alertAfter": 0
