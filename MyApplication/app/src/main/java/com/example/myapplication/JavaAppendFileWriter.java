@@ -25,7 +25,6 @@ public class JavaAppendFileWriter extends Activity {
         String ntpServerTime = NTPTimeSync.getFormattedDateTime();
         Character terminatingCharacter = flag.equals("stop") ? '\n' : ',';
         String textToWrite = flag + ": " + ntpServerTime + terminatingCharacter;
-        System.out.println("activityName: " + activityName);
         if (flag.equals("start") && !activityName.equals("") && !(activityName.equals("\0"))) {
             textToWrite = activityName + " - " + textToWrite;
         }

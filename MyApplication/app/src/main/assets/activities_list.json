@@ -35,11 +35,11 @@
     "activityName": "Take artificial food out from fridge",
     "startInstructions": [
       "Press ‘Start’ before you begin the activity.",
-      "Please take out the artificial sandwich from the refrigerator.",
-      "Unpack and place the sandwich on the plate."
+      "Please take out the artificial food from the refrigerator.",
+      "Unpack and place the food on the plate."
     ],
     "nextInstructions": [
-      "Press ‘Next’ when you have placed the sandwich on the plate."
+      "Press ‘Next’ when you have placed the food on the plate."
     ],
     "roomName": "KITCHEN",
     "audioStartFileName": "kitchen_snack_start",
@@ -52,14 +52,14 @@
     "activityName": "Take food out from fridge",
     "startInstructions": [
       "Press ‘Start’ before you begin the activity.",
-      "Please take out the protein bar from the refrigerator.",
-      "Unpack and place the bar on the plate."
+      "Please take out the food from the refrigerator.",
+      "Unpack and place the food on the plate."
     ],
     "nextInstructions": [
-      "Press ‘Next’ when you have placed the bar on the plate."
+      "Press ‘Next’ when you have placed the food on the plate."
     ],
     "roomName": "KITCHEN",
-    "audioStartFileName": "kitchen_snack_start",
+    "audioStartFileName": "kitchen_snack_start_real",
     "audioNextFileName": "kitchen_snack_end",
     "gifFileName": "kitchen_snack",
     "alertUser": false,
@@ -119,14 +119,14 @@
     "startInstructions": [
       "Press ‘Start’ before you begin the activity.",
       "Take the plate and cup to the dining table and be seated.",
-      "Enjoy your food and drink"
+      "Enjoy your food and drink."
     ],
     "nextInstructions": [
       "Press ‘Next’ when you are done."
     ],
     "roomName": "KITCHEN",
-    "audioStartFileName": "kitchen_eat_drink_start",
-    "audioNextFileName": "kitchen_eat_drink_end",
+    "audioStartFileName": "kitchen_eat_drink_start_real",
+    "audioNextFileName": "kitchen_eat_drink_end_real",
     "gifFileName": "kitchen_eat_drink",
     "alertUser": false,
     "alertAfter": 0
@@ -223,7 +223,7 @@
     "activityName": "Remove the Masimo device",
     "startInstructions": [
       "Press ‘Start’ before you begin the activity.",
-      "Remove the Masimo device from your finger and place it in the study bag that is around your neck to keep the device with you."
+      "Remove the Masimo device from your finger and clip it in the phone bag that is around your neck to carry the device with you."
     ],
     "nextInstructions": [
       "Press ‘Next’ when you are ready to move to the next activity.",
@@ -493,7 +493,7 @@
     "audioNextFileName": "bedroom_lie_ceiling_end",
     "gifFileName": "bedroom_lie_ceiling",
     "alertUser": true,
-    "alertAfter": 25,
+    "alertAfter": 120,
     "alertUserSuccessText": "Activity Complete. Please press 'Next' to move onto the next position."
   },
   "30": {
@@ -511,7 +511,7 @@
     "audioNextFileName": "bedroom_lie_side_end",
     "gifFileName": "bedroom_lie_side",
     "alertUser": true,
-    "alertAfter": 25,
+    "alertAfter": 120,
     "alertUserSuccessText": "Activity Complete. Please press 'Next' to move onto the next posture.",
     "optionalActivity": true
   },
@@ -530,7 +530,7 @@
     "audioNextFileName": "bedroom_lie_stomach_end",
     "gifFileName": "bedroom_lie_stomach",
     "alertUser": true,
-    "alertAfter": 25,
+    "alertAfter": 120,
     "alertUserSuccessText": "Activity Complete. Please press 'Next' to move onto the next posture."
   },
   "32": {
@@ -555,11 +555,11 @@
     "activityName": "Remove the device and wear your shoes",
     "startInstructions": [
       "Press ‘Start’ before you begin the activity.",
-      "Remove the Masimo device from your finger and place it in the study bag that is around your neck to keep the device with you.",
+      "Remove the Masimo device from your finger and clip it in the phone bag that is around your neck to carry the device with you.",
       "Please put your shoes back on and tie your laces if you have any."
     ],
     "nextInstructions": [
-      "Press ‘Next’ when you placed the device in the study bag and have put your shoes back on.",
+      "Press ‘Next’ when you clipped the device in the phone bag and have put your shoes back on.",
       "Please review the video of activities you will complete after you walk to the study table."
     ],
     "roomName": "BEDROOM",
